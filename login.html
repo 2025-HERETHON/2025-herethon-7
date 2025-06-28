@@ -1,0 +1,24 @@
+<!--유진서-->
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Login</title>
+  </head>
+  <body>
+    <div class="login-contianer">
+      <h1>로그인</h1>
+      <form action="/login" method="POST">
+        ID:
+        <input type="text" name="id" placeholder="이메일을 입력하세요." /> PW:
+        <input type="text" name="pw" placeholder="비밀번호를 입력하세요." />
+        <button type="submit">로그인</button>
+      </form>
+      <footer>
+        계정이 없으신가요?
+        <a href="/login/signup.html" target="_self">회원가입</a>
+      </footer>
+    </div>
+  </body>
+</html>
