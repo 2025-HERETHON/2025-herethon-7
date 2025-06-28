@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>회원가입 | 여성 중심 문화경험 플랫폼</title>
+</head>
+<body>
+  <h2>회원가입</h2>
+
+  <form action="/signup" method="post">
+    <!-- 닉네임 -->
+    <label for="nickname">닉네임</label><br />
+    <input type="text" id="nickname" name="nickname" required /><br /><br />
+
+    <!-- 이메일 -->
+    <label for="email">이메일</label><br />
+    <input type="email" id="email" name="email" required /><br /><br />
+
+    <!-- 비밀번호 -->
+    <label for="password">비밀번호</label><br />
+    <input type="password" id="password" name="password" required /><br /><br />
+
+    <!-- 비밀번호 확인 -->
+    <label for="confirm-password">비밀번호 확인</label><br />
+    <input type="password" id="confirm-password" name="confirm-password" required /><br /><br />
+
+    <!-- 성별 선택 -->
+    <label for="gender">성별</label><br />
+    <select id="gender" name="gender" required>
+      <option value="">선택해주세요</option>
+      <option value="female">여성</option>
+    </select><br /><br />
+
+    <!-- 이용약관 동의 -->
+    <label>
+      <input type="checkbox" name="agree" required />
+      이용약관에 동의합니다
+    </label><br /><br />
+
+    <!-- 제출 버튼 -->
+    <button type="submit">가입하기</button>
+  </form>
+
+  <p>이미 계정이 있으신가요? <a href="/login">로그인</a></p>
+</body>
+</html>
