@@ -15,6 +15,10 @@
     
     <p>작성자: {{ review.user.nickname }}</p>
 
+    {% if review.cover_image %}
+        <img src="{{ review.cover_image.url }}" width="150">
+    {% endif %}
+
     <p>평점: {{ review.rating }}점</p>
     <p>한줄 감상: {{ review.short_comment }}</p>
     <p>상세 리뷰: {{ review.detailed_review }}</p>
