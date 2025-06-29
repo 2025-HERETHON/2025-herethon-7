@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <title>{% block title %}shelf{% endblock %}</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/style.css' %}" />
+  </head>
+  <body>
+    <header>
+      <h1><a href="/">shelf</a></h1>
+      <hr />
+    </header>
+
+    <main>
+      {% block content %}
+      <!-- 개별 페이지에서 이 부분을 덮어씀 -->
+      {% endblock %}
+    </main>
+
+    <footer>
+      <hr />
+      <p>© 2025-herethon-7</p>
+    </footer>
+  </body>
+</html>
