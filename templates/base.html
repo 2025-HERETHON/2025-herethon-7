@@ -5,6 +5,7 @@
     <title>{% block title %}shelf{% endblock %}</title>
     {% load static %}
     <link rel="stylesheet" href="{% static 'css/style.css' %}" />
+    {% block extra_css %}{% endblock %}
   </head>
   <body>
     <header>
