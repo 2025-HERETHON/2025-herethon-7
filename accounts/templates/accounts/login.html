@@ -14,17 +14,17 @@
   <form method="post">
     {% csrf_token %}
     <div class="input-group">
-      {{ form.username.label_tag }} {{ form.username }}
+      {{ form.username }}
     </div>
 
     <div class="input-group">
-      {{ form.password.label_tag }} {{ form.password }}
+      {{ form.password }}
     </div>
 
     <div class="options">
       <a href="#">아이디/비밀번호 찾기</a>
     </div>
-    <button type="submit">로그인</button>
+    <button type="submit" class="login-btn">로그인</button>
   </form>
 
   <div class="signup-link">
