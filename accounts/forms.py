@@ -18,13 +18,10 @@ class CustomUserCreationForm(UserCreationForm):
 
 class CustomLoginForm(AuthenticationForm):
     username = forms.CharField(
-        label='아이디',
-        widget=forms.TextInput(attrs={'autofocus': True})
+        widget=forms.TextInput(attrs={'placeholder': '아이디'})
     )
     password = forms.CharField(
-        label='비밀번호',
-        strip=False,
-        widget=forms.PasswordInput,
+        widget=forms.PasswordInput(attrs={'placeholder': '비밀번호'})
     )
 
 class PasswordResetRequestForm(forms.Form):
