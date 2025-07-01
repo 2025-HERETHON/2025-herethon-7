@@ -2,10 +2,8 @@
 .login-container {
   background-color: #212842;
   color: white;
-  padding: 2rem;
-  border-radius: 10px;
-  max-width: 400px;
-  margin: 3rem auto;
+  margin: 0;
+  padding: 0;
 }
 
 .login-container h2 {
