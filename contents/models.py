@@ -22,12 +22,18 @@ class Tag(models.Model):
     def __str__(self):
         return f"[{self.get_tag_type_display()}] {self.name}"
 
+class Book(models.Model):
+    title = models.CharField(max_length=255)
+    author = models.CharField(max_length=255)
+    google_book_id = models.CharField(max_length=50, unique=True)
+
+    def __str__(self):
+        return f"{self.title} - {self.author}"
 
 class Review(models.Model):
     user = models.ForeignKey(to=settings.AUTH_USER_MODEL, on_delete=models.CASCADE, related_name='reviews')
 
-    book_title = models.CharField(max_length=200)
-    author = models.CharField(max_length=100)
+    book = models.ForeignKey(to=Book, on_delete=models.CASCADE, related_name='reviews')
     cover_image = models.ImageField(upload_to=upload_filepath, blank=True, null=True)
 
     tags = models.ManyToManyField(to=Tag, through='ReviewTag', blank=True, related_name='reviews')
@@ -40,7 +46,7 @@ class Review(models.Model):
     updated_at = models.DateTimeField(auto_now=True)
 
     def __str__(self):
-        return f"{self.book_title} - {self.short_comment[:20]}"
+        return f"{self.book.title} - {self.short_comment[:20]}"
 
 
 class ReviewTag(models.Model):
