@@ -1,6 +1,12 @@
 {% extends "base.html" %} 
 {% load static %} 
 {% block title %}Shelf{% endblock%}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'css/intro.css' %}" />
+{% endblock %} 
+
+{% block content %}
 <div class="login-container">
   <div class="logo">
       <svg xmlns="http://www.w3.org/2000/svg" width="69" height="69" viewBox="0 0 69 69" fill="none">
