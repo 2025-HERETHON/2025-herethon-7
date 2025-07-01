@@ -13,12 +13,13 @@
 
   <form method="post">
     {% csrf_token %}
-    <div class="input-group">
+    <div class="input-container">
+      <div class="input-group">
       {{ form.username }}
     </div>
-
-    <div class="input-group">
+      <div class="input-group">
       {{ form.password }}
+      </div>
     </div>
 
     <div class="options">
@@ -27,8 +28,10 @@
     <button type="submit" class="login-btn">로그인</button>
   </form>
 
-  <div class="signup-link">
-    <a href="{% url 'signup' %}">회원가입 하기</a>
+  <div class="signup-link-container">
+    <hr/>
+    <a href="{% url 'signup' %}" class="signup-link" >회원가입 하기</a>
+    <hr/>
   </div>
 </div>
 {% endblock %}
