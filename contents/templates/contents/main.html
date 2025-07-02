@@ -7,6 +7,34 @@
 </head>
 <body>
     <h2>메인페이지</h2>
+
+    {% if request.user.is_authenticated %}
+        {{ request.user.user_id }}님 환영합니다. <br/>
+        <form id="logout-form" action="{% url 'logout' %}" method="post" style="display:none;">
+            {% csrf_token %}
+        </form>
+        <a href="#" onclick="document.getElementById('logout-form').submit(); return false;">로그아웃</a>
+
+    {% else %}
+        <a href="{% url 'login' %}">로그인</a>
+        <a href="{% url 'signup' %}">회원가입</a>
+
+    {% endif %}
+    <br><br>
+
     <a href="{% url 'contents:book_search' %}">리뷰 작성하러가기</a>
+    <br>
+    <hr>
+
+    {% for review in reviews %}
+        <p>
+            <a href="{% url 'contents:detail' review.id %}"> {{ review.book.title }} — {{ review.short_comment }} </a>
+        </p>
+
+    {% empty %}
+        <p>아직 등록된 리뷰가 없습니다.</p>
+    
+    {% endfor %}
+
 </body>
 </html>

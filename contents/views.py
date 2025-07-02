@@ -1,7 +1,8 @@
 import requests
 from django.shortcuts import render, redirect, get_object_or_404
 from django.conf import settings
-from .models import Book, Tag, Review
+from .models import Book, Tag, Review, Comment
+from django.contrib.auth.decorators import login_required
 
 # Create your views here.
 def main(request):
@@ -31,6 +32,7 @@ def book_search(request):
 
     return render(request, 'contents/book_search.html', {'query': query, 'results': results})
 
+@login_required
 def select_book(request):
     if request.method == 'POST':
         google_book_id = request.POST.get('google_book_id')
@@ -45,6 +47,7 @@ def select_book(request):
         return redirect('contents:create', book_id=book.id)
     return redirect('contents:book_search')
 
+@login_required
 def create(request, book_id):
     book = get_object_or_404(Book, id=book_id)
     tags = Tag.objects.all()
@@ -78,3 +81,86 @@ def create(request, book_id):
         return redirect('contents:main')
 
     return render(request, 'contents/create.html', {'book': book, 'tags': tags})
+
+def detail(request, id):
+    review = get_object_or_404(Review, id=id)
+    return render(request, 'contents/detail.html', {'review': review})
+
+@login_required
+def update(request, id):
+    review = get_object_or_404(Review, id=id)
+    tags = Tag.objects.all()
+
+    if request.method == 'POST':
+        review.short_comment = request.POST.get('short_comment')
+        review.detailed_review = request.POST.get('detailed_review')
+        review.rating = int(request.POST.get('rating', 0))
+
+        image = request.FILES.get('cover_image')
+        if image:
+            if review.cover_image:
+                review.cover_image.delete(save=False)
+            review.cover_image = image
+
+        tag_ids = request.POST.getlist('tag')
+        review.save()
+        review.tags.set(Tag.objects.filter(id__in=tag_ids))
+        return redirect('contents:detail', review.id)
+
+    return render(request, 'contents/update.html', {'review': review, 'tags': tags, 'rating_range': range(1, 6)})
+
+@login_required
+def delete(request, id):
+    review = get_object_or_404(Review, id=id)
+    review.delete()
+    return redirect('contents:main')
+
+@login_required
+def like(request, review_id):
+    review = get_object_or_404(Review, id=review_id)
+    user = request.user
+    if user in review.like.all():
+        review.like.remove(user)
+    else:
+        review.like.add(user)
+    return redirect('contents:detail', review_id)
+
+@login_required
+def dislike(request, review_id):
+    review = get_object_or_404(Review, id=review_id)
+    user = request.user
+    if user in review.dislike.all():
+        review.dislike.remove(user)
+    else:
+        review.dislike.add(user)
+    return redirect('contents:detail', review_id)
+
+@login_required
+def scrap(request, review_id):
+    review = get_object_or_404(Review, id=review_id)
+    user = request.user
+    if user in review.scrap.all():
+        review.scrap.remove(user)
+    else:
+        review.scrap.add(user)
+    return redirect('contents:detail', review_id)
+
+@login_required
+def create_comment(request, review_id):
+    review = get_object_or_404(Review, id=review_id)
+    if request.method == 'POST':
+        content = request.POST.get('content')
+        if content:
+            Comment.objects.create(
+                review=review,
+                content=content,
+                user=request.user
+            )
+    return redirect('contents:detail', id=review_id)
+
+@login_required
+def delete_comment(request, comment_id):
+    comment = get_object_or_404(Comment, id=comment_id)
+    review_id = comment.review.id
+    comment.delete()
+    return redirect('contents:detail', review_id)

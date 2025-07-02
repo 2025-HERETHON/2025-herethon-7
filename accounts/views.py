@@ -6,7 +6,9 @@ def signup_view(request):
     if request.method == 'POST':
         form = CustomUserCreationForm(request.POST)
         if form.is_valid():
-            form.save()
+            user = form.save(commit=False)
+            user.username = user.user_id
+            user.save()
             return redirect('login')  
     else:
         form = CustomUserCreationForm()

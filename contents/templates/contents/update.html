@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h2>리뷰 수정</h2>
+
+    <form method="post" action="{% url 'contents:update' review.id %}" enctype="multipart/form-data">
+        {% csrf_token %}
+        
+        <p><strong>책 제목:</strong> {{ review.book.title }}</p>
+        <p><strong>작가:</strong> {{ review.book.author }}</p>
+
+        <label>책 인증 이미지:</label><br>
+        {% if review.cover_image %}
+            <img src="{{ review.cover_image.url }}" width="100"><br>
+        {% endif %}
+        <input type="file" name="cover_image"><br><br>
+
+        <label>평점:</label>
+        <select name="rating">
+            {% for i in rating_range %}
+                <option value="{{ i }}" {% if review.rating == i %}selected{% endif %}>{{ i }}점</option>
+            {% endfor %}
+        </select><br><br>
+
+        <label>한줄 감상평:</label><br>
+        <input type="text" name="short_comment" value="{{ review.short_comment }}"><br><br>
+
+        <label>상세 리뷰:</label><br>
+        <textarea name="detailed_review" rows="5" style="width:100%;">{{ review.detailed_review }}</textarea><br><br>
+
+        <hr>
+        <strong>감정 태그:</strong><br>
+
+        <div>
+            <strong>1차 감정</strong><br>
+            {% for tag in tags %}
+                {% if tag.tag_type == 'primary' %}
+                <label>
+                    <input type="checkbox" name="tag" value="{{ tag.id }}"
+                    {% if tag in review.tags.all %}checked{% endif %}>
+                    #{{ tag.name }}
+                </label><br>
+            {% endif %}
+            {% endfor %}
+        </div>
+
+        <div>
+            <strong>2차 감정</strong><br>
+            {% for tag in tags %}
+                {% if tag.tag_type == 'secondary' %}
+                <label>
+                    <input type="checkbox" name="tag" value="{{ tag.id }}"
+                    {% if tag in review.tags.all %}checked{% endif %}>
+                    #{{ tag.name }}
+                </label><br>
+                {% endif %}
+            {% endfor %}
+        </div>
+
+        <br>
+        <button type="submit">수정 완료</button>
+</form>
+
+
+</body>
+</html>
