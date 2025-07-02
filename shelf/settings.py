@@ -123,3 +123,5 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 load_dotenv()
 
 GOOGLE_BOOKS_API_KEY = os.getenv("GOOGLE_BOOKS_API_KEY")
+
+LOGOUT_REDIRECT_URL = 'login'

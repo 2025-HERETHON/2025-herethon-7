@@ -45,6 +45,10 @@ class Review(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 
+    like = models.ManyToManyField(to=settings.AUTH_USER_MODEL, through='Like', related_name='like_reviews')
+    dislike = models.ManyToManyField(to=settings.AUTH_USER_MODEL, through='Dislike', related_name='dislike_reviews')
+    scrap = models.ManyToManyField(to=settings.AUTH_USER_MODEL, through='Scrap', related_name='scrap_reviews')
+
     def __str__(self):
         return f"{self.book.title} - {self.short_comment[:20]}"
 
@@ -55,3 +59,24 @@ class ReviewTag(models.Model):
 
     def __str__(self):
         return f"{self.review} - {self.tag}"
+    
+class Like(models.Model):
+    user = models.ForeignKey(to=settings.AUTH_USER_MODEL, on_delete=models.CASCADE, related_name='user_likes')
+    review = models.ForeignKey(to=Review, on_delete=models.CASCADE, related_name='review_likes')
+
+class Dislike(models.Model):
+    user = models.ForeignKey(to=settings.AUTH_USER_MODEL, on_delete=models.CASCADE, related_name='user_dislikes')
+    review = models.ForeignKey(to=Review, on_delete=models.CASCADE, related_name='review_dislikes')
+
+class Scrap(models.Model):
+    user = models.ForeignKey(to=settings.AUTH_USER_MODEL, on_delete=models.CASCADE, related_name='user_scraps')
+    review = models.ForeignKey(to=Review, on_delete=models.CASCADE, related_name='review_scraps')
+
+class Comment(models.Model):
+    review = models.ForeignKey(to=Review, on_delete=models.CASCADE, related_name="comments")
+    content = models.TextField()
+    user = models.ForeignKey(to=settings.AUTH_USER_MODEL, on_delete=models.CASCADE, related_name="comments")
+    created_at = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return f'[{self.id}] {self.content[:20]}'
