@@ -16,4 +16,8 @@ urlpatterns = [
     path('scrap/<int:review_id>/', scrap, name='scrap'),
     path('create-comment/<int:review_id>/', create_comment, name='create-comment'),
     path('delete-comment/<int:comment_id>/', delete_comment, name='delete-comment'),
+    path('reviews/search/', search_reviews, name='search_reviews'),
+    path('popular/', popular_reviews, name='popular_reviews'),
+    path('filter/', filter_by_tags, name='filter_reviews'),
+
 ]

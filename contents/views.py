@@ -3,11 +3,17 @@ from django.shortcuts import render, redirect, get_object_or_404
 from django.conf import settings
 from .models import Book, Tag, Review, Comment
 from django.contrib.auth.decorators import login_required
+from django.db.models import Q, Count
 
-# Create your views here.
 def main(request):
-    reviews = Review.objects.all().order_by('-created_at')
-    return render(request, 'contents/main.html', {'reviews': reviews})
+    sort = request.GET.get('sort', 'recent')
+    if sort == 'popular':
+        reviews = Review.objects.annotate(
+            num_likes=Count('like')
+        ).order_by('-num_likes', '-created_at')
+    else: 
+        reviews = Review.objects.order_by('-created_at')
+    return render(request, 'contents/main.html', {'reviews': reviews, 'sort': sort})
 
 def book_search(request):
     query = request.GET.get('q')
@@ -164,3 +170,44 @@ def delete_comment(request, comment_id):
     review_id = comment.review.id
     comment.delete()
     return redirect('contents:detail', review_id)
+
+def search_reviews(request):
+    query = request.GET.get('q')
+    reviews = Review.objects.all()
+
+    if query:
+        reviews = reviews.filter(
+            Q(book__title__icontains=query) | Q(book__author__icontains=query)
+        )
+
+    return render(request, 'contents/search_reviews.html', {
+        'query': query,
+        'reviews': reviews
+    })
+
+def popular_reviews(request):
+    reviews = Review.objects.annotate(
+        num_likes=Count('like')
+    ).order_by('-num_likes', '-created_at')
+    return render(request, 'contents/popular.html', {'reviews': reviews})
+
+def filter_by_tags(request):
+    tag_ids = request.GET.getlist('tags')
+    tags = Tag.objects.all()
+    reviews = Review.objects.all()
+    selected_tags = []
+
+    if tag_ids:
+        tag_ids = list(map(int, tag_ids))
+        selected_tags = Tag.objects.filter(id__in=tag_ids)
+        for tag_id in tag_ids:
+            reviews = reviews.filter(tags__id=tag_id)
+        reviews = reviews.distinct().order_by('-created_at')
+    else:
+        reviews = reviews.order_by('-created_at')
+
+    return render(request, 'contents/filter_reviews.html', {
+        'reviews': reviews,
+        'tags': tags,
+        'selected_tags': selected_tags,
+    })
