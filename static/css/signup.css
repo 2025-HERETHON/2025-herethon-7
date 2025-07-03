@@ -43,7 +43,9 @@ body {
   }
   
   /* 입력창 */
-  .input-group input {
+  .input-group input[type="text"],
+  .input-group input[type="password"],
+  .input-group input[type="email"] {
     height: 3rem;
     padding-left: 1rem;
     border-radius: 0.75rem;
@@ -87,5 +89,38 @@ body {
   
   .signup-btn:hover {
     background-color: #1a1f33;
+  }
+  
+  /* ===== 성별 라디오 버튼 영역 ===== */
+  .gender-group {
+    margin-bottom: 1.25rem;
+  }
+  
+  .gender-group label {
+    font-size: 0.875rem;
+    font-weight: 700;
+    margin-bottom: 0.25rem;
+    color: #212842;
+    display: block;
+  }
+  
+  .gender-options {
+    margin-top: 0.25rem;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+  }
+  
+  .gender-options label {
+    display: flex;
+    align-items: center;
+    font-size: 0.875rem;
+    color: #212842;
+    line-height: 1.2;
+    gap: 6px;
+  }
+  
+  .gender-options input[type="radio"] {
+    margin: 0;
   }
   
