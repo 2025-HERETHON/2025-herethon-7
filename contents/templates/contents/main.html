@@ -26,6 +26,21 @@
     <br>
     <hr>
 
+    <form method="get" action="{% url 'contents:search_reviews' %}">
+        <input type="text" name="q" placeholder="제목 또는 작가로 검색">
+        <button type="submit">검색</button>
+    </form>
+    <hr>
+
+    <a href="{% url 'contents:filter_reviews' %}">감정별 모아보기</a>
+    <hr>
+
+    <div>
+        <a href="?sort=recent"{% if sort == 'recent' %} style="font-weight:bold;"{% endif %}>최신순</a> |
+        <a href="?sort=popular"{% if sort == 'popular' %} style="font-weight:bold;"{% endif %}>인기순</a>
+    </div>
+    <br>
+
     {% for review in reviews %}
         <p>
             <a href="{% url 'contents:detail' review.id %}"> {{ review.book.title }} — {{ review.short_comment }} </a>
