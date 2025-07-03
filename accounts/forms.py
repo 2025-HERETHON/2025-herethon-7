@@ -3,6 +3,18 @@ from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 from .models import CustomUser
 
 class CustomUserCreationForm(UserCreationForm):
+    GENDER_CHOICES = [
+        ('M', '남성'),
+        ('F', '여성'),
+        ('O', '기타'),
+    ]
+
+    gender = forms.ChoiceField(
+        choices=GENDER_CHOICES,
+        widget=forms.RadioSelect,
+        label='성별'
+    )
+
     class Meta:
         model = CustomUser
         fields = ('user_id', 'nickname', 'gender', 'email', 'password1', 'password2')
@@ -44,6 +56,7 @@ class CustomUserCreationForm(UserCreationForm):
             'placeholder': '비밀번호 재입력',
             'class': 'form-input'
         })
+
 
 class CustomLoginForm(AuthenticationForm):
     username = forms.CharField(
