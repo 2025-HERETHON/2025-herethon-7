@@ -26,3 +26,7 @@ class CustomLoginForm(AuthenticationForm):
         strip=False,
         widget=forms.PasswordInput,
     )
+
+class PasswordResetRequestForm(forms.Form):
+    user_id = forms.CharField(label='아이디', max_length=150)
+    email = forms.EmailField(label='이메일')
