@@ -81,3 +81,13 @@ class Comment(models.Model):
 
     def __str__(self):
         return f'[{self.id}] {self.content[:20]}'
+
+class FeaturedAuthor(models.Model):
+    name = models.CharField(max_length=100)
+    profile_image = models.ImageField(upload_to='authors/', blank=True, null=True)
+    bio = models.TextField(blank=True)
+    featured_month = models.DateField()
+    representative_work = models.CharField(max_length=255, blank=True)
+
+    def __str__(self):
+        return f"{self.name} ({self.featured_month.strftime('%Y-%m')})"

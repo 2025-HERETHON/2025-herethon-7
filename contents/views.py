@@ -2,9 +2,10 @@ import requests
 import random
 from django.shortcuts import render, redirect, get_object_or_404
 from django.conf import settings
-from .models import Book, Tag, Review, Comment
+from .models import Book, Tag, Review, Comment, FeaturedAuthor
 from django.contrib.auth.decorators import login_required
 from django.db.models import Q, Count
+from django.utils import timezone
 
 def main(request):
     sort = request.GET.get('sort', 'recent')
@@ -22,11 +23,34 @@ def main(request):
     if random_tag:
         recommended_review = Review.objects.filter(tags=random_tag).order_by('-created_at').first()
 
+    now = timezone.now()
+
+    author = FeaturedAuthor.objects.filter(
+        featured_month__year=now.year,
+        featured_month__month=now.month
+    ).first()
+
+    if author and author.representative_work:
+        works = [w.strip() for w in author.representative_work.split(',')]
+    else:
+        works = []
+
+    feminism_tag = Tag.objects.filter(name='여성중심서사').first()
+    feminism_reviews = []
+    if feminism_tag:
+        feminism_reviews = Review.objects.filter(tags=feminism_tag).annotate(
+            num_likes=Count('like')
+        ).order_by('-num_likes', '-created_at')[:3]
+
+
     return render(request, 'contents/main.html', {
         'reviews': reviews,
         'sort': sort,
         'random_tag': random_tag,
         'recommended_review': recommended_review,
+        'featured_author': author,
+        'representative_works': works,
+        'feminism_reviews': feminism_reviews,
     })
 
 def book_search(request):
