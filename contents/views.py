@@ -44,13 +44,20 @@ def book_search(request):
         data = response.json()
         for item in data.get('items', []):
             volume_info = item.get('volumeInfo', {})
+            image_links = volume_info.get('imageLinks', {})
+            thumbnail = image_links.get('thumbnail')
+
             results.append({
                 'google_book_id': item.get('id'),
                 'title': volume_info.get('title', '제목 없음'),
                 'author': ', '.join(volume_info.get('authors', [])) or '작자 미상',
+                'thumbnail': thumbnail or '', 
             })
 
-    return render(request, 'contents/book_search.html', {'query': query, 'results': results})
+    return render(request, 'contents/book_search.html', {
+        'query': query,
+        'results': results
+    })
 
 @login_required
 def select_book(request):
@@ -58,13 +65,18 @@ def select_book(request):
         google_book_id = request.POST.get('google_book_id')
         title = request.POST.get('title')
         author = request.POST.get('author')
+        thumbnail = request.POST.get('thumbnail', '')
 
         book, _ = Book.objects.get_or_create(
             google_book_id=google_book_id,
-            defaults={'title': title, 'author': author}
+            defaults={
+                'title': title,
+                'author': author,
+                'thumbnail': thumbnail
+            }
         )
-
         return redirect('contents:create', book_id=book.id)
+
     return redirect('contents:book_search')
 
 @login_required
