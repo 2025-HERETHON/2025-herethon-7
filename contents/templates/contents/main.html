@@ -10,10 +10,11 @@
 
     {% if request.user.is_authenticated %}
         {{ request.user.user_id }}님 환영합니다. <br/>
+        <a href="{% url 'mypage' %}">마이페이지</a><br>
         <form id="logout-form" action="{% url 'logout' %}" method="post" style="display:none;">
             {% csrf_token %}
         </form>
-        <a href="#" onclick="document.getElementById('logout-form').submit(); return false;">로그아웃</a>
+        <a href="#" onclick="document.getElementById('logout-form').submit(); return false;">로그아웃</a><br>
 
     {% else %}
         <a href="{% url 'login' %}">로그인</a>
@@ -34,6 +35,15 @@
 
     <a href="{% url 'contents:filter_reviews' %}">감정별 모아보기</a>
     <hr>
+
+    {% if random_tag and recommended_review %}
+        <h3>#{{ random_tag.name }} 감정이 담긴 책 추천</h3>
+        <p>
+            <strong>{{ recommended_review.book.title }}</strong> — {{ recommended_review.book.author }}
+        </p>
+        <hr>
+    {% endif %} 
+    <br>
 
     <div>
         <a href="?sort=recent"{% if sort == 'recent' %} style="font-weight:bold;"{% endif %}>최신순</a> |

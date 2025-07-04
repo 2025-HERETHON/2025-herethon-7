@@ -1,4 +1,5 @@
 import requests
+import random
 from django.shortcuts import render, redirect, get_object_or_404
 from django.conf import settings
 from .models import Book, Tag, Review, Comment
@@ -13,7 +14,20 @@ def main(request):
         ).order_by('-num_likes', '-created_at')
     else: 
         reviews = Review.objects.order_by('-created_at')
-    return render(request, 'contents/main.html', {'reviews': reviews, 'sort': sort})
+
+    all_tags = Tag.objects.annotate(review_count=Count('reviews')).filter(review_count__gt=0)
+    random_tag = random.choice(all_tags) if all_tags else None
+
+    recommended_review = None
+    if random_tag:
+        recommended_review = Review.objects.filter(tags=random_tag).order_by('-created_at').first()
+
+    return render(request, 'contents/main.html', {
+        'reviews': reviews,
+        'sort': sort,
+        'random_tag': random_tag,
+        'recommended_review': recommended_review,
+    })
 
 def book_search(request):
     query = request.GET.get('q')
