@@ -14,6 +14,10 @@
         <p><strong>책 제목:</strong> {{ review.book.title }}</p>
         <p><strong>작가:</strong> {{ review.book.author }}</p>
 
+        {% if review.book.thumbnail %}
+            <img src="{{ review.book.thumbnail }}" alt="책 썸네일" width="120"><br><br>
+        {% endif %}
+
         <label>책 인증 이미지:</label><br>
         {% if review.cover_image %}
             <img src="{{ review.cover_image.url }}" width="100"><br>

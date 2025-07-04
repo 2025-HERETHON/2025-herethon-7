@@ -9,7 +9,7 @@
     <h2>메인페이지</h2>
 
     {% if request.user.is_authenticated %}
-        {{ request.user.user_id }}님 환영합니다. <br/>
+        {{ request.user.nickname }}님 환영합니다. <br/>
         <a href="{% url 'mypage' %}">마이페이지</a><br>
         <form id="logout-form" action="{% url 'logout' %}" method="post" style="display:none;">
             {% csrf_token %}
@@ -38,6 +38,11 @@
 
     {% if random_tag and recommended_review %}
         <h3>#{{ random_tag.name }} 감정이 담긴 책 추천</h3>
+
+        {% if recommended_review.book.thumbnail %}
+            <img src="{{ recommended_review.book.thumbnail }}" alt="책 썸네일" width="100"><br>
+        {% endif %}
+
         <p>
             <strong>{{ recommended_review.book.title }}</strong> — {{ recommended_review.book.author }}
         </p>

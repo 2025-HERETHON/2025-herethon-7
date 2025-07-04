@@ -26,6 +26,7 @@ class Book(models.Model):
     title = models.CharField(max_length=255)
     author = models.CharField(max_length=255)
     google_book_id = models.CharField(max_length=50, unique=True)
+    thumbnail = models.URLField(blank=True, null=True)
 
     def __str__(self):
         return f"{self.title} - {self.author}"
