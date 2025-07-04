@@ -7,11 +7,11 @@ from django.db.models import Count
 from django.contrib.auth.tokens import default_token_generator
 from django.utils.http import urlsafe_base64_encode, urlsafe_base64_decode
 from django.utils.encoding import force_bytes, force_str
-from django.contrib.auth import get_user_model
-from django.shortcuts import render, redirect
+from django.contrib.auth import get_user_model, logout, authenticate
 from django.core.mail import send_mail
 from django.conf import settings
-from .forms import PasswordResetRequestForm
+from .forms import PasswordResetRequestForm, DeleteAccountForm
+from django.contrib import messages
 
 def signup_view(request):
     if request.method == 'POST':
@@ -118,3 +118,22 @@ def password_reset_confirm(request, uidb64, token):
         return render(request, "accounts/password_reset_confirm.html", {'form': form})
     else:
         return render(request, "accounts/password_reset_invalid.html")
+    
+@login_required
+def delete_account(request):
+    if request.method == "POST":
+        form = DeleteAccountForm(request.POST)
+        if form.is_valid():
+            password = form.cleaned_data['password']
+            user = request.user
+
+            if user.check_password(password):
+                user.delete()
+                logout(request)
+                messages.success(request, "회원탈퇴가 완료되었습니다.")
+                return redirect('login') 
+            else:
+                messages.error(request, "비밀번호가 올바르지 않습니다.")
+    else:
+        form = DeleteAccountForm()
+    return render(request, 'accounts/delete_account.html', {'form': form})
