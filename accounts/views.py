@@ -4,6 +4,14 @@ from .forms import CustomUserCreationForm, CustomLoginForm
 from django.contrib.auth.decorators import login_required
 from contents.models import Scrap, Tag
 from django.db.models import Count
+from django.contrib.auth.tokens import default_token_generator
+from django.utils.http import urlsafe_base64_encode, urlsafe_base64_decode
+from django.utils.encoding import force_bytes, force_str
+from django.contrib.auth import get_user_model
+from django.shortcuts import render, redirect
+from django.core.mail import send_mail
+from django.conf import settings
+from .forms import PasswordResetRequestForm
 
 def signup_view(request):
     if request.method == 'POST':
@@ -60,3 +68,53 @@ def emotion_stats(request):
         })
 
     return render(request, 'accounts/emotion_stats.html', { 'user_top_tags': user_top_tags, 'user_tag_distribution': user_tag_distribution})
+
+User = get_user_model()
+
+def password_reset_request(request):
+    if request.method == "POST":
+        form = PasswordResetRequestForm(request.POST)
+        if form.is_valid():
+            user_id = form.cleaned_data['user_id']
+            email = form.cleaned_data['email']
+            try:
+                user = User.objects.get(user_id=user_id, email=email)
+                token = default_token_generator.make_token(user)
+                uid = urlsafe_base64_encode(force_bytes(user.pk))
+                reset_link = request.build_absolute_uri(
+                    f'/accounts/reset/{uid}/{token}/'
+                )
+                
+                send_mail(
+                    subject="비밀번호 재설정 안내",
+                    message=f"아래 링크를 눌러 비밀번호를 재설정하세요:\n{reset_link}",
+                    from_email=settings.DEFAULT_FROM_EMAIL,
+                    recipient_list=[email],
+                )
+                return render(request, "accounts/password_reset_sent.html")
+            except User.DoesNotExist:
+                form.add_error(None, "아이디와 이메일이 일치하지 않습니다.")
+    else:
+        form = PasswordResetRequestForm()
+    return render(request, "accounts/password_reset_form.html", {"form": form})
+
+from django.contrib.auth.forms import SetPasswordForm
+
+def password_reset_confirm(request, uidb64, token):
+    try:
+        uid = force_str(urlsafe_base64_decode(uidb64))
+        user = User.objects.get(pk=uid)
+    except (TypeError, ValueError, OverflowError, User.DoesNotExist):
+        user = None
+
+    if user is not None and default_token_generator.check_token(user, token):
+        if request.method == 'POST':
+            form = SetPasswordForm(user, request.POST)
+            if form.is_valid():
+                form.save()
+                return render(request, "accounts/password_reset_complete.html")
+        else:
+            form = SetPasswordForm(user)
+        return render(request, "accounts/password_reset_confirm.html", {'form': form})
+    else:
+        return render(request, "accounts/password_reset_invalid.html")

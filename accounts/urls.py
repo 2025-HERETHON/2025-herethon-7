@@ -2,6 +2,7 @@ from django.urls import path
 from .views import signup_view, CustomLoginView, mypage, my_scraps, my_reviews, emotion_stats
 from django.contrib.auth import views as auth_views
 from django.contrib.auth.views import LogoutView
+from . import views
 
 urlpatterns = [
     path('signup/', signup_view, name='signup'),
@@ -11,4 +12,6 @@ urlpatterns = [
     path('my-scraps/', my_scraps, name='my_scraps'),
     path('my-reviews/', my_reviews, name='my_reviews'),
     path('emotion-stats/', emotion_stats, name='emotion_stats'),
+    path('password_reset/', views.password_reset_request, name='password_reset'),
+    path('reset/<uidb64>/<token>/', views.password_reset_confirm, name='password_reset_confirm'),
 ]
