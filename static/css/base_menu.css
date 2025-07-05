@@ -1,4 +1,8 @@
 .container {
+    width: 100%;
+    max-width: 420px;  /* 모바일 최대 크기 (iPhone 기준) */
+    box-sizing: border-box;
+    margin: 0 auto;    /* 가운데 정렬 */
     padding-bottom: 4.25rem !important;
 }
 
