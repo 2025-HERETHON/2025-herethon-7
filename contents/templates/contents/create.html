@@ -1,11 +1,12 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
+{% extends "base_menu.html" %} 
+{% load static %}
+{% block title %}감상 기록 등록{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'css/create.css' %}" />
+{% endblock %} 
+
+{% block content %}
     <h2>리뷰 작성</h2>
 
     <p><strong>책 제목:</strong> {{ book.title }}</p>
