@@ -1,96 +1,96 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
-    <h2>{{ review.book.title }}</h2>
-    <p>작가: {{ review.book.author }}</p>
+{% extends "base_menu.html" %} 
+{% load static %}
+{% block title %}리뷰 상세{% endblock %}
 
-    {% if review.book.thumbnail %}
-        <img src="{{ review.book.thumbnail }}" alt="책 썸네일" width="150">
-    {% endif %}
-    
-    <p>작성자: {{ review.user.nickname }}</p>
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'css/detail.css' %}" />
+{% endblock %} 
 
-    {% if review.cover_image %}
-        <img src="{{ review.cover_image.url }}" width="150">
-    {% endif %}
+{% block content %}
+<h2>{{ review.book.title }}</h2>
+<p>작가: {{ review.book.author }}</p>
 
-    <p>평점: {{ review.rating }}점</p>
-    <p>한줄 감상: {{ review.short_comment }}</p>
-    <p>상세 리뷰: {{ review.detailed_review }}</p>
+{% if review.book.thumbnail %}
+    <img src="{{ review.book.thumbnail }}" alt="책 썸네일" width="150">
+{% endif %}
 
-    <p>감정 태그:
-        {% for tag in review.tags.all %}
-        #{{ tag.name }}
-        {% endfor %}
-    </p>
+<p>작성자: {{ review.user.nickname }}</p>
 
-    <p>좋아요: {{ review.like.count }}개 / 싫어요: {{ review.dislike.count }}개 / 스크랩: {{ review.scrap.count }}개 </p>
+{% if review.cover_image %}
+    <img src="{{ review.cover_image.url }}" width="150">
+{% endif %}
 
-    <form method="post" action="{% url 'contents:like' review.id %}">
-        {% csrf_token %}
-        <button type="submit">
-        {% if user in review.like.all %}좋아요 취소{% else %}좋아요{% endif %}
-        </button>
-    </form>
+<p>평점: {{ review.rating }}점</p>
+<p>한줄 감상: {{ review.short_comment }}</p>
+<p>상세 리뷰: {{ review.detailed_review }}</p>
 
-    <form method="post" action="{% url 'contents:dislike' review.id %}">
-        {% csrf_token %}
-        <button type="submit">
-        {% if user in review.dislike.all %}싫어요 취소{% else %}싫어요{% endif %}
-        </button>
-    </form>
-
-    <form method="post" action="{% url 'contents:scrap' review.id %}">
-        {% csrf_token %}
-        <button type="submit">
-        {% if user in review.scrap.all %}스크랩 취소{% else %}스크랩{% endif %}
-        </button>
-    </form>
-    <br>
-
-    {% if user == review.user %}
-        <a href="{% url 'contents:update' review.id %}">수정</a>
-        <a href="{% url 'contents:delete' review.id %}">삭제</a> <br><br>
-    {% endif %}
-
-    {% if user.is_authenticated %}
-        <form method="post" action="{% url 'contents:create-comment' review.id %}">
-            {% csrf_token %}
-            <textarea name="content" rows="3" style="width: 100%;" placeholder="댓글을 입력하세요" required></textarea><br>
-            <button type="submit">댓글 작성</button>
-        </form>
-    {% else %}
-    <p>댓글을 작성하려면 <a href="{% url 'login' %}">로그인</a>해주세요.</p>
-    {% endif %}
-
-    <hr>
-
-    {% for comment in review.comments.all %}
-            <strong>{{ comment.user.nickname }}</strong> 
-            <small>({{ comment.created_at|date:"Y.m.d H:i" }})</small><br>
-            {{ comment.content }}
-            </div>
-
-            {% if comment.user == user %}
-                <form method="post" action="{% url 'contents:delete-comment' comment.id %}" style="display:inline;">
-                    {% csrf_token %}
-                    <button type="submit">삭제</button>
-                </form>
-            {% endif %}
-            </div>
-            <br>
-
-    {% empty %}
-        <p>아직 작성된 댓글이 없습니다.</p>
-        
+<p>감정 태그:
+    {% for tag in review.tags.all %}
+    #{{ tag.name }}
     {% endfor %}
-    <br><br>
+</p>
 
-    <a href="{% url 'contents:main' %}">메인 페이지로 돌아가기</a><br><br>
-</body>
-</html>
+<p>좋아요: {{ review.like.count }}개 / 싫어요: {{ review.dislike.count }}개 / 스크랩: {{ review.scrap.count }}개 </p>
+
+<form method="post" action="{% url 'contents:like' review.id %}">
+    {% csrf_token %}
+    <button type="submit">
+    {% if user in review.like.all %}좋아요 취소{% else %}좋아요{% endif %}
+    </button>
+</form>
+
+<form method="post" action="{% url 'contents:dislike' review.id %}">
+    {% csrf_token %}
+    <button type="submit">
+    {% if user in review.dislike.all %}싫어요 취소{% else %}싫어요{% endif %}
+    </button>
+</form>
+
+<form method="post" action="{% url 'contents:scrap' review.id %}">
+    {% csrf_token %}
+    <button type="submit">
+    {% if user in review.scrap.all %}스크랩 취소{% else %}스크랩{% endif %}
+    </button>
+</form>
+<br>
+
+{% if user == review.user %}
+    <a href="{% url 'contents:update' review.id %}">수정</a>
+    <a href="{% url 'contents:delete' review.id %}">삭제</a> <br><br>
+{% endif %}
+
+{% if user.is_authenticated %}
+    <form method="post" action="{% url 'contents:create-comment' review.id %}">
+        {% csrf_token %}
+        <textarea name="content" rows="3" style="width: 100%;" placeholder="댓글을 입력하세요" required></textarea><br>
+        <button type="submit">댓글 작성</button>
+    </form>
+{% else %}
+<p>댓글을 작성하려면 <a href="{% url 'login' %}">로그인</a>해주세요.</p>
+{% endif %}
+
+<hr>
+
+{% for comment in review.comments.all %}
+        <strong>{{ comment.user.nickname }}</strong> 
+        <small>({{ comment.created_at|date:"Y.m.d H:i" }})</small><br>
+        {{ comment.content }}
+        </div>
+
+        {% if comment.user == user %}
+            <form method="post" action="{% url 'contents:delete-comment' comment.id %}" style="display:inline;">
+                {% csrf_token %}
+                <button type="submit">삭제</button>
+            </form>
+        {% endif %}
+        </div>
+        <br>
+
+{% empty %}
+    <p>아직 작성된 댓글이 없습니다.</p>
+    
+{% endfor %}
+<br><br>
+
+<a href="{% url 'contents:main' %}">메인 페이지로 돌아가기</a><br><br>
+{% endblock %}

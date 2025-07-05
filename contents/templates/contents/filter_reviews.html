@@ -1,3 +1,12 @@
+{% extends "base_menu.html" %} 
+{% load static %}
+{% block title %}감정 탐색{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'css/filter_reviews.css' %}" />
+{% endblock %} 
+
+{% block content %}
 <h2>감정별 모아보기</h2>
 <form method="get" action="{% url 'contents:filter_reviews' %}">
     {% for tag in tags %}
@@ -26,3 +35,4 @@
 
 <br>
 <a href="{% url 'contents:main' %}">메인페이지로 돌아가기</a>
+{% endblock %}

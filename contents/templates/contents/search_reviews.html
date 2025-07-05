@@ -1,3 +1,12 @@
+{% extends "base_menu.html" %} 
+{% load static %}
+{% block title %}리뷰 검색{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'css/search_reviews.css' %}" />
+{% endblock %} 
+
+{% block content %}
 <form method="get" action="{% url 'contents:search_reviews' %}">
     <input type="text" name="q" placeholder="제목 또는 작가로 검색" value="{{ query }}">
     <button type="submit">검색</button>
@@ -15,3 +24,4 @@
     <li>검색 결과가 없습니다.</li>
   {% endfor %}
 </ul>
+{% endblock %}
