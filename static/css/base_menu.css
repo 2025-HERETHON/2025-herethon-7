@@ -1,3 +1,7 @@
+.container {
+    padding-bottom: 4.25rem !important;
+}
+
 .bottom-nav {
     bottom: 0;
     left: 0;
