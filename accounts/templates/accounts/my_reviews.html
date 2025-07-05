@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h2>내가 작성한 리뷰</h2>
+
+    {% for review in reviews %}
+        <p>
+            <strong>{{ review.book.title }}</strong> — 
+            <a href="{% url 'contents:detail' review.id %}">{{ review.short_comment }}</a>
+        </p>
+    
+    {% empty %}
+        <p>작성한 리뷰가 없습니다.</p>
+
+    {% endfor %}
+</body>
+</html>

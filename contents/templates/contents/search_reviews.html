@@ -1,0 +1,17 @@
+<form method="get" action="{% url 'contents:search_reviews' %}">
+    <input type="text" name="q" placeholder="제목 또는 작가로 검색" value="{{ query }}">
+    <button type="submit">검색</button>
+</form>
+
+<ul>
+  {% for review in reviews %}
+    <li>
+      <strong>{{ review.book.title }}</strong> / {{ review.book.author }}
+      <br>
+      {{ review.short_comment }}
+      <a href="{% url 'contents:detail' review.id %}">리뷰 상세</a>
+    </li>
+  {% empty %}
+    <li>검색 결과가 없습니다.</li>
+  {% endfor %}
+</ul>

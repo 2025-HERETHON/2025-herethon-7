@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h2>{{ request.user.nickname }}님의 마이페이지</h2>
+
+    <a href="{% url 'my_reviews' %}">내가 작성한 리뷰</a><br>
+    <a href="{% url 'my_scraps' %}">스크랩한 글</a><br>
+    <a href="{% url 'emotion_stats' %}">감정 통계 보기</a><br>
+
+    <form id="logout-form" action="{% url 'logout' %}" method="post" style="display:none;">
+            {% csrf_token %}
+    </form>
+    <a href="#" onclick="document.getElementById('logout-form').submit(); return false;">로그아웃</a><br>
+    
+    <a href="{% url 'delete_account' %}">회원탈퇴</a>
+    
+</body>
+</html>

@@ -1,0 +1,28 @@
+<h2>감정별 모아보기</h2>
+<form method="get" action="{% url 'contents:filter_reviews' %}">
+    {% for tag in tags %}
+        <label style="margin-right:8px;">
+            <input type="checkbox" name="tags" value="{{ tag.id }}"
+                {% if tag in selected_tags %}checked{% endif %}>
+            #{{ tag.name }}
+        </label>
+    {% endfor %}
+    <button type="submit">필터 적용</button>
+</form>
+<hr>
+
+{% for review in reviews %}
+    <div>
+        <b>{{ review.book.title }}</b> - {{ review.short_comment }}
+        <div>
+            {% for tag in review.tags.all %}
+                <span style="border:1px solid #ccc; border-radius:12px; padding:2px 8px;">#{{ tag.name }}</span>
+            {% endfor %}
+        </div>
+    </div>
+{% empty %}
+    <p>해당 감정을 모두 포함하는 리뷰가 없습니다.</p>
+{% endfor %}
+
+<br>
+<a href="{% url 'contents:main' %}">메인페이지로 돌아가기</a>
