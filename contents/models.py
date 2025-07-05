@@ -35,7 +35,6 @@ class Review(models.Model):
     user = models.ForeignKey(to=settings.AUTH_USER_MODEL, on_delete=models.CASCADE, related_name='reviews')
 
     book = models.ForeignKey(to=Book, on_delete=models.CASCADE, related_name='reviews')
-    cover_image = models.ImageField(upload_to=upload_filepath, blank=True, null=True)
 
     tags = models.ManyToManyField(to=Tag, through='ReviewTag', blank=True, related_name='reviews')
 

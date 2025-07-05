@@ -23,6 +23,22 @@
     {% endif %}
     <hr><br>
 
+    {% if top_books %}
+        <h3> 인기 많은 책 Top 5</h3>
+        <ul>
+            {% for book in top_books %}
+                <li style="margin-bottom: 10px;">
+                    {% if book.thumbnail %}
+                        <img src="{{ book.thumbnail }}" alt="책 썸네일" width="80"><br>
+                    {% endif %}
+                    <strong>{{ book.title }}</strong> — {{ book.author }}
+                </li>
+            {% endfor %}
+        </ul>
+        <hr>
+    {% endif %}
+
+
     <a href="{% url 'contents:book_search' %}">리뷰 작성하러가기</a>
     <br>
     <hr>
@@ -53,17 +69,22 @@
     <a href="{% url 'contents:filter_reviews' %}">감정별 모아보기</a>
     <br><hr>
 
-    {% if random_tag and recommended_review %}
-        <h3>#{{ random_tag.name }} 감정이 담긴 책 추천</h3>
+    {% if random_tag and recommended_reviews %}
+        <h3>#{{ random_tag.name }} 담긴 책 추천</h3>
+        <ul>
+            {% for review in recommended_reviews %}
+                <li style="margin-bottom: 10px;">
+                    {% if review.book.thumbnail %}
+                        <img src="{{ review.book.thumbnail }}" alt="책 썸네일" width="80"><br>
+                    {% endif %}
 
-        {% if recommended_review.book.thumbnail %}
-            <img src="{{ recommended_review.book.thumbnail }}" alt="책 썸네일" width="100"><br>
-        {% endif %}
-
-        <p>
-            <strong>{{ recommended_review.book.title }}</strong> — {{ recommended_review.book.author }}
-        </p>
-        <br><hr>
+                    <p>
+                        <strong>{{ review.book.title }}</strong> — {{ review.book.author }}
+                    </p>
+                </li>
+            {% endfor %}
+        </ul>
+        <hr>
     {% endif %} 
 
     {% if feminism_reviews %}
