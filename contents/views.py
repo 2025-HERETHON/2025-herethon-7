@@ -16,12 +16,21 @@ def main(request):
     else: 
         reviews = Review.objects.order_by('-created_at')
 
+    top_books = Book.objects.annotate(review_count=Count('reviews')).order_by('-review_count')[:5]
+
     all_tags = Tag.objects.annotate(review_count=Count('reviews')).filter(review_count__gt=0)
     random_tag = random.choice(all_tags) if all_tags else None
 
-    recommended_review = None
+    recommended_reviews = []
     if random_tag:
-        recommended_review = Review.objects.filter(tags=random_tag).order_by('-created_at').first()
+        all_recommendations = Review.objects.filter(tags=random_tag).order_by('-created_at')
+        unique_books = {}
+        for review in all_recommendations:
+            if review.book_id not in unique_books:
+                unique_books[review.book_id] = review
+            if len(unique_books) >= 5:
+                break
+        recommended_reviews = list(unique_books.values())
 
     now = timezone.now()
 
@@ -38,16 +47,24 @@ def main(request):
     feminism_tag = Tag.objects.filter(name='여성중심서사').first()
     feminism_reviews = []
     if feminism_tag:
-        feminism_reviews = Review.objects.filter(tags=feminism_tag).annotate(
+        all_feminism_reviews = Review.objects.filter(tags=feminism_tag).annotate(
             num_likes=Count('like')
-        ).order_by('-num_likes', '-created_at')[:3]
+        ).order_by('-num_likes', '-created_at')
 
+        unique_books = {}
+        for review in all_feminism_reviews:
+            if review.book_id not in unique_books:
+                unique_books[review.book_id] = review
+            if len(unique_books) >= 3:
+                break
+        feminism_reviews = list(unique_books.values())
 
     return render(request, 'contents/main.html', {
         'reviews': reviews,
         'sort': sort,
+        'top_books': top_books,
         'random_tag': random_tag,
-        'recommended_review': recommended_review,
+        'recommended_reviews': recommended_reviews,
         'featured_author': author,
         'representative_works': works,
         'feminism_reviews': feminism_reviews,
@@ -109,7 +126,6 @@ def create(request, book_id):
     tags = Tag.objects.all()
 
     if request.method == "POST":
-        cover_image = request.FILES.get('cover_image')
 
         try:
             rating = int(request.POST.get('rating'))
@@ -125,7 +141,6 @@ def create(request, book_id):
         review = Review.objects.create(
             user=request.user,
             book=book,
-            cover_image=cover_image,
             rating=rating,
             short_comment=short_comment,
             detailed_review=detailed_review
@@ -136,7 +151,7 @@ def create(request, book_id):
 
         return redirect('contents:main')
 
-    return render(request, 'contents/create.html', {'book': book, 'tags': tags})
+    return render(request, 'contents/create.html', {'book': book, 'tags': tags, 'rating_range': range(1, 6)})
 
 def detail(request, id):
     review = get_object_or_404(Review, id=id)
@@ -151,12 +166,6 @@ def update(request, id):
         review.short_comment = request.POST.get('short_comment')
         review.detailed_review = request.POST.get('detailed_review')
         review.rating = int(request.POST.get('rating', 0))
-
-        image = request.FILES.get('cover_image')
-        if image:
-            if review.cover_image:
-                review.cover_image.delete(save=False)
-            review.cover_image = image
 
         tag_ids = request.POST.getlist('tag')
         review.save()

@@ -15,22 +15,17 @@
         <img src="{{ book.thumbnail }}" alt="책 썸네일" width="120"><br><br>
     {% endif %}
 
-    <form method="POST" action="{% url 'contents:create' book.id %}" enctype="multipart/form-data">
+    <form method="POST" action="{% url 'contents:create' book.id %}">
         {% csrf_token %}
-
-        <label>책 표지 인증 이미지</label><br>
-        <input type="file" name="cover_image"><br><br>
         
         <label>평점</label><br>
-        
         <select name="rating" required>
             <option value="">선택하세요</option>
-            <option value="1">⭐</option>
-            <option value="2">⭐⭐</option>
-            <option value="3">⭐⭐⭐</option>
-            <option value="4">⭐⭐⭐⭐</option>
-            <option value="5">⭐⭐⭐⭐⭐</option>
+            {% for i in rating_range %}
+                <option value="{{ i }}">{{ i }}점</option>
+            {% endfor %}
         </select><br><br>
+
         
         <label>한 줄 감상평</label><br>
         <input type="text" name="short_comment" maxlength="100" required><br><br>
