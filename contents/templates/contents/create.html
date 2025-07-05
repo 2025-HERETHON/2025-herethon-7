@@ -9,8 +9,12 @@
 {% block content %}
 <h2>리뷰 작성</h2>
 
-<p><strong>책 제목:</strong> {{ book.title }}</p>
-<p><strong>저자:</strong> {{ book.author }}</p>
+    <p><strong>책 제목:</strong> {{ book.title }}</p>
+    <p><strong>저자:</strong> {{ book.author }}</p>
+
+    {% if book.thumbnail %}
+        <img src="{{ book.thumbnail }}" alt="책 썸네일" width="120"><br><br>
+    {% endif %}
 
 <form method="POST" action="{% url 'contents:create' book.id %}" enctype="multipart/form-data">
     {% csrf_token %}
