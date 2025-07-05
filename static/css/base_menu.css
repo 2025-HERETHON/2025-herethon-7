@@ -32,9 +32,29 @@ span{
     margin-top: 0.25rem;
 }
 
-#nav {
+.nav {
     display: flex;
     flex-direction: column;
     align-items: center;
 }
+
+.nav .nav-icon path {
+  stroke: #B1B1B1; /* 기본 회색 */
+  transition: stroke 0.3s ease;
+}
+
+.nav .nav-text {
+  color: #B1B1B1; /* 기본 회색 */
+  transition: color 0.3s ease;
+}
+
+/* 활성화 상태일 때 색 변경 */
+.nav.active .nav-icon path {
+  stroke: #212842;
+}
+
+.nav.active .nav-text {
+  color: #212842;
+}
+
 
