@@ -20,8 +20,8 @@ FeaturedAuthor.objects.all().delete()
 user, _ = User.objects.get_or_create(username="testuser")
 
 # ✅ 태그 생성
-primary_tags = [Tag.objects.create(name=f"기쁨 {i}", tag_type="primary") for i in range(1, 4)]
-secondary_tags = [Tag.objects.create(name=f"감동 {i}", tag_type="secondary") for i in range(1, 3)]
+primary_tags = [Tag.objects.create(name=f"기쁨", tag_type="primary")]
+secondary_tags = [Tag.objects.create(name=f"감동", tag_type="secondary")]
 all_tags = primary_tags + secondary_tags
 
 # ✅ 책 생성
