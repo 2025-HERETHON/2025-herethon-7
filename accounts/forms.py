@@ -57,6 +57,11 @@ class CustomUserCreationForm(UserCreationForm):
             'class': 'form-input'
         })
 
+def clean_gender(self):
+        gender = self.cleaned_data.get('gender')
+        if gender != 'F':
+            raise forms.ValidationError("현재는 '여성'만 가입이 가능합니다.")
+        return gender
 
 class CustomLoginForm(AuthenticationForm):
     username = forms.CharField(
@@ -78,3 +83,6 @@ class DeleteAccountForm(forms.Form):
         label="비밀번호 확인",
         widget=forms.PasswordInput(attrs={'autocomplete': 'current-password'})
     )
+
+class FindIDForm(forms.Form):
+    email = forms.EmailField(label='이메일')
