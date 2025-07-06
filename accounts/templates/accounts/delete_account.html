@@ -1,0 +1,16 @@
+<h2>정말 회원탈퇴 하시겠습니까?</h2>
+<p>비밀번호를 입력하면 탈퇴가 완료됩니다. 이 작업은 취소할 수 없습니다.</p>
+<form method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">탈퇴하기</button>
+    <a href="{% url 'mypage' %}">취소</a>
+</form>
+
+{% if messages %}
+    <ul>
+        {% for message in messages %}
+            <li>{{ message }}</li>
+        {% endfor %}
+    </ul>
+{% endif %}

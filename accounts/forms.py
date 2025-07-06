@@ -26,3 +26,16 @@ class CustomLoginForm(AuthenticationForm):
         strip=False,
         widget=forms.PasswordInput,
     )
+
+class PasswordResetRequestForm(forms.Form):
+    user_id = forms.CharField(label='아이디', max_length=150)
+    email = forms.EmailField(label='이메일')
+
+class DeleteAccountForm(forms.Form):
+    password = forms.CharField(
+        label="비밀번호 확인",
+        widget=forms.PasswordInput(attrs={'autocomplete': 'current-password'})
+    )
+
+class FindIDForm(forms.Form):
+    email = forms.EmailField(label='이메일')

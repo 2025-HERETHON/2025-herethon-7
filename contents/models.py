@@ -22,13 +22,19 @@ class Tag(models.Model):
     def __str__(self):
         return f"[{self.get_tag_type_display()}] {self.name}"
 
+class Book(models.Model):
+    title = models.CharField(max_length=255)
+    author = models.CharField(max_length=255)
+    google_book_id = models.CharField(max_length=50, unique=True)
+    thumbnail = models.URLField(blank=True, null=True)
+
+    def __str__(self):
+        return f"{self.title} - {self.author}"
 
 class Review(models.Model):
     user = models.ForeignKey(to=settings.AUTH_USER_MODEL, on_delete=models.CASCADE, related_name='reviews')
 
-    book_title = models.CharField(max_length=200)
-    author = models.CharField(max_length=100)
-    cover_image = models.ImageField(upload_to=upload_filepath, blank=True, null=True)
+    book = models.ForeignKey(to=Book, on_delete=models.CASCADE, related_name='reviews')
 
     tags = models.ManyToManyField(to=Tag, through='ReviewTag', blank=True, related_name='reviews')
 
@@ -39,8 +45,12 @@ class Review(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 
+    like = models.ManyToManyField(to=settings.AUTH_USER_MODEL, through='Like', related_name='like_reviews')
+    dislike = models.ManyToManyField(to=settings.AUTH_USER_MODEL, through='Dislike', related_name='dislike_reviews')
+    scrap = models.ManyToManyField(to=settings.AUTH_USER_MODEL, through='Scrap', related_name='scrap_reviews')
+
     def __str__(self):
-        return f"{self.book_title} - {self.short_comment[:20]}"
+        return f"{self.book.title} - {self.short_comment[:20]}"
 
 
 class ReviewTag(models.Model):
@@ -49,3 +59,34 @@ class ReviewTag(models.Model):
 
     def __str__(self):
         return f"{self.review} - {self.tag}"
+    
+class Like(models.Model):
+    user = models.ForeignKey(to=settings.AUTH_USER_MODEL, on_delete=models.CASCADE, related_name='user_likes')
+    review = models.ForeignKey(to=Review, on_delete=models.CASCADE, related_name='review_likes')
+
+class Dislike(models.Model):
+    user = models.ForeignKey(to=settings.AUTH_USER_MODEL, on_delete=models.CASCADE, related_name='user_dislikes')
+    review = models.ForeignKey(to=Review, on_delete=models.CASCADE, related_name='review_dislikes')
+
+class Scrap(models.Model):
+    user = models.ForeignKey(to=settings.AUTH_USER_MODEL, on_delete=models.CASCADE, related_name='user_scraps')
+    review = models.ForeignKey(to=Review, on_delete=models.CASCADE, related_name='review_scraps')
+
+class Comment(models.Model):
+    review = models.ForeignKey(to=Review, on_delete=models.CASCADE, related_name="comments")
+    content = models.TextField()
+    user = models.ForeignKey(to=settings.AUTH_USER_MODEL, on_delete=models.CASCADE, related_name="comments")
+    created_at = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return f'[{self.id}] {self.content[:20]}'
+
+class FeaturedAuthor(models.Model):
+    name = models.CharField(max_length=100)
+    profile_image = models.ImageField(upload_to='authors/', blank=True, null=True)
+    bio = models.TextField(blank=True)
+    featured_month = models.DateField()
+    representative_work = models.CharField(max_length=255, blank=True)
+
+    def __str__(self):
+        return f"{self.name} ({self.featured_month.strftime('%Y-%m')})"
