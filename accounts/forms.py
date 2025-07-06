@@ -66,9 +66,7 @@ class CustomLoginForm(AuthenticationForm):
         })
     )
     password = forms.CharField(
-        label='비밀번호',
-        strip=False,
-        widget=forms.PasswordInput,
+        widget=forms.PasswordInput(attrs={'placeholder': '비밀번호'})
     )
 
 class PasswordResetRequestForm(forms.Form):
