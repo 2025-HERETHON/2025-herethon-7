@@ -5,7 +5,8 @@ app_name = 'contents'
 
 urlpatterns = [
     path('', intro, name='intro'),
-    path('main/', main, name='main'),   
+    path('main/', main, name='main'),
+    path('create/', create, name='create_default'),
     path('create/<int:book_id>/', create, name='create'),
     path('books/search/', book_search, name='book_search'),
     path('books/select/', select_book, name='select_book'),

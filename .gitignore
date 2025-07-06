@@ -181,3 +181,5 @@ cython_debug/
 
 # google cloud vision
 service_account.json
+
+venv/__pycache__/
