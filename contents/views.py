@@ -7,6 +7,11 @@ from django.contrib.auth.decorators import login_required
 from django.db.models import Q, Count
 from django.utils import timezone
 
+def intro(request):
+    if request.user.is_authenticated:
+        return redirect('contents:main')
+    return render(request, 'contents/intro.html')
+
 def main(request):
     sort = request.GET.get('sort', 'recent')
     if sort == 'popular':
