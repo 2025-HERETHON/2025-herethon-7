@@ -6,7 +6,7 @@ html, body, main {
 
 .container {
   width: 100%;
-  max-width: 420px;  /* 모바일 최대 크기 (iPhone 기준) */
+  max-width: 390px;  /* 모바일 최대 크기 (iPhone 기준) */
   margin: 0 auto;    /* 가운데 정렬 */
   padding: 0;
   box-sizing: border-box;
