@@ -1,17 +1,17 @@
-.login-container {
-    width: 100%;
-    height: 100%;
-    max-width: 420px;  /* 모바일 최대 크기 (iPhone 기준) */
-    margin: 0 auto;    /* 가운데 정렬 */
-    padding: 0;
-    box-sizing: border-box;
-
-    display: inline-flex;
-    flex-direction: column;
-    align-items: center;
-
-    background: #212842;
+html, body {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  background-color: #212842;
 }
+
+svg {
+  max-width: 100%;
+  display: block;
+}
+
 
 .logo {
     display: flex;
@@ -27,6 +27,7 @@ p {
     font-style: normal;
     font-weight: 400;
     line-height: normal;
+    text-align: center;
 }
 
 h2{
@@ -37,5 +38,6 @@ h2{
     font-style: normal;
     font-weight: 600;
     line-height: normal;
+    text-align: center;
 }
 
