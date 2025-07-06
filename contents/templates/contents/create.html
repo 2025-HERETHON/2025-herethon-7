@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>리뷰 작성</title>
 </head>
 <body>
     <h2>리뷰 작성</h2>
@@ -17,7 +17,7 @@
 
     <form method="POST" action="{% url 'contents:create' book.id %}">
         {% csrf_token %}
-        
+
         <label>평점</label><br>
         <select name="rating" required>
             <option value="">선택하세요</option>
@@ -26,17 +26,14 @@
             {% endfor %}
         </select><br><br>
 
-        
         <label>한 줄 감상평</label><br>
         <input type="text" name="short_comment" maxlength="100" required><br><br>
-        
+
         <label>상세 리뷰 (선택)</label><br>
         <textarea name="detailed_review" rows="6"></textarea><br><br>
-        
+
         <label>감정 태그 선택</label><br>
-        
         <strong>1차 감정</strong><br>
-        
         {% for tag in tags %}
             {% if tag.tag_type == 'primary' %}
             <label>
@@ -57,7 +54,6 @@
         {% endfor %}
 
         <br><button type="submit">리뷰 등록</button>
-    </form> 
-
+    </form>
 </body>
 </html>

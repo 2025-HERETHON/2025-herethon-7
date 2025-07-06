@@ -36,3 +36,6 @@ class DeleteAccountForm(forms.Form):
         label="비밀번호 확인",
         widget=forms.PasswordInput(attrs={'autocomplete': 'current-password'})
     )
+
+class FindIDForm(forms.Form):
+    email = forms.EmailField(label='이메일')
