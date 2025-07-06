@@ -7,12 +7,13 @@
 {% endblock %} 
 
 {% block content %}
-<h2>{{ review.book.title }}</h2>
-<p>작가: {{ review.book.author }}</p>
 
 {% if review.book.thumbnail %}
     <img src="{{ review.book.thumbnail }}" alt="책 썸네일" width="150">
 {% endif %}
+
+<h2>{{ review.book.title }}</h2>
+<p>작가: {{ review.book.author }}</p>
 
 <p>작성자: {{ review.user.nickname }}</p>
 
