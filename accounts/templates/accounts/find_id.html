@@ -1,0 +1,10 @@
+<h2>아이디 찾기</h2>
+<form method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">아이디 찾기</button>
+</form>
+{% if user_id_found %}
+    <p>찾으신 아이디: <strong>{{ user_id_found }}</strong></p>
+{% endif %}
+

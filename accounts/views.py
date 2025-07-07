@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth.views import LoginView
-from .forms import CustomUserCreationForm, CustomLoginForm
+from .forms import CustomUserCreationForm, CustomLoginForm, FindIDForm
 from django.contrib.auth.decorators import login_required
 from contents.models import Scrap, Tag
 from django.db.models import Count
@@ -137,3 +137,23 @@ def delete_account(request):
     else:
         form = DeleteAccountForm()
     return render(request, 'accounts/delete_account.html', {'form': form})
+
+def find_id(request):
+    user_id_found = None
+
+    if request.method == "POST":
+        form = FindIDForm(request.POST)
+        if form.is_valid():
+            email = form.cleaned_data['email']
+            user = User.objects.filter(email=email).first()
+            if user:
+                user_id_found = user.user_id
+            else:
+                form.add_error(None, "일치하는 회원 정보가 없습니다.")
+    else:
+        form = FindIDForm()
+
+    return render(request, "accounts/find_id.html", {
+        "form": form,
+        "user_id_found": user_id_found,
+    })

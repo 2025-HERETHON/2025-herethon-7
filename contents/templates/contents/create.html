@@ -16,7 +16,7 @@
         <img src="{{ book.thumbnail }}" alt="책 썸네일" width="120"><br><br>
     {% endif %}
 
-    <form method="POST" action="{% url 'contents:create' book.id %}">
+    <form method="POST" action="{% url 'contents:create' book.id %}">       
     {% csrf_token %}
     
     <label>평점</label><br>
