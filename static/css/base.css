@@ -7,7 +7,6 @@ html, body {
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: #000;          /* 바깥 배경 (선택) */
 }
 
 .container {
