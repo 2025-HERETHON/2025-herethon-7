@@ -1,8 +1,52 @@
-<h2>회원가입</h2>
-<form method="POST">
-  {% csrf_token %}
-  {{ form.as_p }}
-  <button type="submit">가입하기</button>
-</form>
+{% extends "base.html" %}
+{% load static %}
+{% block title %}회원가입{% endblock %}
 
-<p>이미 계정이 있으신가요? <a href="{% url 'login' %}">로그인</a></p>
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'css/signup.css' %}">
+{% endblock %}
+
+{% block content %}
+<div class="signup-container">
+  <h2>기본 정보를 입력해주세요</h2>
+  <form method="POST">
+    {% csrf_token %}
+
+    <div class="input-group">
+      <label for="{{ form.user_id.id_for_label }}">아이디</label>
+      {{ form.user_id }}
+    </div>
+
+    <div class="input-group">
+      <label for="{{ form.password1.id_for_label }}">비밀번호</label>
+      {{ form.password1 }}
+    </div>
+
+    <div class="input-group">
+      <label for="{{ form.password2.id_for_label }}">비밀번호 확인</label>
+      {{ form.password2 }}
+    </div>
+
+    <div class="input-group">
+      <label for="{{ form.nickname.id_for_label }}">닉네임</label>
+      {{ form.nickname }}
+    </div>
+
+    <div class="input-group">
+      <label for="{{ form.email.id_for_label }}">이메일</label>
+      {{ form.email }}
+    </div>
+
+    <div class="input-group">
+      <label for="{{ form.gender.id_for_label }}">성별</label>
+      {{ form.gender }}
+    </div>
+
+    <div class="checkbox-group">
+      <label><input type="checkbox"> [필수] 이용 약관 동의</label>
+    </div>
+
+    <button type="submit" class="signup-btn">시작하기</button>
+  </form>
+</div>
+{% endblock %}

@@ -1,10 +1,12 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
+{% extends "base_menu.html" %} 
+{% load static %}
+{% block title %}홈{% endblock%}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'css/main.css' %}" />
+{% endblock %} 
+
+{% block content %}
 <body>
     <h2>메인페이지</h2>
 
@@ -88,7 +90,7 @@
             {% endfor %}
         </ul>
         <hr>
-    {% endif %} 
+    {% endif %}  
 
     {% if feminism_reviews %}
         <h3>여성이 ‘주인공’인 이야기 TOP3</h3>
@@ -109,4 +111,4 @@
     {% endif %}
 
 </body>
-</html>
+{% endblock %}

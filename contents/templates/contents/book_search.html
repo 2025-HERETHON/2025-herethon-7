@@ -1,40 +1,52 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
-    <h2>책 검색</h2>
+{% extends "base_menu.html" %} 
+{% load static %}
+{% block title %}감상 기록 등록{% endblock %}
 
-    <form method="get" action="{% url 'contents:book_search' %}">
-        <input type="text" name="q" value="{{ query|default:'' }}" placeholder="책 제목 또는 작가 입력" required>
-        <button type="submit">검색</button>
-    </form>
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'css/book_search.css' %}" />
+{% endblock %} 
 
-    {% if results %}
-        <h3>검색 결과</h3>
-        <ul>
-            {% for book in results %}
-            <li>
-                <form method="post" action="{% url 'contents:select_book' %}">
-                    {% csrf_token %}
-                    <input type="hidden" name="google_book_id" value="{{ book.google_book_id }}">
-                    <input type="hidden" name="title" value="{{ book.title }}">
-                    <input type="hidden" name="author" value="{{ book.author }}">
-                    <input type="hidden" name="thumbnail" value="{{ book.thumbnail }}">
-                    {% if book.thumbnail %}
-                        <img src="{{ book.thumbnail }}" alt="책 썸네일" width="100"><br>
-                    {% endif %}
-                    <strong>{{ book.title }}</strong> - {{ book.author }}
-                    <button type="submit">이 책 리뷰 쓰기</button>
-                </form>
-            </li>
-            {% endfor %}
-        </ul>
-    {% elif query %}
-        <p>검색 결과가 없습니다.</p>
-    {% endif %}
-</body>
-</html>
+{% block content %}
+<div class="container">
+
+  <header class="title-section">
+    <h1>📖 감상 기록 등록하기</h1>
+    <p>책 정보를 입력하고 감정을 기록해보세요</p>
+  </header>
+
+  <form method="get" action="{% url 'contents:book_search' %}" class="search-form">
+    <label for="q">책 제목</label>
+    <div class="search-box">
+      <input type="text" name="q" id="q" value="{{ query|default:'' }}" placeholder="제목을 입력해 주세요" required>
+      <button type="submit">🔍</button>
+    </div>
+  </form>
+
+  {% if results %}
+    <section class="results">
+      <h3>검색 결과</h3>
+      <ul>
+        {% for book in results %}
+          <li>
+            <form method="post" action="{% url 'contents:select_book' %}">
+              {% csrf_token %}
+              <input type="hidden" name="google_book_id" value="{{ book.google_book_id }}">
+              <input type="hidden" name="title" value="{{ book.title }}">
+              <input type="hidden" name="author" value="{{ book.author }}">
+              <input type="hidden" name="thumbnail" value="{{ book.thumbnail }}">
+              {% if book.thumbnail %}
+                  <img src="{{ book.thumbnail }}" alt="책 썸네일" width="100"><br>
+              {% endif %}
+              <span>{{ book.title }} - {{ book.author }}</span>
+              <button type="submit">이 책 리뷰 쓰기</button>
+            </form>
+          </li>
+        {% endfor %}
+      </ul>
+    </section>
+  {% elif query %}
+    <p class="no-result">검색 결과가 없습니다.</p>
+  {% endif %}
+
+</div>
+{% endblock %}
