@@ -57,6 +57,7 @@ form{
   border: none;
   border-radius: 8px;
   background-color: #3e4a62;
+  color: #F5F5F5;
 }
 
 input::placeholder {
@@ -78,8 +79,7 @@ a {
   display: flex;
   width: 21.875rem;
   height: 0.9375rem;
-  flex-direction: column;
-  justify-content: center;
+  justify-content:right;
   text-align: right;
   flex-shrink: 0;
   margin-bottom: 3.13rem;
