@@ -13,14 +13,6 @@ def intro(request):
     return render(request, 'contents/intro.html')
 
 def main(request):
-    sort = request.GET.get('sort', 'recent')
-    if sort == 'popular':
-        reviews = Review.objects.annotate(
-            num_likes=Count('like')
-        ).order_by('-num_likes', '-created_at')
-    else: 
-        reviews = Review.objects.order_by('-created_at')
-
     top_books = Book.objects.annotate(review_count=Count('reviews')).order_by('-review_count')[:5]
 
     all_tags = Tag.objects.annotate(review_count=Count('reviews')).filter(review_count__gt=0)
@@ -65,8 +57,6 @@ def main(request):
         feminism_reviews = list(unique_books.values())
 
     return render(request, 'contents/main.html', {
-        'reviews': reviews,
-        'sort': sort,
         'top_books': top_books,
         'random_tag': random_tag,
         'recommended_reviews': recommended_reviews,
@@ -257,21 +247,38 @@ def popular_reviews(request):
 
 def filter_by_tags(request):
     tag_ids = request.GET.getlist('tags')
+    book_id = request.GET.get('book_id')
+    sort = request.GET.get('sort', 'recent')
+
     tags = Tag.objects.all()
     reviews = Review.objects.all()
     selected_tags = []
+
+    if book_id:
+        reviews = reviews.filter(book__id=book_id)
 
     if tag_ids:
         tag_ids = list(map(int, tag_ids))
         selected_tags = Tag.objects.filter(id__in=tag_ids)
         for tag_id in tag_ids:
             reviews = reviews.filter(tags__id=tag_id)
-        reviews = reviews.distinct().order_by('-created_at')
+        reviews = reviews.distinct()
+
+    if sort == 'popular':
+        reviews = reviews.annotate(num_likes=Count('like')).order_by('-num_likes', '-created_at')
     else:
         reviews = reviews.order_by('-created_at')
 
-    return render(request, 'contents/filter_reviews.html', {
+    context = {
         'reviews': reviews,
         'tags': tags,
         'selected_tags': selected_tags,
-    })
+        'sort': sort,
+    }
+
+    if book_id:
+        context['book_id'] = int(book_id)
+        book = get_object_or_404(Book, id=book_id)
+        context['book_title'] = book.title
+
+    return render(request, 'contents/filter_reviews.html', context)
