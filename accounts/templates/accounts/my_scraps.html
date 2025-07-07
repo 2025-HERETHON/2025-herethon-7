@@ -1,20 +1,24 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
-    <h2>내가 스크랩한 리뷰</h2>
+{% extends "base.html" %}
+{% load static %}
+{% block title %}스크랩한 리뷰{% endblock %}
 
-    {% for scrap in scraps %}
-        <p>
-            <strong>{{ scrap.review.book.title }}</strong> —
-            <a href="{% url 'contents:detail' scrap.review.id %}">{{ scrap.review.short_comment }}</a>
-        </p>
-    {% empty %}
-        <p>스크랩한 리뷰가 없습니다.</p>
-    {% endfor %}
-</body>
-</html>
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'css/my_reviews.css' %}">
+{% endblock %}
+
+{% block content %}
+<div class="review-container">
+  <h2>내가 스크랩한 리뷰</h2>
+
+  {% for scrap in scraps %}
+    <div class="review-item">
+      <p class="book-title">{{ scrap.review.book.title }}</p>
+      <a href="{% url 'contents:detail' scrap.review.id %}" class="review-link">
+        {{ scrap.review.short_comment }}
+      </a>
+    </div>
+  {% empty %}
+    <p class="empty-message">스크랩한 리뷰가 없습니다.</p>
+  {% endfor %}
+</div>
+{% endblock %}
