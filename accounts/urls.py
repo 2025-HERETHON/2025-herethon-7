@@ -16,4 +16,6 @@ urlpatterns = [
     path('reset/<uidb64>/<token>/', views.password_reset_confirm, name='password_reset_confirm'),
     path('delete_account/', views.delete_account, name='delete_account'),
     path('find-id/', views.find_id, name='find_id'),
+    path('edit-profile/', views.edit_profile, name='edit_profile'),
+    path('profile/image/delete/', views.delete_profile_image, name='delete_profile_image'),
 ]

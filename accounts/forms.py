@@ -86,3 +86,13 @@ class DeleteAccountForm(forms.Form):
 
 class FindIDForm(forms.Form):
     email = forms.EmailField(label='이메일')
+
+class CustomUserChangeForm(forms.ModelForm):
+    class Meta:
+        model = CustomUser
+        fields = ('nickname', 'profile_image')
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.fields['nickname'].label = '닉네임'
+        self.fields['profile_image'].label = '프로필 이미지'

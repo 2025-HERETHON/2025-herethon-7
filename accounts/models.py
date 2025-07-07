@@ -4,6 +4,12 @@ from django.db import models
 class CustomUser(AbstractUser):
     user_id = models.CharField(max_length=20, unique=True)
     nickname = models.CharField(max_length=30)
+    profile_image = models.ImageField(
+        upload_to='profile_images/', 
+        default='profile_images/default.png',
+        blank=True,
+        null=True
+    )
     gender = models.CharField(
         max_length=10,
         choices=[

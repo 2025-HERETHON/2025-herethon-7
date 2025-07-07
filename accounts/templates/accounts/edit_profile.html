@@ -1,0 +1,22 @@
+<h2>닉네임 & 프로필 이미지 변경</h2>
+
+{% if user.profile_image and user.profile_image.name != "" %}
+    <img src="{{ user.profile_image.url }}" alt="프로필 이미지" width="120" height="120">
+{% else %}
+    <img src="https://shelf-2025.s3.amazonaws.com/profile_images/default.png" alt="기본 이미지" width="120" height="120">
+{% endif %}
+
+{% if user.profile_image and user.profile_image.name != "profile_images/default.png" and user.profile_image.name != "" %}
+    <form method="post" action="{% url 'delete_profile_image' %}">
+        {% csrf_token %}
+        <button type="submit">기본 프사로 초기화</button>
+    </form>
+{% endif %}
+
+<form method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">저장</button>
+</form>
+
+<a href="{% url 'mypage' %}">마이페이지로 돌아가기</a>
