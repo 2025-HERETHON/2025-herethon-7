@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth.views import LoginView
-from .forms import CustomUserCreationForm, CustomLoginForm, FindIDForm
+from .forms import CustomUserCreationForm, CustomLoginForm, FindIDForm, CustomUserChangeForm
 from django.contrib.auth.decorators import login_required
 from contents.models import Scrap, Tag
 from django.db.models import Count
@@ -157,3 +157,23 @@ def find_id(request):
         "form": form,
         "user_id_found": user_id_found,
     })
+
+@login_required
+def edit_profile(request):
+    if request.method == 'POST':
+        form = CustomUserChangeForm(request.POST, request.FILES, instance=request.user)
+        if form.is_valid():
+            form.save()
+            return redirect('mypage') 
+    else:
+        form = CustomUserChangeForm(instance=request.user)
+    return render(request, 'accounts/edit_profile.html', {'form': form})
+
+@login_required
+def delete_profile_image(request):
+    user = request.user
+    if user.profile_image and user.profile_image.name != 'profile_images/default.png':
+        user.profile_image.delete(save=False)
+        user.profile_image = 'profile_images/default.png'
+        user.save()
+    return redirect('edit_profile')
