@@ -1,22 +1,24 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
-    <h2>내가 작성한 리뷰</h2>
+{% extends "base.html" %}
+{% load static %}
+{% block title %}내 리뷰 보기{% endblock %}
 
-    {% for review in reviews %}
-        <p>
-            <strong>{{ review.book.title }}</strong> — 
-            <a href="{% url 'contents:detail' review.id %}">{{ review.short_comment }}</a>
-        </p>
-    
-    {% empty %}
-        <p>작성한 리뷰가 없습니다.</p>
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'css/my_reviews.css' %}">
+{% endblock %}
 
-    {% endfor %}
-</body>
-</html>
+{% block content %}
+<div class="review-container">
+  <h2>내가 작성한 리뷰</h2>
+
+  {% for review in reviews %}
+    <div class="review-item">
+      <p class="book-title">{{ review.book.title }}</p>
+      <a href="{% url 'contents:detail' review.id %}" class="review-link">
+        {{ review.short_comment }}
+      </a>
+    </div>
+  {% empty %}
+    <p class="empty-message">작성한 리뷰가 없습니다.</p>
+  {% endfor %}
+</div>
+{% endblock %}
