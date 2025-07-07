@@ -1,7 +1,10 @@
 .container {
-  max-width: 390px; /* 아이폰 기본 사이즈 기준 */
-  margin: 0 auto; /* 가운데 정렬 */
-  padding-bottom: 4.25rem !important;
+    width: 100%;
+    max-width: 420px;  /* 모바일 최대 크기 (iPhone 기준) */
+    max-height: 844px;
+    box-sizing: border-box;
+    margin: 0 auto;    /* 가운데 정렬 */
+    padding-bottom: 4.25rem !important;
 }
 
 
