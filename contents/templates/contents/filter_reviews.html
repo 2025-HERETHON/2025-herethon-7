@@ -1,5 +1,9 @@
 <h2>감정별 모아보기</h2>
 <form method="get" action="{% url 'contents:filter_reviews' %}">
+    {% if request.GET.book_id %}
+        <input type="hidden" name="book_id" value="{{ request.GET.book_id }}">
+    {% endif %}
+
     {% for tag in tags %}
         <label style="margin-right:8px;">
             <input type="checkbox" name="tags" value="{{ tag.id }}"
@@ -7,17 +11,35 @@
             #{{ tag.name }}
         </label>
     {% endfor %}
+
+    <select name="sort" style="margin-left: 16px;">
+        <option value="recent" {% if sort == "recent" %}selected{% endif %}>최신순</option>
+        <option value="popular" {% if sort == "popular" %}selected{% endif %}>인기순</option>
+    </select>
+
     <button type="submit">필터 적용</button>
 </form>
 <hr>
 
+{% if book_title %}
+    <h3>"{{ book_title }}"에 대한 리뷰 모음</h3>
+{% endif %}
+
 {% for review in reviews %}
-    <div>
-        <b>{{ review.book.title }}</b> - {{ review.short_comment }}
+    <div style="margin-bottom: 16px; display: flex; align-items: flex-start;">
+        {% if review.book.thumbnail %}
+            <img src="{{ review.book.thumbnail }}" alt="썸네일" width="80" style="margin-right: 12px;">
+        {% endif %}
+        
         <div>
-            {% for tag in review.tags.all %}
-                <span style="border:1px solid #ccc; border-radius:12px; padding:2px 8px;">#{{ tag.name }}</span>
-            {% endfor %}
+            <a href="{% url 'contents:detail' review.id %}" style="text-decoration: none; color: inherit;">
+                <b>{{ review.book.title }}</b> - {{ review.short_comment }}
+            </a>
+            <div>
+                {% for tag in review.tags.all %}
+                    <span style="border:1px solid #ccc; border-radius:12px; padding:2px 8px;">#{{ tag.name }}</span>
+                {% endfor %}
+            </div>
         </div>
     </div>
 {% empty %}
