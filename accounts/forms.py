@@ -57,7 +57,7 @@ class CustomUserCreationForm(UserCreationForm):
             'class': 'form-input'
         })
 
-def clean_gender(self):
+    def clean_gender(self):
         gender = self.cleaned_data.get('gender')
         if gender != 'F':
             raise forms.ValidationError("현재는 '여성'만 가입이 가능합니다.")
