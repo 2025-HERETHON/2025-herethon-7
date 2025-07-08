@@ -1,7 +1,32 @@
-img.book-thumbnail {
+.body{
+    font-family: "Noto Sans KR";
+    font-style: normal;
+    letter-spacing: -0.0255rem;
+}
+
+.thumbnail-container {
     width: 24.375rem;
     height: 14.625rem;
-    flex-shrink: 0;
+    overflow: hidden;
+}
+
+.book-thumbnail {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* 비율 유지하면서 꽉 채움 */
+    display: block;
+}
+
+.title-fix{
+    display: flex;
+    justify-content: space-between;
+
+}
+
+.fix{
+    margin-top: 0.81rem;
+    display: flex;
+    gap: 0.5rem;
 }
 
 .review-container {
@@ -11,32 +36,27 @@ img.book-thumbnail {
 
 .info h2 {
     color: #000;
-    font-family: "Noto Sans KR";
     font-size: 1.25rem;
-    font-style: normal;
     font-weight: 700;
     line-height: 1.375rem; /* 110% */
-    letter-spacing: -0.0255rem;
+    margin-top: 1rem;
+    margin-bottom: 0.31rem;
 }
 
 .info p {
     color: #B1B1B1;
-    font-family: "Noto Sans KR";
     font-size: 1rem;
-    font-style: normal;
     font-weight: 700;
     line-height: 1.375rem; /* 137.5% */
-    letter-spacing: -0.0255rem;
+    margin:0;
+    margin-bottom: 0.88rem;
 }
 
 .user p {
     color: #000;
-    font-family: "Noto Sans KR";
     font-size: 0.9375rem;
-    font-style: normal;
     font-weight: 400;
     line-height: 1.375rem; /* 146.667% */
-    letter-spacing: -0.0255rem;
 }
 
 .star-container{
@@ -49,24 +69,18 @@ img.book-thumbnail {
 
 .title{
     color: #475482;
-    font-family: "Noto Sans KR";
     font-size: 1rem;
-    font-style: normal;
     font-weight: 500;
     line-height: 1.375rem; /* 137.5% */
-    letter-spacing: -0.0255rem;
 
     margin-bottom: 0.37rem;
 }
 
 .review-content {
     color: #000;
-    font-family: "Noto Sans KR";
     font-size: 0.875rem;
-    font-style: normal;
     font-weight: 400;
     line-height: 1.375rem; /* 157.143% */
-    letter-spacing: -0.0255rem;
 
     border-radius: 0.3125rem;
     background: #F6F6F6;
@@ -93,12 +107,9 @@ img.book-thumbnail {
     background: #475482;
 
     color: #FFF;
-    font-family: "Noto Sans KR";
     font-size: 0.75rem;
-    font-style: normal;
     font-weight: 400;
     line-height: 1.375rem; /* 183.333% */
-    letter-spacing: -0.0255rem;
 }
 
 hr.review-line{
@@ -142,19 +153,20 @@ hr.review-line{
     display: block;
     color: #000;
     text-align: center;
-    font-family: "Noto Sans KR";
     font-size: 0.625rem;
-    font-style: normal;
     font-weight: 400;
     line-height: 1; /* 220% */
-    letter-spacing: -0.0255rem;
 }
 
 
 .like-btn svg {
     display: block; /* inline 특성 제거해서 정렬 안정화 */
     stroke: #000;
-    fill:none
+}
+
+.scrap-btn:not(.active) svg path {
+    fill: none;
+    stroke: #000;
 }
 
 .like-btn.active {
@@ -162,14 +174,27 @@ hr.review-line{
     color: var(--Sub-1, #475482);
 }
 
+.like-btn.active .count{
+    color: var(--Sub-1, #475482);
+}
+
 .scrap-btn.active {
     background-color: #FFF6D6;;
-    color: #FFC423;; /* currentColor 기준 */
+    color: #FFC423; /* currentColor 기준 */
+    fill: #FFC423;
+}
+
+.scrap-btn.active .count{
+    color: #FFC423;
 }
 
 .scrap-btn.active svg {
     fill: currentColor;
     stroke: currentColor;
+}
+
+.coment{
+    margin-bottom: 0.38rem;
 }
 
 .coment-container {
@@ -185,25 +210,51 @@ hr.coment-line{
 }
 
 .coment-post{
+    box-sizing:border-box;
     display: flex;
+    align-items: center;
     border-radius: 1.25rem;
     border: 1px solid #EAEAEA;
     background: #FFF;
-    width: 21.8125rem;
+    width: 21.875rem;
     height: 2.625rem;
     flex-shrink: 0;
 
     padding: 0.38rem;
+
+    margin-bottom: 1rem;
+}
+
+.post{
+    display: flex;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+}
+
+textarea{ 
+    margin: 0;
+    margin-left: 1rem;
+    padding: 0;
+    border: none;
+    outline: none;
+    background: none;
+    font: inherit;
+    color: inherit;
+    resize: none; /* 크기 조절도 비활성화 */
+    height: 100%;
+    width: 100%;
+
+    color: #000;
+    font-size: 0.875rem;
+    font-weight: 400;
+    line-height: 1.76rem;
 }
 
 textarea::placeholder {
     color: #B4B4B4;
-    font-family: "Noto Sans KR";
     font-size: 0.875rem;
-    font-style: normal;
     font-weight: 400;
-    line-height: 1.375rem; /* 157.143% */
-    letter-spacing: -0.0255rem;
 }
 
 .coment-post button{
@@ -213,6 +264,7 @@ textarea::placeholder {
 
     border-radius: 1.25rem;
     background: var(--Sub-2, #DDE5F2);
+    border: none;
 
     display: flex;
     justify-content: center;
@@ -231,23 +283,71 @@ textarea::placeholder {
     flex-shrink: 0;
 
     color: #000;
-    font-family: "Noto Sans KR";
     font-size: 0.875rem;
-    font-style: normal;
     font-weight: 400;
     line-height: 1.375rem; /* 157.143% */
-    letter-spacing: -0.0255rem;
 }
 
 .login-link{
     display: inline-block;
     color: #475482;                /* 글자색 */
     text-decoration: none;      /* 밑줄 제거 */
-    font-family: "Noto Sans KR";
     font-size: 0.875rem;
-    font-style: normal;
     font-weight: 400;
     line-height: 1.375rem; /* 157.143% */
-    letter-spacing: -0.0255rem;
 }
 
+.coment-info{
+    display: flex;
+    align-items: center;
+    gap: 0.38rem;
+    margin-bottom: 0.2rem;
+    margin-top: 0.6rem;
+}
+
+.coment h4{
+    margin: 0;
+    color: #000;
+    font-size: 0.9375rem;
+    font-weight: 500;
+}
+
+.coment small{
+    margin: 0;
+    color: #B1B1B1;
+    font-size: 0.6875rem;
+    font-weight: 400;
+}
+
+.coment p{
+    margin: 0;
+    color: #000;
+    font-size: 0.875rem;
+    font-weight: 400;
+}
+
+.coment-delete{
+    display: flex;
+    width: 2.625rem;
+    height: 1.5625rem;
+    justify-content: center;
+    align-items: center;
+    flex-shrink: 0;
+    padding: 0;
+
+    border-radius: 0.3125rem;
+    border: 1px solid #919191;
+    background: #FFFEFE;
+    cursor: pointer;
+
+    color: #000;
+    font-size: 0.6875rem;
+    font-weight: 400;
+}
+
+.coment-display{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 0.7rem;
+}

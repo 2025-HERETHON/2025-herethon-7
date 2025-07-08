@@ -8,17 +8,33 @@
 
 {% block content %}
 
-{% if review.book.thumbnail %}
+<div class="thumbnail-container">
+    {% if review.book.thumbnail %}
     <img src="{{ review.book.thumbnail }}" alt="책 썸네일" width="150" class="book-thumbnail">
-{% endif %}
+    {% endif %}
+</div>
 
 <section class="review-container">
     <div class="info">
-        <h2>{{ review.book.title }}</h2>
-        {% if user == review.user %}
-        <a href="{% url 'contents:update' review.id %}">수정</a>
-        <a href="{% url 'contents:delete' review.id %}">삭제</a> <br>
-        {% endif %}
+        <div class="title-fix">
+            <h2>{{ review.book.title }}</h2>
+            {% if user == review.user %}
+            <div class="fix">
+                <a href="{% url 'contents:update' review.id %}">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="33" height="33" viewBox="0 0 33 33" fill="none">
+                        <circle cx="16.5" cy="16.5" r="16" fill="white" stroke="#B1B1B1"/>
+                        <path d="M14.9108 22.9393L7.69995 25.3L10.104 18.2167M14.9108 22.9393L24.3067 13.4004C24.7813 12.9331 25.1043 12.3381 25.235 11.6905C25.3657 11.043 25.2982 10.3719 25.041 9.76202C24.7838 9.15214 24.3484 8.6308 23.7899 8.26381C23.2313 7.89681 22.5746 7.70063 21.9027 7.70001C21.0012 7.70032 20.1366 8.05199 19.4987 8.67785L10.104 18.2167M14.9108 22.9393L10.104 18.2167M12.5068 20.5786L19.4863 13.4004M17.125 11.0871L21.8993 15.7666" stroke="black" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                </a>
+                <a href="{% url 'contents:delete' review.id %}">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="33" height="33" viewBox="0 0 33 33" fill="none">
+                        <circle cx="16.5" cy="16.5" r="16" fill="white" stroke="#B1B1B1"/>
+                        <path d="M8.25 10.8166H24.75M14.4375 15.0333V21.3583M18.5625 15.0333V21.3583M9.28125 10.8166L10.3125 23.4666C10.3125 24.0258 10.5298 24.5621 10.9166 24.9575C11.3034 25.3528 11.828 25.575 12.375 25.575H20.625C21.172 25.575 21.6966 25.3528 22.0834 24.9575C22.4702 24.5621 22.6875 24.0258 22.6875 23.4666L23.7188 10.8166M13.4062 10.8166V7.65414C13.4062 7.37456 13.5149 7.10643 13.7083 6.90873C13.9017 6.71104 14.164 6.59998 14.4375 6.59998H18.5625C18.836 6.59998 19.0983 6.71104 19.2917 6.90873C19.4851 7.10643 19.5938 7.37456 19.5938 7.65414V10.8166" stroke="black" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                </a>
+                {% endif %}
+            </div>
+        </div>
         <p>{{ review.book.author }}</p>
     </div>
 
@@ -80,7 +96,7 @@
         {% csrf_token %}
         <button type="submit" class="like-btn scrap-btn {% if user in review.scrap.all %}active{% endif %}">
             <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 22 22" fill="none">
-                <path d="M11.9488 1.55591C11.8543 1.3873 11.7165 1.24692 11.5497 1.14921C11.383 1.0515 11.1932 1 10.9999 1C10.8066 1 10.6168 1.0515 10.45 1.14921C10.2832 1.24692 10.1455 1.3873 10.051 1.55591C9.82875 1.96034 9.61504 2.36996 9.40985 2.78477C8.7634 4.09691 8.21378 5.45458 7.7654 6.8469C7.61095 7.32578 7.15317 7.65799 6.62872 7.67244C5.03895 7.71423 3.45435 7.87205 1.88757 8.14465C1.02757 8.29576 0.704231 9.27573 1.31535 9.8735C1.45461 10.0105 1.59535 10.1457 1.73757 10.279C2.80098 11.2833 3.92535 12.221 5.10426 13.0868C5.51205 13.3856 5.67983 13.8978 5.52427 14.3667C4.9317 16.1479 4.50761 17.9807 4.25759 19.841C4.14648 20.6799 5.04426 21.2721 5.82427 20.8721C7.37099 20.0791 8.85004 19.1605 10.2465 18.1255C10.4653 17.9659 10.7291 17.8798 10.9999 17.8798C11.2707 17.8798 11.5345 17.9659 11.7532 18.1255C13.1494 19.1609 14.6285 20.0795 16.1755 20.8721C16.9544 21.2721 17.8533 20.6799 17.7421 19.841C17.6992 19.5262 17.6521 19.2133 17.601 18.9022C17.3443 17.3634 16.968 15.847 16.4755 14.3667C16.3199 13.8978 16.4866 13.3856 16.8955 13.0868C18.233 12.1068 19.4991 11.033 20.6844 9.8735C21.2955 9.27573 20.9733 8.29576 20.1122 8.14465C18.5456 7.87046 16.9609 7.71263 15.371 7.67244C15.1196 7.66844 14.8756 7.58702 14.6722 7.43929C14.4688 7.29156 14.3159 7.0847 14.2343 6.8469C13.644 5.01435 12.8786 3.24178 11.9488 1.55591Z" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                <path d="M11.9488 1.55591C11.8543 1.3873 11.7165 1.24692 11.5497 1.14921C11.383 1.0515 11.1932 1 10.9999 1C10.8066 1 10.6168 1.0515 10.45 1.14921C10.2832 1.24692 10.1455 1.3873 10.051 1.55591C9.82875 1.96034 9.61504 2.36996 9.40985 2.78477C8.7634 4.09691 8.21378 5.45458 7.7654 6.8469C7.61095 7.32578 7.15317 7.65799 6.62872 7.67244C5.03895 7.71423 3.45435 7.87205 1.88757 8.14465C1.02757 8.29576 0.704231 9.27573 1.31535 9.8735C1.45461 10.0105 1.59535 10.1457 1.73757 10.279C2.80098 11.2833 3.92535 12.221 5.10426 13.0868C5.51205 13.3856 5.67983 13.8978 5.52427 14.3667C4.9317 16.1479 4.50761 17.9807 4.25759 19.841C4.14648 20.6799 5.04426 21.2721 5.82427 20.8721C7.37099 20.0791 8.85004 19.1605 10.2465 18.1255C10.4653 17.9659 10.7291 17.8798 10.9999 17.8798C11.2707 17.8798 11.5345 17.9659 11.7532 18.1255C13.1494 19.1609 14.6285 20.0795 16.1755 20.8721C16.9544 21.2721 17.8533 20.6799 17.7421 19.841C17.6992 19.5262 17.6521 19.2133 17.601 18.9022C17.3443 17.3634 16.968 15.847 16.4755 14.3667C16.3199 13.8978 16.4866 13.3856 16.8955 13.0868C18.233 12.1068 19.4991 11.033 20.6844 9.8735C21.2955 9.27573 20.9733 8.29576 20.1122 8.14465C18.5456 7.87046 16.9609 7.71263 15.371 7.67244C15.1196 7.66844 14.8756 7.58702 14.6722 7.43929C14.4688 7.29156 14.3159 7.0847 14.2343 6.8469C13.644 5.01435 12.8786 3.24178 11.9488 1.55591Z" fill="currentColor" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
             </svg>
             <span class="count">{{ review.scrap.count }}</span>
         </button>
@@ -88,11 +104,11 @@
 </section>
 
 <section class="coment-container">
-    <p class="title">댓글</p>
+    <p class="title coment">댓글</p>
 
     {% if user.is_authenticated %}
     <div class="coment-post">
-        <form method="post" action="{% url 'contents:create-comment' review.id %}">
+        <form method="post" action="{% url 'contents:create-comment' review.id %}" class="post">
             {% csrf_token %}
             <textarea name="content" rows="3" style="width: 100%;" placeholder="댓글을 입력하세요" required></textarea><br>
             <button type="submit">
@@ -110,22 +126,23 @@
 
     <hr class="coment-line">
 
-    <div class="coment">
-        {% for comment in review.comments.all %}
-        <h5>{{ comment.user.nickname }}</h5> 
-        <small>({{ comment.created_at|date:"Y.m.d H:i" }})</small><br>
-        <p>{{ comment.content }}</p>
-    </div>
-        
-    <div>
+    {% for comment in review.comments.all %}
+    <div class="coment-display">
+        <div class="coment">
+            <div class="coment-info">
+                <h4>{{ comment.user.nickname }}</h4> 
+                <small>({{ comment.created_at|date:"Y.m.d H:i" }})</small>
+            </div>
+            <p>{{ comment.content }}</p>
+        </div>
+
         {% if comment.user == user %}
-            <form method="post" action="{% url 'contents:delete-comment' comment.id %}" style="display:inline;">
-                {% csrf_token %}
-                <button type="submit">삭제</button>
-            </form>
+        <form method="post" action="{% url 'contents:delete-comment' comment.id %}" style="display:inline;">
+            {% csrf_token %}
+            <button type="submit" class="coment-delete">삭제</button>
+        </form>
         {% endif %}
     </div>
-    <br>
 
     <div class="coment">
         {% empty %}
