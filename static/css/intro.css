@@ -31,12 +31,13 @@ p {
 
 h2{
     margin-top: 0.38rem;
-    color: var(--Main-2, #FFFBF2);
-    font-family: "Cormorant Garamond";
-    font-size: 2.75rem;
-    font-style: normal;
-    font-weight: 600;
-    line-height: normal;
     text-align: center;
+    color: var(--Main-2, #FFFBF2);
+    font-family: "Euphoria Script";
+    font-size: 3.4375rem;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    letter-spacing: 0.03438rem;
 }
 
