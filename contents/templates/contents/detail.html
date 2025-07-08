@@ -9,81 +9,129 @@
 {% block content %}
 
 {% if review.book.thumbnail %}
-    <img src="{{ review.book.thumbnail }}" alt="책 썸네일" width="150">
+    <img src="{{ review.book.thumbnail }}" alt="책 썸네일" width="150" class="book-thumbnail">
 {% endif %}
 
-<p>작성자: {{ review.user.nickname }}</p>
-<p>평점: {{ review.rating }}점</p>
-<p>한줄 감상: {{ review.short_comment }}</p>
-<p>상세 리뷰: {{ review.detailed_review }}</p>
+<section class="review-container">
+    <div class="info">
+        <h2>{{ review.book.title }}</h2>
+        {% if user == review.user %}
+        <a href="{% url 'contents:update' review.id %}">수정</a>
+        <a href="{% url 'contents:delete' review.id %}">삭제</a> <br>
+        {% endif %}
+        <p>{{ review.book.author }}</p>
+    </div>
 
-<p>감정 태그:
-    {% for tag in review.tags.all %}
-    #{{ tag.name }}
-    {% endfor %}
-</p>
+    <div class="user">
+        <p>{{ review.user.nickname }}</p>
+    </div>
 
-<p>좋아요: {{ review.like.count }}개 / 싫어요: {{ review.dislike.count }}개 / 스크랩: {{ review.scrap.count }}개 </p>
-
-<form method="post" action="{% url 'contents:like' review.id %}">
-    {% csrf_token %}
-    <button type="submit">
-    {% if user in review.like.all %}좋아요 취소{% else %}좋아요{% endif %}
-    </button>
-</form>
-
-<form method="post" action="{% url 'contents:dislike' review.id %}">
-    {% csrf_token %}
-    <button type="submit">
-    {% if user in review.dislike.all %}싫어요 취소{% else %}싫어요{% endif %}
-    </button>
-</form>
-
-<form method="post" action="{% url 'contents:scrap' review.id %}">
-    {% csrf_token %}
-    <button type="submit">
-    {% if user in review.scrap.all %}스크랩 취소{% else %}스크랩{% endif %}
-    </button>
-</form>
-<br>
-
-{% if user == review.user %}
-    <a href="{% url 'contents:update' review.id %}">수정</a>
-    <a href="{% url 'contents:delete' review.id %}">삭제</a> <br><br>
-{% endif %}
-
-{% if user.is_authenticated %}
-    <form method="post" action="{% url 'contents:create-comment' review.id %}">
-        {% csrf_token %}
-        <textarea name="content" rows="3" style="width: 100%;" placeholder="댓글을 입력하세요" required></textarea><br>
-        <button type="submit">댓글 작성</button>
-    </form>
-{% else %}
-<p>댓글을 작성하려면 <a href="{% url 'login' %}">로그인</a>해주세요.</p>
-{% endif %}
-
-<hr>
-
-{% for comment in review.comments.all %}
-        <strong>{{ comment.user.nickname }}</strong> 
-        <small>({{ comment.created_at|date:"Y.m.d H:i" }})</small><br>
-        {{ comment.content }}
+    <div class="review">
+        <div class="star-container">
+            {% for i in "12345" %}
+            {% if forloop.counter <= review.rating %}
+                <svg xmlns="http://www.w3.org/2000/svg" width="17" height="15" viewBox="0 0 17 15" fill="none">
+                    <path d="M7.04302 0.727591C7.36896 -0.24253 8.78461 -0.24253 9.10946 0.727591L10.272 4.19517C10.343 4.40635 10.4811 4.59036 10.6664 4.7209C10.8518 4.85143 11.075 4.92181 11.3041 4.92197H15.0654C16.1182 4.92197 16.5549 6.22811 15.7042 6.82851L12.6622 8.97099C12.4764 9.10164 12.3381 9.28595 12.2671 9.49751C12.196 9.70906 12.1959 9.93699 12.2667 10.1486L13.4292 13.6162C13.7551 14.5863 12.6089 15.3942 11.7561 14.7938L8.71399 12.6513C8.52843 12.5207 8.30501 12.4504 8.0757 12.4504C7.84639 12.4504 7.62297 12.5207 7.43741 12.6513L4.39533 14.7938C3.54355 15.3942 2.39842 14.5863 2.72327 13.6162L3.88578 10.1486C3.95659 9.93699 3.95646 9.70906 3.88542 9.49751C3.81438 9.28595 3.67606 9.10164 3.49031 8.97099L0.449323 6.82956C-0.401372 6.22916 0.0364701 4.92303 1.08816 4.92303H4.84838C5.07768 4.92308 5.30111 4.85281 5.4867 4.72226C5.67229 4.59171 5.81052 4.40758 5.8816 4.19622L7.04302 0.727591Z" fill="#475482"/>
+                </svg>
+            {% else %}
+                <svg xmlns="http://www.w3.org/2000/svg" width="17" height="15" viewBox="0 0 17 15" fill="none">
+                    <path d="M7.88921 0.727591C8.21515 -0.24253 9.6308 -0.24253 9.95565 0.727591L11.1182 4.19517C11.1892 4.40635 11.3272 4.59036 11.5126 4.7209C11.698 4.85143 11.9212 4.92181 12.1503 4.92197H15.9116C16.9644 4.92197 17.4011 6.22811 16.5504 6.82851L13.5084 8.97099C13.3226 9.10164 13.1843 9.28595 13.1133 9.49751C13.0422 9.70906 13.0421 9.93699 13.1129 10.1486L14.2754 13.6162C14.6013 14.5863 13.4551 15.3942 12.6023 14.7938L9.56018 12.6513C9.37462 12.5207 9.1512 12.4504 8.92189 12.4504C8.69258 12.4504 8.46916 12.5207 8.2836 12.6513L5.24152 14.7938C4.38974 15.3942 3.24462 14.5863 3.56947 13.6162L4.73197 10.1486C4.80278 9.93699 4.80266 9.70906 4.73161 9.49751C4.66057 9.28595 4.52225 9.10164 4.3365 8.97099L1.29551 6.82956C0.44482 6.22916 0.882662 4.92303 1.93435 4.92303H5.69457C5.92387 4.92308 6.1473 4.85281 6.33289 4.72226C6.51848 4.59171 6.65671 4.40758 6.72779 4.19622L7.88921 0.727591Z" fill="#B1B1B1"/>
+                </svg>
+            {% endif %}
+            {% endfor %}
         </div>
+        <p class="title">한줄 감상평 </p>
+        <div class="review-content">{{ review.short_comment }}</div>
+        <p class="title">상세 리뷰 </p>
+        <div class="review-content">{{ review.detailed_review }}</div>
 
+        <p class="tag-container">
+            {% for tag in review.tags.all %}
+                <span class="tag">#{{ tag.name }}</span>
+            {% endfor %}
+        </p>
+    </div>
+</section>
+
+<hr class="review-line">
+
+<section class="like-container">
+    <form method="post" action="{% url 'contents:like' review.id %}" >
+    {% csrf_token %}
+        <button type="submit" class="like-btn {% if user in review.like.all %}active{% endif %}">
+            <svg xmlns="http://www.w3.org/2000/svg" width="21" height="20" viewBox="0 0 21 20" fill="none">
+                <path d="M1.00355 9.13458C0.992206 9.00377 1.00814 8.87203 1.05033 8.74772C1.09252 8.62341 1.16004 8.50924 1.24863 8.41246C1.33721 8.31567 1.44491 8.23839 1.56489 8.1855C1.68487 8.13262 1.81452 8.10529 1.94561 8.10526H3.7517C4.00256 8.10526 4.24314 8.20507 4.42052 8.38274C4.5979 8.56041 4.69755 8.80137 4.69755 9.05263V18.0526C4.69755 18.3039 4.5979 18.5449 4.42052 18.7225C4.24314 18.9002 4.00256 19 3.7517 19H2.72735C2.49062 19.0001 2.26247 18.9112 2.08797 18.751C1.91346 18.5907 1.80529 18.3708 1.78482 18.1346L1.00355 9.13458ZM7.53509 8.75658C7.53509 8.36058 7.78101 8.00626 8.13807 7.83763C8.91792 7.4691 10.2464 6.72874 10.8456 5.72784C11.6178 4.43752 11.7635 2.10652 11.7871 1.57268C11.7905 1.49784 11.7886 1.423 11.7985 1.3491C11.9267 0.423997 13.7091 1.50447 14.3925 2.647C14.7637 3.26658 14.811 4.08084 14.7722 4.717C14.7302 5.39721 14.5311 6.05421 14.3357 6.70695L13.9196 8.09816H19.0541C19.2002 8.09815 19.3444 8.13206 19.4752 8.19722C19.6061 8.26238 19.7201 8.35703 19.8083 8.47374C19.8965 8.59044 19.9565 8.72603 19.9836 8.86986C20.0107 9.0137 20.0041 9.16186 19.9645 9.30274L17.4249 18.3103C17.3688 18.509 17.2495 18.6839 17.0851 18.8084C16.9207 18.9329 16.7201 19.0001 16.514 19H8.48094C8.23009 19 7.98951 18.9002 7.81213 18.7225C7.63474 18.5449 7.53509 18.3039 7.53509 18.0526V8.75658Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+            <span class="count">{{ review.like.count }}</span>
+        </button>
+    </form>
+
+    <form method="post" action="{% url 'contents:dislike' review.id %}">
+        {% csrf_token %}
+        <button type="submit" class="like-btn {% if user in review.dislike.all %}active{% endif %}">
+            <svg xmlns="http://www.w3.org/2000/svg" width="21" height="20" viewBox="0 0 21 20" fill="none">
+                <path d="M19.9965 10.8654C20.0078 10.9962 19.9919 11.128 19.9497 11.2523C19.9075 11.3766 19.84 11.4908 19.7514 11.5875C19.6628 11.6843 19.5551 11.7616 19.4351 11.8145C19.3151 11.8674 19.1855 11.8947 19.0544 11.8947H17.2483C16.9974 11.8947 16.7569 11.7949 16.5795 11.6173C16.4021 11.4396 16.3024 11.1986 16.3024 10.9474V1.94737C16.3024 1.69611 16.4021 1.45515 16.5795 1.27748C16.7569 1.09981 16.9974 1 17.2483 1H18.2726C18.5094 0.999943 18.7375 1.0888 18.912 1.24903C19.0865 1.40926 19.1947 1.6292 19.2152 1.86542L19.9965 10.8654ZM13.4649 11.2434C13.4649 11.6394 13.219 11.9937 12.8619 12.1624C12.0821 12.5309 10.7536 13.2713 10.1544 14.2722C9.38216 15.5625 9.2365 17.8935 9.21285 18.4273C9.20954 18.5022 9.21143 18.577 9.2015 18.6509C9.07334 19.576 7.29089 18.4955 6.60751 17.353C6.23627 16.7334 6.18898 15.9192 6.22776 15.283C6.26985 14.6028 6.46895 13.9458 6.66426 13.2931L7.08044 11.9018H1.94591C1.79977 11.9019 1.65562 11.8679 1.52476 11.8028C1.39391 11.7376 1.27991 11.643 1.19171 11.5263C1.1035 11.4096 1.0435 11.274 1.0164 11.1301C0.989306 10.9863 0.995852 10.8381 1.03553 10.6973L3.57513 1.68969C3.63119 1.49103 3.75051 1.31614 3.91493 1.19165C4.07935 1.06715 4.27987 0.999857 4.48598 1H12.5191C12.7699 1 13.0105 1.09981 13.1879 1.27748C13.3653 1.45515 13.4649 1.69611 13.4649 1.94737V11.2434Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+            <span class="count">{{ review.dislike.count }}</span>
+        </button>
+    </form>
+
+    <form method="post" action="{% url 'contents:scrap' review.id %}">
+        {% csrf_token %}
+        <button type="submit" class="like-btn scrap-btn {% if user in review.scrap.all %}active{% endif %}">
+            <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 22 22" fill="none">
+                <path d="M11.9488 1.55591C11.8543 1.3873 11.7165 1.24692 11.5497 1.14921C11.383 1.0515 11.1932 1 10.9999 1C10.8066 1 10.6168 1.0515 10.45 1.14921C10.2832 1.24692 10.1455 1.3873 10.051 1.55591C9.82875 1.96034 9.61504 2.36996 9.40985 2.78477C8.7634 4.09691 8.21378 5.45458 7.7654 6.8469C7.61095 7.32578 7.15317 7.65799 6.62872 7.67244C5.03895 7.71423 3.45435 7.87205 1.88757 8.14465C1.02757 8.29576 0.704231 9.27573 1.31535 9.8735C1.45461 10.0105 1.59535 10.1457 1.73757 10.279C2.80098 11.2833 3.92535 12.221 5.10426 13.0868C5.51205 13.3856 5.67983 13.8978 5.52427 14.3667C4.9317 16.1479 4.50761 17.9807 4.25759 19.841C4.14648 20.6799 5.04426 21.2721 5.82427 20.8721C7.37099 20.0791 8.85004 19.1605 10.2465 18.1255C10.4653 17.9659 10.7291 17.8798 10.9999 17.8798C11.2707 17.8798 11.5345 17.9659 11.7532 18.1255C13.1494 19.1609 14.6285 20.0795 16.1755 20.8721C16.9544 21.2721 17.8533 20.6799 17.7421 19.841C17.6992 19.5262 17.6521 19.2133 17.601 18.9022C17.3443 17.3634 16.968 15.847 16.4755 14.3667C16.3199 13.8978 16.4866 13.3856 16.8955 13.0868C18.233 12.1068 19.4991 11.033 20.6844 9.8735C21.2955 9.27573 20.9733 8.29576 20.1122 8.14465C18.5456 7.87046 16.9609 7.71263 15.371 7.67244C15.1196 7.66844 14.8756 7.58702 14.6722 7.43929C14.4688 7.29156 14.3159 7.0847 14.2343 6.8469C13.644 5.01435 12.8786 3.24178 11.9488 1.55591Z" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+            <span class="count">{{ review.scrap.count }}</span>
+        </button>
+    </form>
+</section>
+
+<section class="coment-container">
+    <p class="title">댓글</p>
+
+    {% if user.is_authenticated %}
+    <div class="coment-post">
+        <form method="post" action="{% url 'contents:create-comment' review.id %}">
+            {% csrf_token %}
+            <textarea name="content" rows="3" style="width: 100%;" placeholder="댓글을 입력하세요" required></textarea><br>
+            <button type="submit">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16" fill="none">
+                    <path d="M15.6377 7.40491L0.988524 0.070419C0.873708 0.0129211 0.744741 -0.0101171 0.617152 0.00407857C0.489563 0.0182742 0.368792 0.0690985 0.269381 0.150432C0.174443 0.230106 0.103582 0.334718 0.064764 0.452509C0.0259456 0.570299 0.0207089 0.696597 0.0496425 0.817204L2.02063 7.99834L0.0230075 15.1595C-0.00414248 15.2602 -0.00731172 15.3659 0.0137547 15.4681C0.0348212 15.5702 0.0795356 15.666 0.144302 15.7477C0.209069 15.8294 0.292081 15.8948 0.386663 15.9386C0.481246 15.9823 0.584759 16.0032 0.688881 15.9996C0.793118 15.999 0.895753 15.9739 0.988524 15.9263L15.6377 8.59177C15.7468 8.53581 15.8383 8.4508 15.9023 8.3461C15.9662 8.24139 16 8.12106 16 7.99834C16 7.87562 15.9662 7.75528 15.9023 7.65058C15.8383 7.54588 15.7468 7.46087 15.6377 7.40491ZM1.72098 14.0726L3.19257 8.66511H9.34524V7.33157H3.19257L1.72098 1.92404L13.8465 7.99834L1.72098 14.0726Z" fill="#475482"/>
+                </svg>
+            </button>
+        </form>
+    </div>   
+    {% else %}
+    <div class="login-text">
+        <p class>댓글을 작성하려면 <a href="{% url 'login' %}" class="login-link">로그인</a>해주세요.</p>
+    </div>
+    {% endif %}
+
+    <hr class="coment-line">
+
+    <div class="coment">
+        {% for comment in review.comments.all %}
+        <h5>{{ comment.user.nickname }}</h5> 
+        <small>({{ comment.created_at|date:"Y.m.d H:i" }})</small><br>
+        <p>{{ comment.content }}</p>
+    </div>
+        
+    <div>
         {% if comment.user == user %}
             <form method="post" action="{% url 'contents:delete-comment' comment.id %}" style="display:inline;">
                 {% csrf_token %}
                 <button type="submit">삭제</button>
             </form>
         {% endif %}
-        </div>
-        <br>
+    </div>
+    <br>
 
-{% empty %}
-    <p>아직 작성된 댓글이 없습니다.</p>
-    
-{% endfor %}
-<br><br>
+    <div class="coment">
+        {% empty %}
+        <p>아직 작성된 댓글이 없습니다.</p>
+        {% endfor %}
+    </div>
+</section>
 
-<a href="{% url 'contents:main' %}">메인 페이지로 돌아가기</a><br><br>
 {% endblock %}
