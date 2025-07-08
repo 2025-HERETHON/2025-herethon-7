@@ -65,17 +65,6 @@ WSGI_APPLICATION = 'shelf.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/5.2/ref/settings/#databases
 
-'''DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'shelf-db',
-        'USER': 'admin',
-        'PASSWORD': 'fiodsf3255**',
-        'HOST': 'RDS_엔드포인트',
-        'PORT': '3306',
-    }
-}'''
-
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
