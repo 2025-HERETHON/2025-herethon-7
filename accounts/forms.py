@@ -57,7 +57,7 @@ class CustomUserCreationForm(UserCreationForm):
             'class': 'form-input'
         })
 
-def clean_gender(self):
+    def clean_gender(self):
         gender = self.cleaned_data.get('gender')
         if gender != 'F':
             raise forms.ValidationError("현재는 '여성'만 가입이 가능합니다.")
@@ -86,3 +86,13 @@ class DeleteAccountForm(forms.Form):
 
 class FindIDForm(forms.Form):
     email = forms.EmailField(label='이메일')
+
+class CustomUserChangeForm(forms.ModelForm):
+    class Meta:
+        model = CustomUser
+        fields = ('nickname', 'profile_image')
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.fields['nickname'].label = '닉네임'
+        self.fields['profile_image'].label = '프로필 이미지'
