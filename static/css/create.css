@@ -1,87 +1,120 @@
 body {
-    font-family: 'Apple SD Gothic Neo', sans-serif;
-    background-color: #fff;
-    color: #1e1e1e;
-  }
-  
-  .title-section {
-    background-color: #1e254e;
-    color: white;
-    text-align: center;
-    padding: 1.5rem 1rem;
-    border-bottom: 2px solid #eee;
-    position: sticky;
-    top: 0;
-    z-index: 1000;
-  }
-  
-  .title-section h1 {
-    margin-bottom: 0.3rem;
-  }
-  
-  .title-section p {
-    font-size: 0.9rem;
-    color: #dcdcdc;
-  }
-  
-  form {
-    padding: 1rem;
-  }
-  
-  form label {
-    display: block;
-    margin: 1rem 0 0.3rem;
-    font-weight: bold;
-  }
-  
-  input[type="text"],
-  textarea,
-  select {
-    width: 100%;
-    padding: 0.7rem;
-    font-size: 1rem;
-    border: 1px solid #ccc;
-    border-radius: 0.5rem;
-    background-color: #f9f9f9;
-    box-sizing: border-box;
-  }
-  
-  input[type="file"] {
-    display: block;
-    margin-top: 0.5rem;
-  }
-  
-  textarea {
-    resize: vertical;
-  }
-  
-  form input[type="checkbox"] {
-    margin-right: 0.5rem;
-  }
-  
-  form button[type="submit"] {
-    margin-top: 1.5rem;
-    width: 100%;
-    padding: 1rem;
-    background-color: #1e254e;
-    color: white;
-    font-weight: bold;
-    font-size: 1rem;
-    border: none;
-    border-radius: 0.7rem;
-    cursor: pointer;
-  }
-  
-  form button[type="submit"]:hover {
-    background-color: #2d3d70;
-  }
-  
-  .tag-section {
-    margin-top: 1rem;
-  }
-  
-  .tag-section strong {
-    display: block;
-    margin-top: 1rem;
-  }
-  
+  font-family: 'Apple SD Gothic Neo', sans-serif;
+  background-color: #ffffff;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  color: #1e1e1e;
+}
+
+/* container */
+.container {
+  padding: 0 20px;
+}
+
+/* 통일된 헤더 */
+.title-section {
+  background-color: #1e254e;
+  color: white;
+  text-align: center;
+  padding: 2rem 1rem;
+  border-bottom: 1px solid #eee;
+  margin-bottom: 2rem;
+}
+
+.title-section h1 {
+  font-size: 20px;
+  font-weight: 700;
+  margin-bottom: 0.5rem;
+}
+
+.title-section p {
+  font-size: 14px;
+  color: #dcdcdc;
+}
+
+/* 소제목 */
+h2 {
+  font-size: 18px;
+  font-weight: bold;
+  margin-bottom: 1rem;
+}
+
+/* 이미지 */
+img {
+  border-radius: 10px;
+  margin-bottom: 1.5rem;
+}
+
+/* 라벨 */
+label {
+  font-weight: 600;
+  display: block;
+  margin-top: 1.5rem;
+  margin-bottom: 0.5rem;
+}
+
+/* 입력창들 */
+input[type="text"],
+textarea,
+select {
+  width: 100%;
+  padding: 0.8rem;
+  font-size: 15px;
+  border: none;
+  border-radius: 10px;
+  background-color: #f0f4ff;
+  box-sizing: border-box;
+}
+
+textarea {
+  resize: none;
+  height: 120px;
+}
+
+/* 태그 영역 */
+.tag-section {
+  margin-top: 2rem;
+}
+
+.tag-section strong {
+  display: block;
+  margin-top: 1.5rem;
+  margin-bottom: 0.5rem;
+  font-size: 15px;
+}
+
+/* 체크박스 숨기고 라벨 꾸미기 */
+input[type="checkbox"] {
+  display: none;
+}
+
+.tag-section label {
+  display: inline-block;
+  background-color: #fff;
+  border: 1.5px solid #1e254e;
+  color: #1e254e;
+  border-radius: 999px;
+  padding: 8px 12px;
+  font-size: 14px;
+  margin: 6px 8px 6px 0;
+  cursor: pointer;
+}
+
+/* 버튼 */
+button[type="submit"] {
+  width: 100%;
+  padding: 1rem;
+  background-color: #1e254e;
+  color: white;
+  font-weight: bold;
+  font-size: 16px;
+  border: none;
+  border-radius: 12px;
+  cursor: pointer;
+  margin-top: 2rem;
+}
+
+button[type="submit"]:hover {
+  background-color: #2d3d70;
+}

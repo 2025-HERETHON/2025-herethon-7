@@ -1,5 +1,6 @@
 {% extends "base_menu.html" %} 
 {% load static %}
+
 {% block title %}감상 기록 등록{% endblock %}
 
 {% block extra_css %}
@@ -7,14 +8,21 @@
 {% endblock %} 
 
 {% block content %}
-    <h2>리뷰 작성</h2>
+<!-- 🔹 상단 타이틀 섹션 -->
+<header class="title-section">
+  <h1>📖 감상 기록 등록하기</h1>
+  <p>책 정보를 입력하고 감정을 기록해보세요</p>
+</header>
 
-    <p><strong>책 제목:</strong> {{ book.title }}</p>
-    <p><strong>저자:</strong> {{ book.author }}</p>
+<!-- 🔹 리뷰 작성 폼 -->
+<h2>리뷰 작성</h2>
 
-    {% if book.thumbnail %}
-        <img src="{{ book.thumbnail }}" alt="책 썸네일" width="120"><br><br>
-    {% endif %}
+<p><strong>책 제목:</strong> {{ book.title }}</p>
+<p><strong>저자:</strong> {{ book.author }}</p>
+
+{% if book.thumbnail %}
+    <img src="{{ book.thumbnail }}" alt="책 썸네일" width="120"><br><br>
+{% endif %}
 
 <form method="POST" action="{% url 'contents:create' book.id %}">       
     {% csrf_token %}
@@ -36,7 +44,6 @@
     <label>감정 태그 선택</label><br>
     
     <strong>1차 감정</strong><br>
-    
     {% for tag in tags %}
         {% if tag.tag_type == 'primary' %}
         <label>
