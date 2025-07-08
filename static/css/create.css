@@ -1,15 +1,7 @@
 body {
     font-family: 'Apple SD Gothic Neo', sans-serif;
-    margin: 0;
-    padding: 0;
     background-color: #fff;
     color: #1e1e1e;
-  }
-  
-  .container {
-    max-width: 390px;  /* iPhone 14 Pro width */
-    margin: 0 auto;
-    padding-bottom: 5rem; /* 네비게이션 공간 확보 */
   }
   
   .title-section {
@@ -91,31 +83,5 @@ body {
   .tag-section strong {
     display: block;
     margin-top: 1rem;
-  }
-  
-  .navbar {
-    position: fixed;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    max-width: 390px;
-    width: 100%;
-    background-color: #fff;
-    border-top: 1px solid #ddd;
-    display: flex;
-    justify-content: space-around;
-    padding: 0.5rem 0;
-    font-size: 0.8rem;
-    z-index: 999;
-  }
-  
-  .navbar a {
-    text-align: center;
-    color: #777;
-    text-decoration: none;
-  }
-  
-  .navbar a.active {
-    color: #1e254e;
   }
   
