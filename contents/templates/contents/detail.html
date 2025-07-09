@@ -17,7 +17,10 @@
 <section class="review-container">
     <div class="info">
         <div class="title-fix">
-            <h2>{{ review.book.title }}</h2>
+            <div class="book-info">
+                <h2>{{ review.book.title }}</h2>
+                <p>{{ review.book.author }}</p>
+            </div>
             {% if user == review.user %}
             <div class="fix">
                 <a href="{% url 'contents:update' review.id %}">
@@ -35,7 +38,6 @@
                 {% endif %}
             </div>
         </div>
-        <p>{{ review.book.author }}</p>
     </div>
 
     <div class="user">
@@ -48,6 +50,7 @@
         {% endif %}
         <p>{{ review.user.nickname }}</p>
     </div>
+    <hr class="review-line">
 
     <div class="review">
         <div class="star-container">
