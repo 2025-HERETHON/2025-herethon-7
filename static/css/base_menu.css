@@ -1,20 +1,29 @@
 html, body {
   margin: 0;
   padding: 0;
-  width: 100%;
-  min-height: 100%;  /* 스크롤 가능하게 */
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  justify-content: center;  /* 가로 중앙 */
+  align-items: center;      /* 세로 중앙 */
+  overflow: hidden;
+}
+
+.app-wrapper {
+  width: 390px;
+  height: 844px;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  box-shadow: 0 0 10px rgba(0,0,0,0.1); /* 데스크탑에서 자연스러움 */
 }
 
 .container {
-    width: 390px;  /* 모바일 최대 크기 (iPhone 기준) */
-    box-sizing: border-box;
-    margin: 0 auto;    /* 가운데 정렬 */
-    padding-bottom: 4.25rem !important; /* bottom nav 높이만큼 */
-
-    overflow-y: auto;   /* 세로 스크롤 유지 */
-    -webkit-overflow-scrolling: touch; /* iOS 부드러운 스크롤 */
+  flex: 1;
+  overflow-y: auto;
+  padding-bottom: 4.25rem !important;
+  box-sizing: border-box;
 }
-
 
 .bottom-nav {
     bottom: 0;
@@ -28,7 +37,7 @@ html, body {
     border-top: 2px solid #F5F5F5;
     background: #FFF;
 
-    position: fixed;
+    position: absolute;
     z-index: 1000;
 
     display: flex;

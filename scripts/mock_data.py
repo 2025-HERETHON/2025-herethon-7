@@ -71,13 +71,4 @@ for review in reviews:
             content=f"{review.book.title}에 대한 댓글 {i+1}"
         )
 
-# ✅ 주목 작가 생성
-FeaturedAuthor.objects.create(
-    name="정은지",
-    profile_image=None,  # 이미지 없을 경우
-    bio="감성적인 에세이로 많은 독자의 공감을 받는 작가.",
-    featured_month=timezone.now().date(),
-    representative_work="마음의 계절"
-)
-
 print("🟢 Mock 데이터 전체 생성 완료")

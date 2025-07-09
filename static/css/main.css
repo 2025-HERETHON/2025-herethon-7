@@ -143,6 +143,8 @@ img.ranking-thumbnail{
 
 .work-container ul{
     font-weight: 700;
+    display: flex;
+    gap: 0.3rem;
 }
 
 .mainpage-content{
