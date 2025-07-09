@@ -1,3 +1,4 @@
+/* 전체 레이아웃 고정 */
 body {
   font-family: 'Apple SD Gothic Neo', sans-serif;
   background-color: #ffffff;
@@ -7,12 +8,15 @@ body {
   color: #1e1e1e;
 }
 
-/* container */
 .container {
+  width: 390px;
+  margin: 0 auto;
   padding: 0 20px;
+  box-sizing: border-box;
+  background-color: #fff;
 }
 
-/* 통일된 헤더 */
+/* 상단 타이틀 */
 .title-section {
   background-color: #1e254e;
   color: white;
@@ -33,6 +37,64 @@ body {
   color: #dcdcdc;
 }
 
+/* 책 미리보기 박스 */
+.book-search-preview {
+  padding: 0 0 1.5rem 0;
+}
+
+.book-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  border: 1px solid #ddd;
+  border-radius: 0.75rem;
+  padding: 0.75rem;
+  background-color: #fff;
+  margin-bottom: 1.5rem;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+}
+
+.book-item img {
+  width: 60px;
+  height: auto;
+  border-radius: 4px;
+}
+
+.book-info {
+  flex-grow: 1;
+}
+
+.book-title {
+  font-weight: bold;
+  font-size: 1rem;
+  margin-bottom: 0.2rem;
+}
+
+.book-author {
+  font-size: 0.85rem;
+  color: #999;
+}
+
+.book-item button {
+  background-color: #e6eefe;
+  color: #2b2e52;
+  border: none;
+  border-radius: 0.75rem;
+  padding: 0.5rem 1rem;
+  font-size: 0.85rem;
+  cursor: pointer;
+  white-space: nowrap;
+}
+
+/* 감상평 박스 */
+.review-box {
+  background-color: #e6efff;
+  padding: 1rem;
+  border-radius: 10px;
+  margin-bottom: 2rem;
+}
+
 /* 소제목 */
 h2 {
   font-size: 18px;
@@ -40,21 +102,15 @@ h2 {
   margin-bottom: 1rem;
 }
 
-/* 이미지 */
-img {
-  border-radius: 10px;
-  margin-bottom: 1.5rem;
-}
-
-/* 라벨 */
+/* 입력창 공통 */
 label {
   font-weight: 600;
   display: block;
   margin-top: 1.5rem;
   margin-bottom: 0.5rem;
+  font-size: 14px;
 }
 
-/* 입력창들 */
 input[type="text"],
 textarea,
 select {
@@ -72,7 +128,7 @@ textarea {
   height: 120px;
 }
 
-/* 태그 영역 */
+/* 감정 태그 */
 .tag-section {
   margin-top: 2rem;
 }
@@ -84,7 +140,6 @@ textarea {
   font-size: 15px;
 }
 
-/* 체크박스 숨기고 라벨 꾸미기 */
 input[type="checkbox"] {
   display: none;
 }
@@ -143,53 +198,4 @@ button[type="submit"]:hover {
 .star-rating label:hover,
 .star-rating label:hover ~ label {
   color: #403a89;
-}
-
-.book-search-preview {
-  padding: 1rem 1rem 0 1rem;
-}
-
-.book-item {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 1rem;
-  border: 1px solid #ddd;
-  border-radius: 0.75rem;
-  padding: 0.75rem;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
-  background-color: #fff;
-  margin-top: 0.5rem;
-}
-
-.book-item img {
-  width: 60px;
-  height: auto;
-  border-radius: 4px;
-}
-
-.book-info {
-  flex-grow: 1;
-}
-
-.book-title {
-  font-weight: bold;
-  font-size: 1rem;
-  margin-bottom: 0.2rem;
-}
-
-.book-author {
-  font-size: 0.85rem;
-  color: #999;
-}
-
-.book-item button {
-  background-color: #e6eefe;
-  color: #2b2e52;
-  border: none;
-  border-radius: 0.75rem;
-  padding: 0.5rem 1rem;
-  font-size: 0.85rem;
-  cursor: pointer;
-  white-space: nowrap;
 }
