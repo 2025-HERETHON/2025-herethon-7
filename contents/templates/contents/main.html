@@ -7,108 +7,105 @@
 {% endblock %} 
 
 {% block content %}
-<body>
-    <h2>메인페이지</h2>
+<h2>메인페이지</h2>
 
-    {% if request.user.is_authenticated %}
-        {{ request.user.nickname }}님 환영합니다. <br/>
-        <a href="{% url 'mypage' %}">마이페이지</a><br>
-        <form id="logout-form" action="{% url 'logout' %}" method="post" style="display:none;">
-            {% csrf_token %}
-        </form>
-        <a href="#" onclick="document.getElementById('logout-form').submit(); return false;">로그아웃</a><br>
-
-    {% else %}
-        <a href="{% url 'login' %}">로그인</a>
-        <a href="{% url 'signup' %}">회원가입</a>
-
-    {% endif %}
-    <hr><br>
-
-    {% if top_books %}
-        <h3> 인기 많은 책 Top 5</h3>
-        <ul>
-            {% for book in top_books %}
-                <li style="margin-bottom: 10px;">
-                    <a href="{% url 'contents:filter_reviews' %}?book_id={{ book.id }}">
-                        {% if book.thumbnail %}
-                            <img src="{{ book.thumbnail }}" alt="책 썸네일" width="80"><br>
-                        {% endif %}
-                        <strong>{{ book.title }}</strong>
-                    </a>
-                    — {{ book.author }}
-                </li>
-            {% endfor %}
-        </ul>
-        <hr>
-    {% endif %}
-
-
-    <a href="{% url 'contents:book_search' %}">리뷰 작성하러가기</a>
-    <br>
-    <hr>
-
-    {% if featured_author %}
-        <h3> 이번 달 주목할 여성 작가: {{ featured_author.name }}</h3>
-        {% if featured_author.profile_image %}
-            <img src="{{ featured_author.profile_image.url }}" width="100">
-        {% endif %}
-        <p>{{ featured_author.bio }}</p>
-
-        {% if representative_works %}
-        <ul>
-            {% for work in representative_works %}
-                <li>{{ work }}</li>
-            {% endfor %}
-        </ul>
-        {% endif %}
-        <hr>
-    {% endif %} <br>
-
-    <form method="get" action="{% url 'contents:search_reviews' %}">
-        <input type="text" name="q" placeholder="제목 또는 작가로 검색">
-        <button type="submit">검색</button>
+{% if request.user.is_authenticated %}
+    {{ request.user.nickname }}님 환영합니다. <br/>
+    <a href="{% url 'mypage' %}">마이페이지</a><br>
+    <form id="logout-form" action="{% url 'logout' %}" method="post" style="display:none;">
+        {% csrf_token %}
     </form>
-    <br><hr>
+    <a href="#" onclick="document.getElementById('logout-form').submit(); return false;">로그아웃</a><br>
 
-    <a href="{% url 'contents:filter_reviews' %}">감정별 모아보기</a>
-    <br><hr>
+{% else %}
+    <a href="{% url 'login' %}">로그인</a>
+    <a href="{% url 'signup' %}">회원가입</a>
 
-    {% if random_tag and recommended_reviews %}
-        <h3>#{{ random_tag.name }} 담긴 책 추천</h3>
-        <ul>
-            {% for review in recommended_reviews %}
-                <li style="margin-bottom: 10px;">
-                    <a href="{% url 'contents:filter_reviews' %}?book_id={{ review.book.id }}">
-                        {% if review.book.thumbnail %}
-                            <img src="{{ review.book.thumbnail }}" alt="책 썸네일" width="80"><br>
-                        {% endif %}
-                        <strong>{{ review.book.title }}</strong>
-                    </a>
-                    — {{ review.book.author }}
-                </li>
-            {% endfor %}
-        </ul>
-        <hr>
-    {% endif %}  
+{% endif %}
+<hr><br>
 
-    {% if feminism_reviews %}
-        <h3>여성이 ‘주인공’인 이야기 TOP3</h3>
-        <ul>
-            {% for review in feminism_reviews %}
-                <li style="margin-bottom: 16px;">
-                    <a href="{% url 'contents:filter_reviews' %}?book_id={{ review.book.id }}">
-                        {% if review.book.thumbnail %}
-                            <img src="{{ review.book.thumbnail }}" alt="책 썸네일" width="80"><br>
-                        {% endif %}
-                        <strong>{{ review.book.title }}</strong>
-                    </a>
-                    — {{ review.book.author }}
-                </li>
-            {% endfor %}
-        </ul>
-        <br><hr>
+{% if top_books %}
+    <h3> 인기 많은 책 Top 5</h3>
+    <ul>
+        {% for book in top_books %}
+            <li style="margin-bottom: 10px;">
+                <a href="{% url 'contents:filter_reviews' %}?book_id={{ book.id }}">
+                    {% if book.thumbnail %}
+                        <img src="{{ book.thumbnail }}" alt="책 썸네일" width="80"><br>
+                    {% endif %}
+                    <strong>{{ book.title }}</strong>
+                </a>
+                — {{ book.author }}
+            </li>
+        {% endfor %}
+    </ul>
+    <hr>
+{% endif %}
+
+
+<a href="{% url 'contents:book_search' %}">리뷰 작성하러가기</a>
+<br>
+<hr>
+
+{% if featured_author %}
+    <h3> 이번 달 주목할 여성 작가: {{ featured_author.name }}</h3>
+    {% if featured_author.profile_image %}
+        <img src="{{ featured_author.profile_image.url }}" width="100">
     {% endif %}
+    <p>{{ featured_author.bio }}</p>
 
-</body>
+    {% if representative_works %}
+    <ul>
+        {% for work in representative_works %}
+            <li>{{ work }}</li>
+        {% endfor %}
+    </ul>
+    {% endif %}
+    <hr>
+{% endif %} <br>
+
+<form method="get" action="{% url 'contents:search_reviews' %}">
+    <input type="text" name="q" placeholder="제목 또는 작가로 검색">
+    <button type="submit">검색</button>
+</form>
+<br><hr>
+
+<a href="{% url 'contents:filter_reviews' %}">감정별 모아보기</a>
+<br><hr>
+
+{% if random_tag and recommended_reviews %}
+    <h3>#{{ random_tag.name }} 담긴 책 추천</h3>
+    <ul>
+        {% for review in recommended_reviews %}
+            <li style="margin-bottom: 10px;">
+                <a href="{% url 'contents:filter_reviews' %}?book_id={{ review.book.id }}">
+                    {% if review.book.thumbnail %}
+                        <img src="{{ review.book.thumbnail }}" alt="책 썸네일" width="80"><br>
+                    {% endif %}
+                    <strong>{{ review.book.title }}</strong>
+                </a>
+                — {{ review.book.author }}
+            </li>
+        {% endfor %}
+    </ul>
+    <hr>
+{% endif %}  
+
+{% if feminism_reviews %}
+    <h3>여성이 ‘주인공’인 이야기 TOP3</h3>
+    <ul>
+        {% for review in feminism_reviews %}
+            <li style="margin-bottom: 16px;">
+                <a href="{% url 'contents:filter_reviews' %}?book_id={{ review.book.id }}">
+                    {% if review.book.thumbnail %}
+                        <img src="{{ review.book.thumbnail }}" alt="책 썸네일" width="80"><br>
+                    {% endif %}
+                    <strong>{{ review.book.title }}</strong>
+                </a>
+                — {{ review.book.author }}
+            </li>
+        {% endfor %}
+    </ul>
+    <br><hr>
+{% endif %}
 {% endblock %}
