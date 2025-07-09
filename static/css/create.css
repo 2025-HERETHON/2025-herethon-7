@@ -36,28 +36,25 @@ body {
 }
 
 .book-search-preview {
-  padding-bottom: 1rem;
+  padding-bottom: 20px;
 }
 
 .book-selected-box {
   display: flex;
   align-items: center;
-  justify-content: space-between;
-  border: 1px solid #ddd;
+  gap: 1rem;
+  padding: 0.8rem 1rem;
+  border: 1px solid #e0e0e0;
   border-radius: 12px;
-  padding: 0.75rem 1rem;
   background-color: #fff;
-  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.05);
-  margin-bottom: 1.5rem;
-  width: 100%;
-  box-sizing: border-box;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.05);
 }
 
 .book-selected-box img {
   width: 60px;
   height: auto;
   border-radius: 6px;
-  margin-right: 1rem;
+  object-fit: cover;
   flex-shrink: 0;
 }
 
@@ -68,23 +65,22 @@ body {
 .book-meta .book-title {
   font-size: 16px;
   font-weight: bold;
-  margin-bottom: 0.3rem;
+  margin-bottom: 4px;
 }
 
 .book-meta .book-author {
   font-size: 14px;
-  color: #777;
+  color: #999;
 }
 
 .change-btn {
   background-color: #eef2fb;
   color: #1e254e;
   font-size: 14px;
-  padding: 6px 12px;
+  padding: 6px 14px;
   border: none;
-  border-radius: 8px;
+  border-radius: 10px;
   cursor: pointer;
-  white-space: nowrap;
 }
 
 .change-btn:hover {
