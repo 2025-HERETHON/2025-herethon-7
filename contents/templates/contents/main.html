@@ -65,10 +65,9 @@
         <hr>
     {% endif %} <br>
 
-    <form method="get" action="{% url 'contents:search_reviews' %}">
-        <input type="text" name="q" placeholder="제목 또는 작가로 검색">
-        <button type="submit">검색</button>
-    </form>
+    <a href="{% url 'contents:search_reviews' %}">
+        <button>리뷰 검색하러 가기</button>
+    </a>
     <br><hr>
 
     <a href="{% url 'contents:filter_reviews' %}">감정별 모아보기</a>
