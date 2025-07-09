@@ -6,6 +6,21 @@
 {% block extra_css %}
 <link rel="stylesheet" href="{% static 'css/create.css' %}" />
 {% endblock %} 
+<!-- 🔍 선택한 책 정보 박스 -->
+<section class="book-search-preview">
+    <h3>책 검색</h3>
+    <div class="book-item">
+      <img src="{{ book.thumbnail }}" alt="{{ book.title }}">
+      <div class="book-info">
+        <div class="book-title">{{ book.title }}</div>
+        <div class="book-author">{{ book.author }}</div>
+      </div>
+      <form method="GET" action="{% url 'books:search' %}">
+        <button type="submit">변경</button>
+      </form>
+    </div>
+  </section>
+  
 
 {% block content %}
 <!-- 🔹 상단 타이틀 섹션 -->
@@ -15,54 +30,64 @@
 </header>
 
 <!-- 🔹 리뷰 작성 폼 -->
-<h2>리뷰 작성</h2>
+<h2>감상평</h2>
 
 <p><strong>책 제목:</strong> {{ book.title }}</p>
 <p><strong>저자:</strong> {{ book.author }}</p>
 
 {% if book.thumbnail %}
-    <img src="{{ book.thumbnail }}" alt="책 썸네일" width="120"><br><br>
+  <img src="{{ book.thumbnail }}" alt="책 썸네일" width="120"><br><br>
 {% endif %}
 
 <form method="POST" action="{% url 'contents:create' book.id %}">       
-    {% csrf_token %}
-    
-    <label>평점</label><br>
-    <select name="rating" required>
-        <option value="">선택하세요</option>
-        {% for i in rating_range %}
-            <option value="{{ i }}">{{ i }}점</option>
-        {% endfor %}
-    </select><br><br>
-    
-    <label>한 줄 감상평</label><br>
-    <input type="text" name="short_comment" maxlength="100" required><br><br>
-    
-    <label>상세 리뷰 (선택)</label><br>
-    <textarea name="detailed_review" rows="6"></textarea><br><br>
-    
-    <label>감정 태그 선택</label><br>
-    
-    <strong>1차 감정</strong><br>
-    {% for tag in tags %}
-        {% if tag.tag_type == 'primary' %}
-        <label>
-            <input type="checkbox" name="tag" value="{{ tag.id }}">
-            {{ tag.name }}
-        </label><br>
-        {% endif %}
-    {% endfor %}
+  {% csrf_token %}
 
-    <br><strong>2차 감정 (여성 중심 감정)</strong><br>
-    {% for tag in tags %}
-        {% if tag.tag_type == 'secondary' %}
-        <label>
-            <input type="checkbox" name="tag" value="{{ tag.id }}">
-            {{ tag.name }}
-        </label><br>
-        {% endif %}
-    {% endfor %}
+  <!-- 🔹 감상 작성 박스 시작 -->
+  <div class="review-box">
+    <!-- ⭐ 평점 -->
+    <label><strong>평점</strong></label>
+    <div class="star-rating">
+      {% for i in rating_range|slice:"::-1" %}
+        <input type="radio" id="star{{ i }}" name="rating" value="{{ i }}">
+        <label for="star{{ i }}">★</label>
+      {% endfor %}
+    </div>
 
-    <br><button type="submit">리뷰 등록</button>
+    <!-- ✍️ 한 줄 감상평 -->
+    <label for="short_comment"><strong>한 줄 감상평</strong></label>
+    <input type="text" name="short_comment" id="short_comment" maxlength="100" placeholder="한 줄 감상평을 써주세요" required>
+
+    <!-- 📖 상세 감상평 -->
+    <label for="detailed_review"><strong>상세 감상평</strong> <small>(선택)</small></label>
+    <textarea name="detailed_review" id="detailed_review" rows="6" placeholder="자세한 감상평을 써주세요"></textarea>
+  </div>
+  <!-- 🔹 감상 작성 박스 끝 -->
+
+  <br>
+
+  <!-- 감정 태그 -->
+  <label><strong>감정 태그 선택</strong></label><br>
+
+  <strong>1차 감정</strong><br>
+  {% for tag in tags %}
+    {% if tag.tag_type == 'primary' %}
+    <label>
+      <input type="checkbox" name="tag" value="{{ tag.id }}">
+      {{ tag.name }}
+    </label><br>
+    {% endif %}
+  {% endfor %}
+
+  <br><strong>2차 감정 (여성 중심 감정)</strong><br>
+  {% for tag in tags %}
+    {% if tag.tag_type == 'secondary' %}
+    <label>
+      <input type="checkbox" name="tag" value="{{ tag.id }}">
+      {{ tag.name }}
+    </label><br>
+    {% endif %}
+  {% endfor %}
+
+  <br><button type="submit">등록하기</button>
 </form> 
 {% endblock %}

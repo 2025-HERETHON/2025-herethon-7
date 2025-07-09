@@ -118,3 +118,78 @@ button[type="submit"] {
 button[type="submit"]:hover {
   background-color: #2d3d70;
 }
+
+/* 별점 스타일 */
+.star-rating {
+  direction: rtl;
+  display: inline-flex;
+  font-size: 2rem;
+}
+
+.star-rating input[type="radio"] {
+  display: none;
+}
+
+.star-rating label {
+  color: #ccc;
+  cursor: pointer;
+  transition: color 0.2s;
+}
+
+.star-rating input[type="radio"]:checked ~ label {
+  color: #403a89;
+}
+
+.star-rating label:hover,
+.star-rating label:hover ~ label {
+  color: #403a89;
+}
+
+.book-search-preview {
+  padding: 1rem 1rem 0 1rem;
+}
+
+.book-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  border: 1px solid #ddd;
+  border-radius: 0.75rem;
+  padding: 0.75rem;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+  background-color: #fff;
+  margin-top: 0.5rem;
+}
+
+.book-item img {
+  width: 60px;
+  height: auto;
+  border-radius: 4px;
+}
+
+.book-info {
+  flex-grow: 1;
+}
+
+.book-title {
+  font-weight: bold;
+  font-size: 1rem;
+  margin-bottom: 0.2rem;
+}
+
+.book-author {
+  font-size: 0.85rem;
+  color: #999;
+}
+
+.book-item button {
+  background-color: #e6eefe;
+  color: #2b2e52;
+  border: none;
+  border-radius: 0.75rem;
+  padding: 0.5rem 1rem;
+  font-size: 0.85rem;
+  cursor: pointer;
+  white-space: nowrap;
+}

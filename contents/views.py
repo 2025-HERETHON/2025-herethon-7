@@ -274,6 +274,7 @@ def filter_by_tags(request):
         'tags': tags,
         'selected_tags': selected_tags,
         'sort': sort,
+        'rating_range': range(1,6),
     }
 
     if book_id:
