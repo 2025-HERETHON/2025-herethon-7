@@ -3,10 +3,19 @@
 {% block title %}감상 기록 등록{% endblock %}
 
 {% block extra_css %}
-<link rel="stylesheet" href="{% static 'css/book_search.css' %}" />
+<link rel="stylesheet" href="{% static 'css/update.css' %}" />
 {% endblock %} 
 
 {% block content %}
+
+<div class="review-header">
+    <div class="header-icon">
+        
+    </div>
+    <div class="header-title"> 📘 감상 기록 수정하기</div>
+    <p class="header-subtitle">책 정보를 확인하고 감정을 수정해보세요</p>
+  </div>
+
 <h2>리뷰 수정</h2>
 
     <form method="post" action="{% url 'contents:update' review.id %}">
