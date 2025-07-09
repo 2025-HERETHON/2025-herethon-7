@@ -1,4 +1,3 @@
-/* 전체 레이아웃 고정 */
 body {
   font-family: 'Apple SD Gothic Neo', sans-serif;
   background-color: #ffffff;
@@ -16,7 +15,6 @@ body {
   background-color: #fff;
 }
 
-/* 상단 타이틀 */
 .title-section {
   background-color: #1e254e;
   color: white;
@@ -37,72 +35,77 @@ body {
   color: #dcdcdc;
 }
 
-/* 책 미리보기 박스 */
 .book-search-preview {
-  padding: 0 0 1.5rem 0;
+  padding-bottom: 1rem;
 }
 
-.book-item {
+.book-selected-box {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: 1rem;
   border: 1px solid #ddd;
-  border-radius: 0.75rem;
-  padding: 0.75rem;
+  border-radius: 12px;
+  padding: 0.75rem 1rem;
   background-color: #fff;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.05);
   margin-bottom: 1.5rem;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+  width: 100%;
+  box-sizing: border-box;
 }
 
-.book-item img {
+.book-selected-box img {
   width: 60px;
   height: auto;
-  border-radius: 4px;
+  border-radius: 6px;
+  margin-right: 1rem;
+  flex-shrink: 0;
 }
 
-.book-info {
+.book-meta {
   flex-grow: 1;
 }
 
-.book-title {
+.book-meta .book-title {
+  font-size: 16px;
   font-weight: bold;
-  font-size: 1rem;
-  margin-bottom: 0.2rem;
+  margin-bottom: 0.3rem;
 }
 
-.book-author {
-  font-size: 0.85rem;
-  color: #999;
+.book-meta .book-author {
+  font-size: 14px;
+  color: #777;
 }
 
-.book-item button {
-  background-color: #e6eefe;
-  color: #2b2e52;
+.change-btn {
+  background-color: #eef2fb;
+  color: #1e254e;
+  font-size: 14px;
+  padding: 6px 12px;
   border: none;
-  border-radius: 0.75rem;
-  padding: 0.5rem 1rem;
-  font-size: 0.85rem;
+  border-radius: 8px;
   cursor: pointer;
   white-space: nowrap;
 }
 
-/* 감상평 박스 */
+.change-btn:hover {
+  background-color: #d0dfff;
+}
+
+
 .review-box {
   background-color: #e6efff;
-  padding: 1rem;
+  padding: 0rem 1rem 1rem 1rem;
   border-radius: 10px;
   margin-bottom: 2rem;
 }
 
-/* 소제목 */
+
 h2 {
   font-size: 18px;
   font-weight: bold;
   margin-bottom: 1rem;
 }
 
-/* 입력창 공통 */
 label {
   font-weight: 600;
   display: block;
@@ -110,6 +113,7 @@ label {
   margin-bottom: 0.5rem;
   font-size: 14px;
 }
+
 
 input[type="text"],
 textarea,
@@ -128,7 +132,33 @@ textarea {
   height: 120px;
 }
 
-/* 감정 태그 */
+
+.star-rating {
+  direction: rtl;
+  display: inline-flex;
+  font-size: 2rem;
+}
+
+.star-rating input[type="radio"] {
+  display: none;
+}
+
+.star-rating label {
+  color: #ccc;
+  cursor: pointer;
+  transition: color 0.2s;
+}
+
+.star-rating input[type="radio"]:checked ~ label {
+  color: #403a89;
+}
+
+.star-rating label:hover,
+.star-rating label:hover ~ label {
+  color: #403a89;
+}
+
+
 .tag-section {
   margin-top: 2rem;
 }
@@ -156,7 +186,7 @@ input[type="checkbox"] {
   cursor: pointer;
 }
 
-/* 버튼 */
+
 button[type="submit"] {
   width: 100%;
   padding: 1rem;
@@ -174,28 +204,15 @@ button[type="submit"]:hover {
   background-color: #2d3d70;
 }
 
-/* 별점 스타일 */
+.rating-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-top: 1.5rem;
+}
+
 .star-rating {
+  display: flex;
   direction: rtl;
-  display: inline-flex;
   font-size: 2rem;
-}
-
-.star-rating input[type="radio"] {
-  display: none;
-}
-
-.star-rating label {
-  color: #ccc;
-  cursor: pointer;
-  transition: color 0.2s;
-}
-
-.star-rating input[type="radio"]:checked ~ label {
-  color: #403a89;
-}
-
-.star-rating label:hover,
-.star-rating label:hover ~ label {
-  color: #403a89;
 }

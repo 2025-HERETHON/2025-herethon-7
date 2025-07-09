@@ -6,12 +6,12 @@
 {% block extra_css %}
 <link rel="stylesheet" href="{% static 'css/create.css' %}" />
 {% endblock %} 
-<!-- 🔍 선택한 책 정보 박스 -->
+<!--  선택한 책 정보 박스 -->
 <section class="book-search-preview">
     <h3>책 검색</h3>
-    <div class="book-item">
+    <div class="book-selected-box">
       <img src="{{ book.thumbnail }}" alt="{{ book.title }}">
-      <div class="book-info">
+      <div class="book-meta">
         <div class="book-title">{{ book.title }}</div>
         <div class="book-author">{{ book.author }}</div>
       </div>
@@ -23,14 +23,14 @@
   
 
 {% block content %}
-<!-- 🔹 상단 타이틀 섹션 -->
+<!-- 상단 타이틀 섹션 -->
 <header class="title-section">
   <h1>📖 감상 기록 등록하기</h1>
   <p>책 정보를 입력하고 감정을 기록해보세요</p>
 </header>
 
-<!-- 🔹 리뷰 작성 폼 -->
-<h2>감상평</h2>
+<!-- 리뷰 작성 폼 -->
+<h2>책 검색</h2>
 
 <p><strong>책 제목:</strong> {{ book.title }}</p>
 <p><strong>저자:</strong> {{ book.author }}</p>
@@ -42,26 +42,28 @@
 <form method="POST" action="{% url 'contents:create' book.id %}">       
   {% csrf_token %}
 
-  <!-- 🔹 감상 작성 박스 시작 -->
+  <!-- 감상 작성 박스 시작 -->
   <div class="review-box">
     <!-- ⭐ 평점 -->
-    <label><strong>평점</strong></label>
-    <div class="star-rating">
-      {% for i in rating_range|slice:"::-1" %}
-        <input type="radio" id="star{{ i }}" name="rating" value="{{ i }}">
-        <label for="star{{ i }}">★</label>
-      {% endfor %}
-    </div>
+    <div class="rating-row">
+        <label for="rating"><strong>평점</strong></label>
+        <div class="star-rating">
+          {% for i in rating_range|slice:"::-1" %}
+            <input type="radio" id="star{{ i }}" name="rating" value="{{ i }}">
+            <label for="star{{ i }}">★</label>
+          {% endfor %}
+        </div>
+      </div>
 
-    <!-- ✍️ 한 줄 감상평 -->
+    <!-- 한 줄 감상평 -->
     <label for="short_comment"><strong>한 줄 감상평</strong></label>
     <input type="text" name="short_comment" id="short_comment" maxlength="100" placeholder="한 줄 감상평을 써주세요" required>
 
-    <!-- 📖 상세 감상평 -->
+    <!--  상세 감상평 -->
     <label for="detailed_review"><strong>상세 감상평</strong> <small>(선택)</small></label>
     <textarea name="detailed_review" id="detailed_review" rows="6" placeholder="자세한 감상평을 써주세요"></textarea>
   </div>
-  <!-- 🔹 감상 작성 박스 끝 -->
+  <!--  감상 작성 박스 끝 -->
 
   <br>
 
