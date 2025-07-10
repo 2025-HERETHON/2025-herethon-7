@@ -154,9 +154,51 @@ textarea {
   color: #403a89;
 }
 
+.tag-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px 12px;
+  margin-top: 8px;
+}
+
+.tag-container label {
+  display: inline-block;
+  padding: 6px 14px;
+  border-radius: 999px;
+  border: 1.5px solid #1e254e;
+  background-color: #ffffff;
+  color: #1e254e;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+}
+
+.tag-container input[type="checkbox"]:checked + label {
+  background-color: #1e254e;
+  color: #ffffff;
+}
 
 .tag-section {
   margin-top: 2rem;
+}
+
+.tag-section label {
+  display: inline-block;
+  margin: 6px 8px 6px 0;
+}
+
+.tag-label {
+  display: inline-block;
+  border: 1.5px solid #1e254e;
+  border-radius: 999px;
+  padding: 8px 14px;
+  background-color: #ffffff;
+  color: #1e254e;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
 }
 
 .tag-section strong {
@@ -170,7 +212,7 @@ input[type="checkbox"] {
   display: none;
 }
 
-.tag-section label {
+/*.tag-section label {
   display: inline-block;
   background-color: #fff;
   border: 1.5px solid #1e254e;
@@ -180,7 +222,7 @@ input[type="checkbox"] {
   font-size: 14px;
   margin: 6px 8px 6px 0;
   cursor: pointer;
-}
+}*/
 
 
 button[type="submit"] {
