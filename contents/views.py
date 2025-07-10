@@ -248,6 +248,7 @@ def popular_reviews(request):
 
 def filter_by_tags(request):
     tag_ids = request.GET.getlist('tags')
+    selected_tag_ids = list(map(int, tag_ids))  # 문자열 리스트 → 정수 리스트로 변환
     book_id = request.GET.get('book_id')
     sort = request.GET.get('sort', 'recent')
 
@@ -274,6 +275,7 @@ def filter_by_tags(request):
         'reviews': reviews,
         'tags': tags,
         'selected_tags': selected_tags,
+        'selected_tag_ids': selected_tag_ids,  # 템플릿에서 체크 상태 유지용
         'sort': sort,
         'rating_range': range(1,6),
     }

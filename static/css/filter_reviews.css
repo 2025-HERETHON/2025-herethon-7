@@ -1,0 +1,209 @@
+body{
+    font-family: "Noto Sans KR";
+    font-style: normal;
+    letter-spacing: -0.0255rem;
+}
+
+.filter-top h2{
+    margin: 0;
+    margin-bottom: 1.5rem;
+
+    color: #FFF;
+    font-family: Inter;
+    font-size: 1.25rem; 
+    font-weight: 700;
+    line-height: 1.625rem; /* 130% */
+}
+
+.filter-top{
+    box-sizing: border-box;
+    padding: 0 1.31rem;
+    padding-top: 4.44rem;
+    padding-bottom: 0.87rem;
+    margin-bottom: 1.25rem;
+
+    flex-shrink: 0;
+    background: var(--Main-1, #212842);
+}
+
+.tag-container label {
+    display: inline-flex;
+    padding: 0.1875rem 0.375rem;
+    margin-right: 0.21rem;
+    justify-content: center;
+    align-items: center;
+
+    margin-bottom: 0.69rem;
+
+    border-radius: 1.25rem;
+    background: #FFF;
+
+    color: #475482;
+    font-size: 0.75rem;
+    font-weight: 400;
+    line-height: 1.375rem; /* 183.333% */
+
+    cursor: pointer;
+    transition: all 0.2s ease-in-out;
+}
+
+.tag-container span{
+    margin: 0;
+}
+
+.tag-container input[type="checkbox"]:checked + label {
+    color: var(--Main-1, #212842);
+    background: #FFD1D9;
+}
+
+input[type="checkbox"] {
+    display: none;
+}
+
+.sort{
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    gap: 0.75rem;
+}
+
+select[name="sort"] {
+    width: 3.7rem;
+    height: 1.5rem;
+
+    padding: 0.0625rem 0.4rem;
+
+    border: none;
+    border-radius: 0.1875rem;
+    background-color: #EEE;
+    appearance: none; /* 브라우저 기본 화살표 제거 */
+
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6' viewBox='0 0 10 6' fill='none'%3E%3Cpath d='M4.99501 5.98913C4.9295 5.99 4.86454 5.97594 4.80432 5.94786C4.74411 5.91978 4.68996 5.8783 4.64536 5.82609L0.14985 0.934783C-0.0499501 0.717391 -0.0499501 0.380435 0.14985 0.163043C0.34965 -0.0543478 0.659341 -0.0543478 0.859141 0.163043L5.005 4.67391L9.14086 0.173913C9.34066 -0.0434783 9.65035 -0.0434783 9.85015 0.173913C10.05 0.391304 10.05 0.728261 9.85015 0.945652L5.35465 5.83696C5.25475 5.94565 5.12488 6 5.005 6L4.99501 5.98913Z' fill='black'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 0.3125rem center;
+
+    color: #000;
+    font-size: 0.75rem;
+    font-weight: 400;
+    line-height: 1.375rem; /* 183.333% */
+}
+
+button[type="submit"] {
+    width: 3.7rem;
+    height: 1.5rem;
+
+    padding: 0.0625rem 0.4rem;
+
+    border: none;
+    border-radius: 0.1875rem;
+    background-color: #EEE;
+    font-size: 14px;
+    cursor: pointer;
+    transition: all 0.2s ease-in-out;
+
+    color: #000;
+    font-size: 0.75rem;
+    font-weight: 400;
+    line-height: 1.375rem; /* 183.333% */
+}
+
+.filter-title{
+    margin-bottom: 1.25rem;
+    margin-left: 1.31rem;
+
+    color: #000;
+    font-size: 1.125rem;
+    font-weight: 700;
+    line-height: 1.375rem; /* 122.222% */
+}
+
+.filter-content{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.filter-content p, .filter-content h4{
+    margin: 0;
+}
+
+.review-container{
+    display: flex;
+    align-items: center;
+    gap: 1.09rem;
+    margin-bottom: 1.25rem;
+}
+
+
+.review-title{
+    display: flex;
+    align-items: center;
+
+    gap: 0.4rem;
+    margin-bottom: 0.69rem;
+    margin-left: 0.3rem;
+}
+
+.review-title h4{
+    color: #000;
+    font-size: 0.8125rem;
+    font-weight: 700;
+    line-height: 1.375rem; /* 169.231% */
+}
+
+.review-title p{
+    color: #6E6E6E;
+    font-size: 0.8125rem;
+    font-weight: 400;
+    line-height: 1.375rem; /* 169.231% */
+}
+
+.review-coment {
+    position: relative;
+    width: 15rem;
+    height: 4.3125rem;
+}
+
+.review-coment svg {
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+.review-text-wrapper{
+    width: 15rem;
+    height: 3.4375rem;
+    margin-bottom: 0.875rem;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.review-text {
+    width: 13.25rem;
+
+    box-sizing: border-box;
+    padding-left: 0.35rem;
+
+    color: #000;
+    font-size: 0.75rem;
+    font-weight: 400;
+    line-height: 1.25rem; /* 166.667% */
+    text-align: left;
+
+    /* 핵심 속성 */
+    display: -webkit-box;
+    -webkit-line-clamp: 2;         /* 최대 2줄까지 표시 */
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    z-index: 100;
+}
+
+p.empty {
+    margin-top: 10rem;
+    color: #6E6E6E;
+    font-size: 0.9rem;
+    font-weight: 400;
+}
