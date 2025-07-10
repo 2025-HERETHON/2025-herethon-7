@@ -7,37 +7,63 @@ body {
   color: #1e1e1e;
 }
 
-.container {
-  width: 390px;
-  max-width: 100vh;
-  margin: 0 auto;
-  padding: 0 20px;
-  box-sizing: border-box;
-  background-color: #fff;
-}
-
 .title-section {
-  background-color: #1e254e;
+  background-color: #212842;
   color: white;
   text-align: center;
-  padding: 2rem 20px 1rem 20px;
-  border-bottom: 1px solid #eee;
-  
-  margin-bottom: 20px;
+  border-bottom: 2px solid #eee;
+
+  box-sizing: border-box;
+  padding-top: 3.75rem;
+  padding-bottom: 1.75rem;
 }
 
-.title-section h1 {
-  font-size: 20px;
-  font-weight: 700;
+.title{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.44rem; 
+
+  margin-bottom: 0.5rem;
+}
+
+.title h1 {
+  margin:0;
+  font-size: 1.25rem;
+}
+
+.title-section hr{
+  width: 14.0625rem;
+  height: 0.021rem;
+  background: #FFF;
   margin-bottom: 0.5rem;
 }
 
 .title-section p {
-  font-size: 14px;
-  color: #dcdcdc;
+  font-size: 0.875rem;
+  margin: 0;
+}
+
+.create-container{
+  padding: 0 1.25rem;
+}
+
+h2.section-title{
+  color: #000;
+  font-family: "Noto Sans KR";
+  font-size: 1.125rem;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 1.375rem; /* 122.222% */
+  letter-spacing: -0.0255rem;
+
+  margin-top: 1.5rem;
+  margin-bottom: 0.5rem;
 }
 
 .book-search-preview {
+  box-sizing: border-box;
+  padding: 0 1.25rem;
   padding-bottom: 20px;
 }
 
@@ -244,7 +270,7 @@ button[type="submit"] {
   border: none;
   border-radius: 12px;
   cursor: pointer;
-  margin-top: 2rem;
+  margin: 2.5rem 0;
 }
 
 button[type="submit"]:hover {
@@ -255,7 +281,6 @@ button[type="submit"]:hover {
   display: flex;
   align-items: center;
   gap: 10px;
-  margin-top: 1.5rem;
 }
 
 
@@ -266,7 +291,7 @@ button[type="submit"]:hover {
   border: 1px solid #ddd;
   border-radius: 10px;
   padding: 12px;
-  margin: 20px 0;
+  margin-bottom: 20px;
   background-color: #fff;
 }
 
