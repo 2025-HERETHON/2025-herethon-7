@@ -1,0 +1,215 @@
+body{
+    font-family: "Noto Sans KR";
+    font-style: normal;
+    letter-spacing: -0.0255rem;
+}
+
+.container{
+    background: #F7F7F7;
+}
+
+ul {
+  list-style: none;     /* 불릿 제거 */
+  padding-left: 0;      /* 기본 들여쓰기 제거 */
+  margin: 0;            /* 필요 시 margin도 제거 */
+}
+
+p{
+    margin: 0;
+}
+
+.search-up{
+    box-sizing: border-box;
+
+    padding: 1.25rem;
+    padding-top: 3.13rem;
+    height: 9.8125rem;
+    flex-shrink: 0;
+    background: #212842;
+}
+
+.search-title{
+    display: flex;
+    align-items: center;
+
+    gap: 0.63rem;
+
+    margin-bottom: 0.94rem;
+}
+
+.search-title h2{
+    margin: 0;
+
+    color: var(--Main-2, #FFFBF2);
+    font-size: 1.25rem;
+    font-weight: 700;
+    line-height: 1.375rem; /* 110% */
+}
+
+.search-box{
+    display: flex;
+    align-items: center;
+
+    width: 21.875rem;
+    height: 3.125rem;
+    flex-shrink: 0;
+    border-radius: 0.9375rem;
+    background: #F6F6F6;
+
+    position: relative;
+
+    box-sizing: border-box;
+    padding: 0.87rem;
+    padding-right: 0;
+}
+
+.search-box input::placeholder{
+    color: #B1B1B1;
+    font-size: 0.9375rem;
+    font-weight: 400;
+    line-height: 1.375rem; /* 146.667% */
+}
+
+.search-box input[type="text"] {
+    border: none;
+    background: transparent;
+    outline: none;
+    flex: 1;
+    color: #000;
+    font-size: 0.9375rem;
+    font-weight: 700;
+    line-height: 1.375rem; /* 146.667% */
+}
+
+.clear-btn {
+    background: none;
+    border: none;
+    cursor: pointer;
+
+    margin-top: 0.2rem;
+    margin-right: 0.62rem;
+    padding: 0;
+
+    display: flex;
+    align-items: center;
+}
+
+.search-btn{
+    background: none;
+    border: none;
+    cursor: pointer;
+
+    padding: 0;
+    margin-right: 1.25rem;
+
+    display: flex;
+    align-items: center;
+}
+
+.search-none{
+    margin-top: 3rem;
+
+    display: flex;
+    justify-content: center;
+
+    color: #B1B1B1;
+    font-size: 1rem;
+    font-weight: 500;
+    line-height: 1.375rem; /* 157.143% */
+}
+
+.review-list{
+    background: #FFF;
+    margin: 0.56rem 0;
+}
+
+.review-link {
+    display: block;        /* 박스 전체 클릭 가능하게 */
+    width: 100%;
+    text-decoration: none;
+    color: inherit;
+}
+
+.review-container{
+    width: 100%;
+    box-sizing: border-box;
+    padding: 0.81rem 1.87rem;
+    text-align: left; /* ← 부모에서 왼쪽 정렬 강제 */
+}
+
+.review-top{
+    width: 100%;
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+
+    margin-bottom: 0.56rem;
+}
+
+.review-title{
+    display: flex;
+    align-items: flex-start;
+
+    width: calc(100% - 5rem);
+}
+
+.book-title{
+    color: #000;
+    font-size: 0.9375rem;
+    font-weight: 500;
+    line-height: 1.375rem; /* 146.667% */
+    
+    margin-right: 0.2rem;
+}
+
+.book-author{
+    color: #000;
+    font-size: 0.875rem;
+    font-weight: 400;
+    line-height: 1.375rem;
+}
+
+.review-title svg{
+    margin: 0 1.12rem;
+    margin-top: 0.6rem;
+}
+
+.user-name{
+    color: #000;
+    font-size: 0.9375rem;
+    font-weight: 400;
+    line-height: 1.375rem; /* 146.667% */
+}
+
+.review-detail{
+    color: #B1B1B1;
+    font-size: 0.6875rem;
+    font-weight: 400;
+    line-height: 1.375rem; /* 200% */
+}
+
+.star-container{
+    height: 0.9375rem;
+    flex-shrink: 0;
+    display: flex;
+    gap: 0.14rem;
+    margin-bottom: 0.7rem;
+}
+
+.short-comment{
+    display: inline-block;
+
+    color: #000;
+    font-size: 0.875rem;
+    font-weight: 700;
+    line-height: 1.375rem; /* 157.143% */
+
+    height: 1rem;
+    flex-shrink: 0;
+    background: #FFFDCD;
+
+    padding: 0 0.3rem;           /* 텍스트 좌우에 약간의 여백 */
+    height: auto;                /* 높이 고정 해제 */
+    flex-shrink: 0;              /* flex 컨테이너에서 줄어들지 않도록 */
+    text-align: left;            /* 혹시라도 정렬이 중앙일 경우 대비 */
+}
