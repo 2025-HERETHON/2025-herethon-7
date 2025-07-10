@@ -6,6 +6,7 @@ from .models import Book, Tag, Review, Comment, FeaturedAuthor
 from django.contrib.auth.decorators import login_required
 from django.db.models import Q, Count
 from django.utils import timezone
+from datetime import timedelta
 
 def intro(request):
     if request.user.is_authenticated:
@@ -13,7 +14,13 @@ def intro(request):
     return render(request, 'contents/intro.html')
 
 def main(request):
-    top_books = Book.objects.annotate(review_count=Count('reviews')).order_by('-review_count')[:5]
+    today = timezone.now()
+    start_of_week = today - timedelta(days=today.weekday())
+    end_of_week = start_of_week + timedelta(days=6, hours=23, minutes=59, seconds=59)
+
+    top_books = Book.objects.annotate(
+        review_count=Count('reviews', filter=Q(reviews__created_at__range=(start_of_week, end_of_week)))
+    ).filter(review_count__gt=0).order_by('-review_count')[:5]
 
     all_tags = Tag.objects.annotate(review_count=Count('reviews')).filter(review_count__gt=0)
     random_tag = random.choice(all_tags) if all_tags else None
