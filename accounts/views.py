@@ -177,3 +177,4 @@ def delete_profile_image(request):
         user.profile_image = 'profile_images/default.png'
         user.save()
     return redirect('edit_profile')
+
