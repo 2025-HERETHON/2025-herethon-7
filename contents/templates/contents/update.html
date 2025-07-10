@@ -15,16 +15,24 @@
   </div>
 
 <h2>리뷰 수정</h2>
+    <div class="book-selected-box">
+        {% if review.book.thumbnail %}
+            <img src="{{ review.book.thumbnail }}" alt="책 썸네일" width="120"><br><br>
+        {% endif %}
 
     <form method="post" action="{% url 'contents:update' review.id %}">
         {% csrf_token %}
         
-        <p><strong>책 제목:</strong> {{ review.book.title }}</p>
-        <p><strong>작가:</strong> {{ review.book.author }}</p>
+    <div class="book-title">
+        <p1><strong>{{ review.book.title }}</strong></p1>
+    </div>
+    <div class="book-author">
+        <p2>{{ review.book.author }}</p2>
+    </div>
+    
 
-        {% if review.book.thumbnail %}
-            <img src="{{ review.book.thumbnail }}" alt="책 썸네일" width="120"><br><br>
-        {% endif %}
+    <a href="{% url 'contents:book_search' %}" class="change-btn">변경</a>
+    </div>
 
         <div class="review-box">
             <label><strong>평점</strong></label>

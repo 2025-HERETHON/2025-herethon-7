@@ -48,8 +48,13 @@ body {
   }
   
   /* 책 정보 */
-  p {
+  .p1 {
     font-size: 16px;
+    margin: 6px 0;
+  }
+
+  .p2 {
+    font-size: 12px;
     margin: 6px 0;
   }
   
@@ -242,5 +247,51 @@ body {
   
   button[type="submit"]:hover {
     background-color: #2d3d70;
+  }
+
+  .book-selected-box {
+    display: flex;
+    align-items: center;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    padding: 12px;
+    margin: 20px 0;
+    background-color: #fff;
+  }
+  
+  .book-selected-box img {
+    width: 60px;
+    height: auto;
+    border-radius: 4px;
+    margin-right: 12px;
+  }
+  
+  .book-info-text {
+    flex: 1;
+    
+  }
+
+  .book-title {
+    font-weight: bold;
+    font-size: 16px;
+    
+    margin-bottom: 4px;
+  }
+  
+  .book-author {
+    font-size: 14px;
+    color: #999;
+  }
+  
+  
+  .change-btn {
+    background-color: #e6edff;
+    color: #1e254e;
+    padding: 6px 16px;
+    border-radius: 999px;
+    font-size: 14px;
+    text-decoration: none;
+    font-weight: 500;
+    margin-left: 150px;
   }
   
