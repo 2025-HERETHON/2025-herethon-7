@@ -43,33 +43,38 @@
           </div>
           
     <hr>
+
+    <div class="emotion-section">
     <strong>감정 태그:</strong><br>
 
-    <div>
+    
         <strong>1차 감정</strong><br>
+        <div class="tag-container">
         {% for tag in tags %}
             {% if tag.tag_type == 'primary' %}
-            <label>
+            <label class="emotion-tag">
                 <input type="checkbox" name="tag" value="{{ tag.id }}"
                 {% if tag in review.tags.all %}checked{% endif %}>
                 #{{ tag.name }}
             </label><br>
         {% endif %}
         {% endfor %}
-    </div>
+        </div>
 
-    <div>
+    
         <strong>2차 감정</strong><br>
+        <div class="tag-container">
         {% for tag in tags %}
             {% if tag.tag_type == 'secondary' %}
-            <label>
+            <label class="emotion-tag">
                 <input type="checkbox" name="tag" value="{{ tag.id }}"
                 {% if tag in review.tags.all %}checked{% endif %}>
                 #{{ tag.name }}
             </label><br>
             {% endif %}
         {% endfor %}
-    </div>
+        </div>
+        </div>
 
     <br>
     <button type="submit">수정 완료</button>
