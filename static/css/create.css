@@ -9,6 +9,7 @@ body {
 
 .container {
   width: 390px;
+  max-width: 100vh;
   margin: 0 auto;
   padding: 0 20px;
   box-sizing: border-box;
@@ -19,9 +20,10 @@ body {
   background-color: #1e254e;
   color: white;
   text-align: center;
-  padding: 2rem 1rem;
+  padding: 2rem 20px 1rem;
   border-bottom: 1px solid #eee;
-  margin-bottom: 2rem;
+  margin-top: 50px;
+  margin-bottom: 20px;
 }
 
 .title-section h1 {
@@ -155,9 +157,12 @@ textarea {
 }
 
 .star-rating label:hover,
-.star-rating label:hover ~ label {
+.star-rating label:hover ~ label,
+.star-rating input[type="radio"]:checked + label,
+.star-rating input[type="radio"]:checked + label ~ label {
   color: #403a89;
 }
+
 
 .tag-container {
   display: flex;
