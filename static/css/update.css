@@ -137,6 +137,11 @@ h2.section-title{
   }
   
   /* 입력 박스 */
+  textarea {
+  resize: none;
+  height: 120px;
+}
+
   input[type="text"],
   textarea,
   select {

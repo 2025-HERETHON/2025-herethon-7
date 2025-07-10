@@ -117,10 +117,30 @@ h2.section-title{
 
 
 .review-box {
-  background-color: #e6efff;
-  padding: 0rem 1rem 1rem 1rem;
-  border-radius: 10px;
-  margin-bottom: 2rem;
+    background-color: #e6f0ff;
+    padding: 20px;
+    border-radius: 16px;
+    margin-bottom: 2rem;
+}
+
+strong {
+    display: block;
+    margin-top: 1rem;
+    margin-bottom: 0.5rem;
+    font-size: 15px;
+}
+
+.review-box label {
+    display: block;
+    font-weight: bold;
+    margin-top: 1rem;
+    margin-bottom: 8px;
+    font-size: 15px;
+    color: #1e254e;
+    background: none;
+    padding: 0;
+    border: none;
+    border-radius: 0;
 }
 
 
@@ -157,36 +177,31 @@ textarea {
 }
 
 
+ /* 별점 */
 .star-rating {
-  display: flex;
-  direction: ltr;
-  font-size: 1.6rem;
-  gap: 4px;
-  margin-top: 5px;
-  margin-bottom: 5px;
-  margin-left: 5px;
-}
-
-.star-rating input[type="radio"] {
-  display: none;
-}
-
-.star-rating label {
-  color: #ccc;
-  cursor: pointer;
-  transition: color 0.2s;
-}
-
-.star-rating input[type="radio"]:checked ~ label {
-  color: #403a89;
-}
-
-.star-rating label:hover,
-.star-rating label:hover ~ label,
-.star-rating input[type="radio"]:checked + label,
-.star-rating input[type="radio"]:checked + label ~ label {
-  color: #403a89;
-}
+    display: flex;
+    direction: rtl;
+    font-size: 1.6rem;
+    gap: 4px;
+    margin-bottom: 5px;
+    margin-top: -40px;
+  }
+  
+  .star-rating input[type="radio"] {
+    display: none;
+  }
+  
+  .star-rating label {
+    color: #ccc;
+    cursor: pointer;
+    transition: color 0.2s;
+  }
+  
+  .star-rating input[type="radio"]:checked ~ label,
+  .star-rating label:hover,
+  .star-rating label:hover ~ label {
+    color: #1e254e;
+  }
 
 
 .tag-container {
