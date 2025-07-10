@@ -1,0 +1,139 @@
+body{
+    font-family: "Noto Sans KR";
+    font-style: normal;
+    letter-spacing: -0.0255rem;
+}
+
+.container{
+    background: #F7F7F7;
+}
+
+ul {
+  list-style: none;     /* 불릿 제거 */
+  padding-left: 0;      /* 기본 들여쓰기 제거 */
+  margin: 0;            /* 필요 시 margin도 제거 */
+}
+
+p{
+    margin: 0;
+}
+
+.search-up{
+    box-sizing: border-box;
+
+    padding: 1.25rem;
+    padding-top: 3.13rem;
+    height: 9.8125rem;
+    flex-shrink: 0;
+    background: #212842;
+}
+
+.search-title{
+    display: flex;
+    align-items: center;
+
+    gap: 0.63rem;
+
+    margin-bottom: 0.94rem;
+}
+
+.search-title h2{
+    margin: 0;
+
+    color: var(--Main-2, #FFFBF2);
+    font-size: 1.25rem;
+    font-weight: 700;
+    line-height: 1.375rem; /* 110% */
+}
+
+.search-box{
+    display: flex;
+    align-items: center;
+
+    width: 21.875rem;
+    height: 3.125rem;
+    flex-shrink: 0;
+    border-radius: 0.9375rem;
+    background: #F6F6F6;
+
+    position: relative;
+
+    box-sizing: border-box;
+    padding: 0.87rem;
+    padding-right: 0;
+}
+
+.search-box input::placeholder{
+    color: #B1B1B1;
+    font-size: 0.9375rem;
+    font-weight: 400;
+    line-height: 1.375rem; /* 146.667% */
+}
+
+.search-box input[type="text"] {
+    border: none;
+    background: transparent;
+    outline: none;
+    flex: 1;
+    color: #000;
+    font-size: 0.9375rem;
+    font-weight: 700;
+    line-height: 1.375rem; /* 146.667% */
+}
+
+.clear-btn {
+    background: none;
+    border: none;
+    cursor: pointer;
+
+    margin-top: 0.2rem;
+    margin-right: 0.62rem;
+    padding: 0;
+
+    display: flex;
+    align-items: center;
+}
+
+.search-btn{
+    background: none;
+    border: none;
+    cursor: pointer;
+
+    padding: 0;
+    margin-right: 1.25rem;
+
+    display: flex;
+    align-items: center;
+}
+
+.search-none{
+    margin-top: 3rem;
+
+    display: flex;
+    justify-content: center;
+
+    color: #B1B1B1;
+    font-size: 1rem;
+    font-weight: 500;
+    line-height: 1.375rem; /* 157.143% */
+}
+
+.review-list{
+    background: #FFF;
+
+    box-sizing: border-box;
+    padding: 0.81rem 1.87rem;
+    margin: 0.56rem 0;
+}
+
+.short-comment{
+    color: #000;
+    font-size: 0.875rem;
+    font-weight: 700;
+    line-height: 1.375rem; /* 157.143% */
+
+    width: 15.625rem;
+    height: 1rem;
+    flex-shrink: 0;
+    background: #FFFDCD;
+}

@@ -1,4 +1,4 @@
-.body{
+body{
     font-family: Inter;
     font-style: normal;
     letter-spacing: -0.0255rem;
@@ -10,7 +10,7 @@ ul {
   margin: 0;            /* 필요 시 margin도 제거 */
 }
 
-p, span{
+.container p, .container span{
     margin: 0;
 }
 
