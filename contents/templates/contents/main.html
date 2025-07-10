@@ -7,108 +7,106 @@
 {% endblock %} 
 
 {% block content %}
-<body>
-    <h2>메인페이지</h2>
 
-    {% if request.user.is_authenticated %}
-        {{ request.user.nickname }}님 환영합니다. <br/>
-        <a href="{% url 'mypage' %}">마이페이지</a><br>
-        <form id="logout-form" action="{% url 'logout' %}" method="post" style="display:none;">
-            {% csrf_token %}
-        </form>
-        <a href="#" onclick="document.getElementById('logout-form').submit(); return false;">로그아웃</a><br>
+{% if top_books %}
+<div class="ranking-container">
+    <div class="ranking-search">
+        <h3>이번 주 인기 도서</h3>
+        <a href="{% url 'contents:search_reviews' %}">
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20" fill="none">
+                <path d="M7.02051 0.655273C8.59189 0.342727 10.221 0.503088 11.7012 1.11621C13.1814 1.72935 14.4468 2.76841 15.3369 4.10059C16.2268 5.4326 16.7021 6.99865 16.7021 8.60059C16.7021 9.66441 16.4921 10.7183 16.085 11.7012C15.6779 12.6839 15.0813 13.5769 14.3291 14.3291C13.5769 15.0813 12.6839 15.6779 11.7012 16.085C10.7183 16.4921 9.66441 16.7021 8.60059 16.7021C6.99865 16.7021 5.4326 16.2268 4.10059 15.3369C2.76841 14.4468 1.72935 13.1814 1.11621 11.7012C0.503088 10.221 0.342727 8.59189 0.655273 7.02051C0.967848 5.44909 1.74012 4.00597 2.87305 2.87305C4.00597 1.74012 5.44909 0.967848 7.02051 0.655273ZM8.60059 1.22461C7.14637 1.22467 5.72477 1.65596 4.51562 2.46387C3.30651 3.27177 2.36419 4.42022 1.80762 5.76367C1.25106 7.10731 1.10494 8.5863 1.38867 10.0127C1.6724 11.439 2.37306 12.749 3.40137 13.7773C4.42967 14.8056 5.73973 15.5063 7.16602 15.79C8.59241 16.0738 10.0714 15.9286 11.415 15.3721C12.7587 14.8155 13.9069 13.8723 14.7148 12.6631C15.5228 11.4539 15.9541 10.0324 15.9541 8.57812C15.9541 6.62809 15.1795 4.75788 13.8008 3.37891C12.4218 1.9999 10.5508 1.22461 8.60059 1.22461Z" fill="white" stroke="white"/>
+                <path d="M14.4415 14.0907C14.5337 14.0891 14.623 14.1235 14.6905 14.1864L19.3956 18.8915C19.4622 18.9583 19.4991 19.0491 19.4991 19.1434C19.4991 19.2378 19.4622 19.3286 19.3956 19.3954L19.3936 19.3973C19.3614 19.4299 19.3226 19.4559 19.2803 19.4735C19.2379 19.4911 19.1916 19.5001 19.1456 19.4999H19.1407C19.0949 19.5 19.0492 19.4911 19.0069 19.4735C18.9645 19.4559 18.9259 19.43 18.8936 19.3973L14.1866 14.6903C14.1237 14.6228 14.0893 14.5336 14.0909 14.4413C14.0925 14.3489 14.13 14.2605 14.1954 14.1952C14.2607 14.1298 14.3491 14.0923 14.4415 14.0907Z" fill="white" stroke="white"/>
+            </svg>
+        </a>
+    </div>
 
-    {% else %}
-        <a href="{% url 'login' %}">로그인</a>
-        <a href="{% url 'signup' %}">회원가입</a>
-
-    {% endif %}
-    <hr><br>
-
-    {% if top_books %}
-        <h3> 인기 많은 책 Top 5</h3>
-        <ul>
+    <div class="top-books-scroll-wrapper">
+        <ul class="top-books-list">
             {% for book in top_books %}
-                <li style="margin-bottom: 10px;">
-                    <a href="{% url 'contents:filter_reviews' %}?book_id={{ book.id }}">
-                        {% if book.thumbnail %}
-                            <img src="{{ book.thumbnail }}" alt="책 썸네일" width="80"><br>
-                        {% endif %}
-                        <strong>{{ book.title }}</strong>
-                    </a>
-                    — {{ book.author }}
-                </li>
+            <li>
+                <a href="{% url 'contents:filter_reviews' %}?book_id={{ book.id }}">
+                {% if book.thumbnail %}
+                    <img src="{{ book.thumbnail }}" alt="책 썸네일" width="80" class="ranking-thumbnail"/>
+                {% endif %}
+                <!-- 랭킹 순위 추가 -->
+                <div class="book-rank-number">{{ forloop.counter }}</div>
+                </a>
+            </li>
             {% endfor %}
         </ul>
-        <hr>
+    </div>
+
+</div>
+{% endif %}
+
+{% if featured_author %}
+<h3 class="author title"> 이번 달 주목할 여성 작가</h3>
+<div class="author-container">
+    {% if featured_author.profile_image %}
+        <img src="{{ featured_author.profile_image.url }}" width="100">
     {% endif %}
 
-
-    <a href="{% url 'contents:book_search' %}">리뷰 작성하러가기</a>
-    <br>
-    <hr>
-
-    {% if featured_author %}
-        <h3> 이번 달 주목할 여성 작가: {{ featured_author.name }}</h3>
-        {% if featured_author.profile_image %}
-            <img src="{{ featured_author.profile_image.url }}" width="100">
-        {% endif %}
+    <div class="author-content">
+        <h4>{{ featured_author.name }}</h4>
         <p>{{ featured_author.bio }}</p>
 
         {% if representative_works %}
-        <ul>
-            {% for work in representative_works %}
-                <li>{{ work }}</li>
-            {% endfor %}
-        </ul>
+        <div class="work-container">
+            <span class="work-title">대표작 - </span>
+            <ul>
+                {% for work in representative_works %}
+                    <li>『{{ work }}』</li>
+                {% endfor %}
+            </ul>
+        </div>
         {% endif %}
-        <hr>
-    {% endif %} <br>
+    </div>
+</div>
+{% endif %}
 
-    <form method="get" action="{% url 'contents:search_reviews' %}">
-        <input type="text" name="q" placeholder="제목 또는 작가로 검색">
-        <button type="submit">검색</button>
-    </form>
-    <br><hr>
-
-    <a href="{% url 'contents:filter_reviews' %}">감정별 모아보기</a>
-    <br><hr>
-
+<div class="mainpage-content">
     {% if random_tag and recommended_reviews %}
-        <h3>#{{ random_tag.name }} 담긴 책 추천</h3>
-        <ul>
+    <div class="title tag-title">
+        <span class="tag">#{{ random_tag.name }}</span>
+        <span>담긴 책 추천</span>
+    </div>
+    <div class="tag-books-scroll-wrapper">
+        <ul class="tag-books-list">
             {% for review in recommended_reviews %}
-                <li style="margin-bottom: 10px;">
+                <li>
                     <a href="{% url 'contents:filter_reviews' %}?book_id={{ review.book.id }}">
                         {% if review.book.thumbnail %}
-                            <img src="{{ review.book.thumbnail }}" alt="책 썸네일" width="80"><br>
+                            <img src="{{ review.book.thumbnail }}" alt="책 썸네일" width="80" class="tag-thumbnail"><br>
                         {% endif %}
-                        <strong>{{ review.book.title }}</strong>
                     </a>
-                    — {{ review.book.author }}
+                    <p class="book-title">{{ review.book.title }}</p>
+                    <p class="book-author">{{ review.book.author }}</p>
                 </li>
             {% endfor %}
         </ul>
-        <hr>
+    </div>
     {% endif %}  
 
     {% if feminism_reviews %}
-        <h3>여성이 ‘주인공’인 이야기 TOP3</h3>
-        <ul>
-            {% for review in feminism_reviews %}
-                <li style="margin-bottom: 16px;">
-                    <a href="{% url 'contents:filter_reviews' %}?book_id={{ review.book.id }}">
-                        {% if review.book.thumbnail %}
-                            <img src="{{ review.book.thumbnail }}" alt="책 썸네일" width="80"><br>
-                        {% endif %}
-                        <strong>{{ review.book.title }}</strong>
-                    </a>
-                    — {{ review.book.author }}
-                </li>
-            {% endfor %}
-        </ul>
-        <br><hr>
+    <div class="feminism-reviews-container">
+        <div class="feminism-reviews-display">
+            <h3>여성이 ‘주인공’인 이야기 TOP3</h3>
+            <ul class="feminism-books-list">
+                {% for review in feminism_reviews %}
+                    <li>
+                        <a href="{% url 'contents:filter_reviews' %}?book_id={{ review.book.id }}">
+                            {% if review.book.thumbnail %}
+                                <img src="{{ review.book.thumbnail }}" alt="책 썸네일" width="80" class="feminism-thumbnail"><br>
+                            {% endif %}
+                            
+                        </a>
+                        <p class="book-title">{{ review.book.title }}</p>
+                        <p class="book-author">{{ review.book.author }}</p>
+                    </li>
+                {% endfor %}
+            </ul>
+        </div>
+    </div>
     {% endif %}
-
-</body>
+</div>
 {% endblock %}

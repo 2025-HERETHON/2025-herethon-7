@@ -227,12 +227,13 @@ def delete_comment(request, comment_id):
 
 def search_reviews(request):
     query = request.GET.get('q')
-    reviews = Review.objects.all()
-
+    
     if query:
-        reviews = reviews.filter(
+        reviews = Review.objects.filter(
             Q(book__title__icontains=query) | Q(book__author__icontains=query)
         )
+    else:
+        reviews = Review.objects.none()
 
     return render(request, 'contents/search_reviews.html', {
         'query': query,

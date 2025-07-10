@@ -17,7 +17,10 @@
 <section class="review-container">
     <div class="info">
         <div class="title-fix">
-            <h2>{{ review.book.title }}</h2>
+            <div class="book-info">
+                <h2>{{ review.book.title }}</h2>
+                <p>{{ review.book.author }}</p>
+            </div>
             {% if user == review.user %}
             <div class="fix">
                 <a href="{% url 'contents:update' review.id %}">
@@ -35,12 +38,19 @@
                 {% endif %}
             </div>
         </div>
-        <p>{{ review.book.author }}</p>
     </div>
 
     <div class="user">
+        {% if review.user.profile_image %}
+            <img src="{{ review.user.profile_image.url }}" alt="프로필 이미지" width="30" height="30" style="border-radius: 50%; object-fit: cover;">
+        {% else %}
+            <div style="width: 30px; height: 30px; border-radius: 50%; background-color: #ccc; display: inline-block; text-align: center; line-height: 30px; font-size: 12px;">
+                없음
+            </div>
+        {% endif %}
         <p>{{ review.user.nickname }}</p>
     </div>
+    <hr class="review-line">
 
     <div class="review">
         <div class="star-container">
