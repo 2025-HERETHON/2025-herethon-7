@@ -1,4 +1,4 @@
-{% extends "base_menu.html" %} 
+{% extends "base.html" %} 
 {% load static %}
 {% block title %}아이디 찾기{% endblock %}
 
@@ -18,4 +18,5 @@
     <p>찾으신 아이디: <strong>{{ user_id_found }}</strong></p>
 {% endif %}
 
+<a href="{% url 'login' %}">로그인 페이지로 가기</a>
 {% endblock %}
