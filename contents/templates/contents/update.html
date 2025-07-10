@@ -9,9 +9,7 @@
 {% block content %}
 
 <div class="review-header">
-    <div class="header-icon">
-        
-    </div>
+    <div class="header-icon"></div>
     <div class="header-title"> 📘 감상 기록 수정하기</div>
     <p class="header-subtitle">책 정보를 확인하고 감정을 수정해보세요</p>
   </div>
@@ -28,19 +26,22 @@
             <img src="{{ review.book.thumbnail }}" alt="책 썸네일" width="120"><br><br>
         {% endif %}
 
-    <label>평점:</label>
-    <select name="rating">
-        {% for i in rating_range %}
-            <option value="{{ i }}" {% if review.rating == i %}selected{% endif %}>{{ i }}점</option>
-        {% endfor %}
-    </select><br><br>
-
-    <label>한줄 감상평:</label><br>
-    <input type="text" name="short_comment" value="{{ review.short_comment }}"><br><br>
-
-    <label>상세 리뷰:</label><br>
-    <textarea name="detailed_review" rows="5" style="width:100%;">{{ review.detailed_review }}</textarea><br><br>
-
+        <div class="review-box">
+            <label><strong>평점</strong></label>
+            <div class="star-rating">
+              {% for i in rating_range|slice:"::-1" %}
+                <input type="radio" id="star{{ i }}" name="rating" value="{{ i }}" {% if review.rating == i %}checked{% endif %}>
+                <label for="star{{ i }}">★</label>
+              {% endfor %}
+            </div>
+          
+            <label for="short_comment"><strong>한 줄 감상평</strong></label>
+            <input type="text" id="short_comment" name="short_comment" value="{{ review.short_comment }}" placeholder="한 줄 감상평을 써주세요">
+          
+            <label for="detailed_review"><strong>상세 감상평</strong> <span class="optional">(선택)</span></label>
+            <textarea id="detailed_review" name="detailed_review" rows="5" placeholder="자세한 감상평을 써주세요">{{ review.detailed_review }}</textarea>
+          </div>
+          
     <hr>
     <strong>감정 태그:</strong><br>
 
