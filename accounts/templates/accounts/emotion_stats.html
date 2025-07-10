@@ -1,11 +1,13 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
+{% extends "base_menu.html" %} 
+{% load static %}
+{% block title %}감정 통계{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'css/emotion_status.css' %}" />
+{% endblock %} 
+
+{% block content %}
+
     <h2>감정 태그 통계</h2>
 
     <h3> {{request.user.nickname}}님이 가장 많이 사용한 감정 Top 3</h3>
@@ -40,5 +42,5 @@
 
         {% endfor %}
 </table>
-</body>
-</html>
+
+{% endblock %}

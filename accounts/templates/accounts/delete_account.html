@@ -1,3 +1,12 @@
+{% extends "base_menu.html" %} 
+{% load static %}
+{% block title %}회원 탈퇴{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'css/delete_account.css' %}" />
+{% endblock %} 
+
+{% block content %}
 <h2>정말 회원탈퇴 하시겠습니까?</h2>
 <p>비밀번호를 입력하면 탈퇴가 완료됩니다. 이 작업은 취소할 수 없습니다.</p>
 <form method="post">
@@ -14,3 +23,4 @@
         {% endfor %}
     </ul>
 {% endif %}
+{% endblock %}

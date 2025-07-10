@@ -1,12 +1,13 @@
-{% extends "base.html" %}
+{% extends "base_menu.html" %} 
 {% load static %}
 {% block title %}스크랩한 리뷰{% endblock %}
 
 {% block extra_css %}
-<link rel="stylesheet" href="{% static 'css/my_reviews.css' %}">
+<link rel="stylesheet" href="{% static 'css/my_scraps.css' %}">
 {% endblock %}
 
 {% block content %}
+
 <div class="review-container">
   <h2>내가 스크랩한 리뷰</h2>
 
@@ -21,4 +22,5 @@
     <p class="empty-message">스크랩한 리뷰가 없습니다.</p>
   {% endfor %}
 </div>
+
 {% endblock %}

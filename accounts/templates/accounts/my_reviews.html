@@ -1,12 +1,13 @@
-{% extends "base.html" %}
+{% extends "base_menu.html" %} 
 {% load static %}
-{% block title %}내 리뷰 보기{% endblock %}
+{% block title %}내가 작성한 리뷰{% endblock %}
 
 {% block extra_css %}
 <link rel="stylesheet" href="{% static 'css/my_reviews.css' %}">
 {% endblock %}
 
 {% block content %}
+
 <div class="review-container">
   <h2>내가 작성한 리뷰</h2>
 
@@ -21,4 +22,5 @@
     <p class="empty-message">작성한 리뷰가 없습니다.</p>
   {% endfor %}
 </div>
+
 {% endblock %}

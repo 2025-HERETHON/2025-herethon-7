@@ -1,3 +1,12 @@
+{% extends "base_menu.html" %} 
+{% load static %}
+{% block title %}회원정보 수정{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'css/delete_account.css' %}" />
+{% endblock %} 
+
+{% block content %}
 <h2>닉네임 & 프로필 이미지 변경</h2>
 
 {% if user.profile_image and user.profile_image.name != "" %}
@@ -20,3 +29,4 @@
 </form>
 
 <a href="{% url 'mypage' %}">마이페이지로 돌아가기</a>
+{% endblock %}
