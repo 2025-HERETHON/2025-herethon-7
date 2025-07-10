@@ -131,7 +131,7 @@ textarea {
 
 .star-rating {
   display: flex;
-  direction: rtl;
+  direction: ltr;
   font-size: 1.6rem;
   gap: 4px;
   margin-top: 5px;
@@ -254,12 +254,7 @@ button[type="submit"]:hover {
   margin-top: 1.5rem;
 }
 
-.star-rating {
-  display: flex;
-  direction: ltr;
-  font-size: 2rem;
 
-}
 
 .book-selected-box {
   display: flex;

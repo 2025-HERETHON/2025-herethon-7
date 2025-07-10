@@ -54,8 +54,8 @@
     <div class="rating-row">
       <label for="rating"><strong>평점</strong></label>
       <div class="star-rating">
-        {% for i in rating_range|slice:"::-1" %}
-          <input type="radio" id="star{{ i }}" name="rating" value="{{ i }}">
+        {% for i in rating_range %}
+          <input type="radio" id="star{{ i }}" name="rating" value="{{ i }}" {% if review.rating == i %}checked{% endif %}>
           <label for="star{{ i }}">★</label>
         {% endfor %}
       </div>
