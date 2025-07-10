@@ -9,26 +9,32 @@
 {% block content %}
 
     <h2>감정 태그 통계</h2>
-
-    <h3> {{request.user.nickname}}님이 가장 많이 사용한 감정 Top 3</h3>
-    <ul>
+    
+    <div class="top-tags-box">
+    <h3> <strong>{{request.user.nickname}}님이 가장 많이 사용한 감정 Top 3</strong></h3>
+    
         {% for tag in user_top_tags %}
-            <li>[{{ tag.get_tag_type_display }}] #{{ tag.name }} ({{ tag.usage_count }}회)</li>
-        {% empty %}
-            <li>아직 감정 태그를 사용한 리뷰가 없습니다.</li>
+        <div class="top-tag-item">
+            <span><span class="medal">🥇</span>[{{tag.get_tag_type_display }}] #{{ tag.name }}</span>
+            <span class="count">({{ tag.usage_count }}회)</span>
+        </div>
         {% endfor %}
-    </ul>
+    </div>
+    
 
-    <hr>
-
-    <h3>{{request.user.nickname}}님의 감정 태그 비율</h3>
-    <table border="1" cellpadding="8">
+    
+    <div class="table-box">
+    <h3><strong>{{request.user.nickname}}님의 감정 태그 비율</strong></h3>
+    <table>
+        <thead>
         <tr>
             <th>감정 유형</th>
             <th>감정 태그</th>
             <th>사용 횟수</th>
             <th>비율</th>
         </tr>
+        </thead>
+        <tbody>
         {% for tag in user_tag_distribution %}
         <tr>
             <td>{{ tag.type }}</td>
@@ -36,11 +42,12 @@
             <td>{{ tag.count }}</td>
             <td>{{ tag.percentage }}%</td>
         </tr>
-
         {% empty %}
             <tr><td colspan="4">사용한 감정 태그가 없습니다.</td></tr>
 
         {% endfor %}
+        </tbody>
 </table>
+</div>
 
 {% endblock %}
