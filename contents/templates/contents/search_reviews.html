@@ -39,11 +39,21 @@
 
 <ul>
   {% for review in reviews %}
-    <li class="review-list">
-      <a href="{% url 'contents:detail' review.id %}">
-        <p>{{ review.user.nickname }}</p>
-        <p>{{ review.book.title }}</p> / {{ review.book.author }}
-        <p>리뷰 상세 보기</p>
+  <li class="review-list">
+    <a href="{% url 'contents:detail' review.id %}">
+      <div class="review-container">
+        <div class="review-top">
+          <div class="review-title">
+            <p class="book-title">{{ review.book.title }}</p>
+            <p class="book-author">/ {{ review.book.author }}</p>
+            <svg xmlns="http://www.w3.org/2000/svg" width="4" height="4" viewBox="0 0 4 4" fill="none">
+              <path d="M2 0C1.46957 0 0.96086 0.210714 0.585787 0.585787C0.210714 0.96086 0 1.46957 0 2C0 2.53043 0.210714 3.03914 0.585787 3.41421C0.96086 3.78929 1.46957 4 2 4C3.11 4 4 3.11 4 2C4 1.46957 3.78929 0.96086 3.41421 0.585787C3.03914 0.210714 2.53043 0 2 0Z" fill="#B1B1B1"/>
+            </svg>
+            <p class="user-name">{{ review.user.nickname }}</p>
+          </div>
+          <p class="review-detail">리뷰 상세 보기</p>
+        </div>
+        
         <div class="star-container">
           {% for i in "12345" %}
           {% if forloop.counter <= review.rating %}
@@ -57,9 +67,10 @@
           {% endif %}
           {% endfor %}
         </div>
-        <p class="short-comment">{{ review.short_comment }}</p>
-      </a>
-    </li>
+        <p class="short-comment">"{{ review.short_comment }}"</p>
+      </div>
+    </a>
+  </li>
   {% empty %}
     <li class="search-none">검색 결과가 없습니다.</li>
   {% endfor %}
