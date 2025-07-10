@@ -130,9 +130,14 @@ textarea {
 
 
 .star-rating {
+  display: flex;
   direction: rtl;
-  display: inline-flex;
-  font-size: 2rem;
+  font-size: 1.6rem;
+  gap: 4px;
+  margin-top: 5px;
+  margin-bottom: 5px;
+  margin-left: 5px;
+ 
 }
 
 .star-rating input[type="radio"] {
@@ -163,12 +168,12 @@ textarea {
 
 .tag-container label {
   display: inline-block;
-  padding: 6px 14px;
+  padding: 6px 8px 6px 8px;
   border-radius: 999px;
-  border: 1.5px solid #1e254e;
+  border: 1px solid #505eab;
   background-color: #ffffff;
-  color: #1e254e;
-  font-size: 14px;
+  color: #505eab;
+  font-size: 12px;
   font-weight: 600;
   cursor: pointer;
   transition: all 0.2s ease-in-out;
@@ -190,7 +195,7 @@ textarea {
 
 .tag-label {
   display: inline-block;
-  border: 1.5px solid #1e254e;
+  border: 1px solid #1e254e;
   border-radius: 999px;
   padding: 8px 14px;
   background-color: #ffffff;
@@ -251,6 +256,51 @@ button[type="submit"]:hover {
 
 .star-rating {
   display: flex;
-  direction: rtl;
+  direction: ltr;
   font-size: 2rem;
+
+}
+
+.book-selected-box {
+  display: flex;
+  align-items: center;
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  padding: 12px;
+  margin: 20px 0;
+  background-color: #fff;
+}
+
+.book-selected-box img {
+  width: 60px;
+  height: auto;
+  border-radius: 4px;
+  margin-right: 12px;
+}
+
+.book-info-text {
+  flex: 1;
+}
+
+.book-title {
+  font-weight: bold;
+  font-size: 16px;
+  margin-bottom: 4px;
+}
+
+.book-author {
+  font-size: 14px;
+  color: #999;
+}
+
+.change-btn {
+  background-color: #e6edff;
+  color: #4a5ab1;
+  padding: 6px 16px;
+  border-radius: 999px;
+  font-size: 13px;
+  text-decoration: none;
+  font-weight: 500;
+  margin-left: 160px;
+  margin-bottom: 20px;
 }

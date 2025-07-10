@@ -31,16 +31,22 @@
 
 <!-- 리뷰 작성 폼 -->
 <h2>책 검색</h2>
-
-<p><strong>책 제목:</strong> {{ book.title }}</p>
-<p><strong>저자:</strong> {{ book.author }}</p>
-
+<div class="book-selected-box">
 {% if book.thumbnail %}
   <img src="{{ book.thumbnail }}" alt="책 썸네일" width="120"><br><br>
 {% endif %}
-
 <form method="POST" action="{% url 'contents:create' book.id %}">       
-  {% csrf_token %}
+    {% csrf_token %}
+<div class="book-title">
+<p><strong>{{ book.title }}</strong></p>
+</div>
+<div class="book-author">
+<p>{{ book.author }}</p>
+</div>
+
+
+<a href="{% url 'contents:book_search'%}" class="change-btn">변경</a>
+</div>
 
   <!-- 감상 작성 박스 -->
   <div class="review-box">
