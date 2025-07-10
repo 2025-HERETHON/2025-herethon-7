@@ -38,7 +38,7 @@
             </svg>
             <span class="nav-text">감정탐색</span>
           </a> 
-          <a href="{% url 'mypage' %}" class="nav mypage {% if request.resolver_match.url_name == 'mypage' %}active{% endif %}">
+          <a href="{% url 'mypage' %}" class="nav mypage {% if request.resolver_match.url_name == 'mypage' or request.resolver_match.url_name == 'my_scraps' or request.resolver_match.url_name == 'my_reviews' or request.resolver_match.url_name == 'emotion_stats' or request.resolver_match.url_name == 'edit_profile' or request.resolver_match.url_name == 'delete_account' %}active{% endif %}">
             <svg class="nav-icon" xmlns="http://www.w3.org/2000/svg" width="21" height="22" viewBox="0 0 21 22" fill="none">
               <path d="M18.8125 21C19.1274 21 19.4295 20.8796 19.6522 20.6653C19.8749 20.4509 20 20.1602 20 19.8571V18.4331C20.0047 15.2263 15.2809 12.7143 10.5 12.7143C5.71912 12.7143 1 15.2263 1 18.4331V19.8571C1 20.1602 1.12511 20.4509 1.34781 20.6653C1.57051 20.8796 1.87256 21 2.1875 21H18.8125ZM14.7797 5.11886C14.7797 5.65975 14.669 6.19535 14.454 6.69508C14.2389 7.1948 13.9236 7.64886 13.5262 8.03133C13.1288 8.4138 12.657 8.71719 12.1378 8.92418C11.6185 9.13118 11.062 9.23771 10.5 9.23771C9.93797 9.23771 9.38145 9.13118 8.86221 8.92418C8.34297 8.71719 7.87117 8.4138 7.47376 8.03133C7.07635 7.64886 6.7611 7.1948 6.54602 6.69508C6.33095 6.19535 6.22025 5.65975 6.22025 5.11886C6.22025 4.02647 6.67115 2.97882 7.47376 2.20639C8.27637 1.43395 9.36494 1 10.5 1C11.6351 1 12.7236 1.43395 13.5262 2.20639C14.3288 2.97882 14.7797 4.02647 14.7797 5.11886Z" stroke="#B1B1B1" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
             </svg>

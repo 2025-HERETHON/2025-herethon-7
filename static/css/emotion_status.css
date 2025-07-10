@@ -1,13 +1,9 @@
-body {
+.body{
     font-family: 'Apple SD Gothic Neo', sans-serif;
-    background-color: #fff;
-    margin: 0;
-    padding: 20px;
-    box-sizing: border-box;
     color: #1e1e1e;
-    max-width: 390px;
-    margin: 0 auto;
-  }
+}
+
+
   
   /* 제목 */
   h2 {
