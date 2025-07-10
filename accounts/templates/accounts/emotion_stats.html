@@ -7,6 +7,7 @@
 {% endblock %} 
 
 {% block content %}
+<div class="container">
 <div class="back-header">
     <a href="{% url 'mypage' %}" class="back-arrow">←</a>
     <h2>감정 태그 통계</h2>
@@ -50,6 +51,7 @@
         {% endfor %}
         </tbody>
 </table>
+</div>
 </div>
 
 {% endblock %}
