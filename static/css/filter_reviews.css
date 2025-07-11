@@ -8,9 +8,8 @@ body{
 .container {
     max-width: 390px;
     margin: 0 auto;
-    padding: 0 20px;
     box-sizing: border-box;
-  }
+}
   
 
 .filter-top h2{

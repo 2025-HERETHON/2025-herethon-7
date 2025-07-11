@@ -3,23 +3,30 @@
 {% block title %}스크랩한 리뷰{% endblock %}
 
 {% block extra_css %}
-<link rel="stylesheet" href="{% static 'css/my_scraps.css' %}">
+<link rel="stylesheet" href="{% static 'css/my_reviews_scraps.css' %}">
 {% endblock %}
 
 {% block content %}
 
 <div class="review-container">
-  <h2>내가 스크랩한 리뷰</h2>
+  <div class="top">
+    <a href="{% url 'mypage' %}">
+      <svg xmlns="http://www.w3.org/2000/svg" width="17" height="16" viewBox="0 0 17 16" fill="none">
+        <path d="M15.909 6.95109H3.72288L9.04682 1.80561C9.4723 1.39439 9.4723 0.719571 9.04682 0.308354C8.94589 0.210607 8.826 0.133058 8.69403 0.0801464C8.56205 0.0272349 8.42057 0 8.27768 0C8.1348 0 7.99332 0.0272349 7.86134 0.0801464C7.72936 0.133058 7.60948 0.210607 7.50855 0.308354L0.319048 7.25687C0.217911 7.35442 0.137673 7.47028 0.0829265 7.59784C0.02818 7.72539 0 7.86213 0 8.00022C0 8.13832 0.02818 8.27505 0.0829265 8.40261C0.137673 8.53016 0.217911 8.64603 0.319048 8.74358L7.50855 15.6921C7.60955 15.7897 7.72946 15.8671 7.86143 15.92C7.9934 15.9728 8.13484 16 8.27768 16C8.42053 16 8.56197 15.9728 8.69394 15.92C8.82591 15.8671 8.94582 15.7897 9.04682 15.6921C9.14782 15.5945 9.22794 15.4786 9.28261 15.351C9.33727 15.2235 9.36541 15.0868 9.36541 14.9487C9.36541 14.8107 9.33727 14.674 9.28261 14.5464C9.22794 14.4189 9.14782 14.303 9.04682 14.2054L3.72288 9.0599H15.909C16.5091 9.0599 17 8.58542 17 8.0055C17 7.42557 16.5091 6.95109 15.909 6.95109Z" fill="black"/>
+      </svg>
+    </a>
+    <h2>내가 스크랩한 리뷰</h2>
+  </div>
 
   {% for scrap in scraps %}
+  <a href="{% url 'contents:detail' scrap.review.id %}" class="review-link">
     <div class="review-item">
       <p class="book-title">{{ scrap.review.book.title }}</p>
-      <a href="{% url 'contents:detail' scrap.review.id %}" class="review-link">
-        {{ scrap.review.short_comment }}
-      </a>
+      <p class="comment">"{{ scrap.review.short_comment }}"</p>
     </div>
+  </a>
   {% empty %}
-    <p class="empty-message">스크랩한 리뷰가 없습니다.</p>
+    <p class="empty">스크랩한 리뷰가 없습니다.</p>
   {% endfor %}
 </div>
 

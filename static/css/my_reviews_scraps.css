@@ -1,0 +1,78 @@
+body{
+    font-family: "Noto Sans KR";
+    font-style: normal;
+    letter-spacing: -0.0255rem;
+}
+
+.top{
+    display: flex;
+    align-items: center;
+    
+    box-sizing: border-box;
+    padding-top: 4rem;
+    padding-bottom: 1rem;
+    padding-left: 1.25rem;
+    gap: 1rem;
+
+    border-bottom: 0.56rem solid #F7F7F7;
+}
+
+.top h2{
+    margin: 0;
+    color: #000;
+    font-size: 1.125rem;
+    font-weight: 700;
+    line-height: 1.375rem; /* 122.222% */
+}
+
+.review-item{
+
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+
+    box-sizing: border-box;
+    padding: 0.63rem 1.87rem;
+
+    border-bottom: 0.31rem solid #F7F7F7;
+}
+
+.review-item p{
+    margin: 0;
+}
+
+p.book-title{
+    color: #000;
+    font-size: 0.9375rem;
+    font-weight: 700;
+    line-height: 1.375rem; /* 146.667% */
+
+    margin-bottom: 0.4rem;
+}
+
+p.comment{
+    color: #000;
+    font-size: 0.875rem;
+    font-weight: 500;
+    line-height: 1.375rem; /* 157.143% */
+    display: inline-block;
+
+    height: 1rem;
+    flex-shrink: 0;
+    background: #FFFDCD;
+
+    padding: 0 0.3rem;           /* 텍스트 좌우에 약간의 여백 */
+    height: auto;                /* 높이 고정 해제 */
+    flex-shrink: 0;              /* flex 컨테이너에서 줄어들지 않도록 */
+    text-align: left;            /* 혹시라도 정렬이 중앙일 경우 대비 */
+}
+
+p.empty{
+    margin-top: 3rem;
+    display: flex;
+    justify-content: center;
+    color: #B1B1B1;
+    font-size: 1rem;
+    font-weight: 500;
+    line-height: 1.375rem;
+}
