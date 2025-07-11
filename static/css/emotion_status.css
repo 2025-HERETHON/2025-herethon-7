@@ -45,20 +45,20 @@
   }
 
   .top-tag-item.rank-1 {
-    width: 100%;
-    margin-left: 5px;
+    width: 90%;
+    margin-left: 3px;
   }
   
   .top-tag-item.rank-2 {
-    width: 90%;
+    width: 80%;
     margin-right: 10px;
-    margin-left: 5px;
+    margin-left: 3px;
   }
   
   .top-tag-item.rank-3 {
-    width: 80%;
+    width: 70%;
     margin-right: 20%;
-    margin-left: 5px;
+    margin-left: 3px;
   }
   
   
