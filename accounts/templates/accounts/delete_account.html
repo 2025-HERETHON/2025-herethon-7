@@ -14,7 +14,7 @@
     {% csrf_token %}
     {{ form.as_p }}
     <button type="submit">탈퇴하기</button>
-    <a href="{% url 'mypage' %}">취소</a>
+    <a href="{% url 'mypage' %}" class="cancle">취소</a>
 </form>
 
 {% if messages %}

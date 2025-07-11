@@ -94,5 +94,5 @@ class CustomUserChangeForm(forms.ModelForm):
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
-        self.fields['nickname'].label = '닉네임'
-        self.fields['profile_image'].label = '프로필 이미지'
+        self.fields['nickname'].label = ''
+        self.fields['profile_image'].label = ''
