@@ -213,6 +213,13 @@ def scrap(request, review_id):
     return redirect('contents:detail', review_id)
 
 @login_required
+def cancel_scrap(request, review_id):
+    review = get_object_or_404(Review, id=review_id)
+    user = request.user
+    review.scrap.remove(user)
+    return redirect('my_scraps')
+
+@login_required
 def create_comment(request, review_id):
     review = get_object_or_404(Review, id=review_id)
     if request.method == 'POST':

@@ -21,5 +21,6 @@ urlpatterns = [
     path('reviews/search/', search_reviews, name='search_reviews'),
     path('popular/', popular_reviews, name='popular_reviews'),
     path('filter/', filter_by_tags, name='filter_reviews'),
+    path('cancel-scrap/<int:review_id>/', cancel_scrap, name='cancel_scrap'),
 
 ]
