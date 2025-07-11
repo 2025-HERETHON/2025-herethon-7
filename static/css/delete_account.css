@@ -13,9 +13,9 @@ body {
     padding:0 1.25rem;
     padding-top: 4rem;
     padding-bottom: 1rem;
-    margin-bottom: 1.25rem;
+    margin-bottom: 3.13rem;
 
-    border-bottom: #F7F7F7 solid 0.69rem;
+    border-bottom: #F7F7F7 solid 0.56rem;
 }
 
 .back-header h2 {
@@ -29,33 +29,39 @@ body {
     margin: 0;
 }
 
+.delete-container{
+  box-sizing: border-box;
+  padding: 0 1.25rem;
+}
+
   
   h2 {
-<<<<<<< HEAD
-    font-size: 1.125rem;
-    font-weight: 700;
-    color: #1e254e;
-    margin-bottom: 0.75rem;
-=======
-    margin-bottom: 16px;
-    margin-left: 20px;
-
     color: #212842;
     font-size: 1.125rem;
     font-weight: 700;
->>>>>>> c56066cf04ba8d3acf1b14adb6395241ab6a9ec1
+    line-height: normal;
+
+    margin: 0;
+    margin-bottom: 1.25rem;
   }
   
-  p {
+  .delete-container p {
+    display: flex;
+    flex-direction: column;
+    gap: 0.62rem;
+
+    color: #000;
     font-size: 0.875rem;
-    line-height: 1.4;
-    color: #333;
-    margin-bottom: 2rem;
+    font-weight: 400;
+    line-height: normal;
+    margin: 0;
+    margin-bottom: 3.13rem;
   }
   
   /* input field */
   input[type="password"] {
-    width: 90%;
+    width: 100%;
+    box-sizing: border-box;
     padding: 0.875rem;
     font-size: 0.9375rem;
     border: none;
@@ -76,5 +82,4 @@ body {
     border-radius: 10px;
     cursor: pointer;
     margin-bottom: 12px;
-    margin-left: 20px;
   }  
