@@ -98,6 +98,10 @@ body{
 }
 
 .tag-container{
+    display: flex;
+    flex-wrap: wrap;         /* 여러 줄로 줄바꿈 허용 */
+    gap: 0.56rem;            /* 가로, 세로 간격 모두 0.56rem */
+    
     margin-top: 0.25rem;
     margin-bottom: 1.06rem;
 }
