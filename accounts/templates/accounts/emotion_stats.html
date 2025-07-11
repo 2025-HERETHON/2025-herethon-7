@@ -17,7 +17,7 @@
     <h3> <strong>{{request.user.nickname}}님이 가장 많이 사용한 감정 Top 3</strong></h3>
     
         {% for tag in user_top_tags %}
-        <div class="top-tag-item">
+        <div class="top-tag-item rank-{{ forloop.counter }}">
             <span><span class="medal">🥇</span>[{{tag.get_tag_type_display }}] #{{ tag.name }}</span>
             <span class="count">({{ tag.usage_count }}회)</span>
         </div>
