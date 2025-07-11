@@ -4,7 +4,7 @@ body {
     letter-spacing: -0.0255rem;
   }
 
-    .back-header {
+.back-header {
     display: flex;
     align-items: center;
     gap: 1rem;
@@ -16,9 +16,9 @@ body {
     margin-bottom: 1.25rem;
 
     border-bottom: #F7F7F7 solid 0.69rem;
-  }
+}
 
-    .back-header h2 {
+.back-header h2 {
     color: #000;
     font-family: "Noto Sans KR";
     font-size: 1.125rem;
@@ -27,7 +27,7 @@ body {
     line-height: 1.375rem; /* 122.222% */
     letter-spacing: -0.0255rem;
     margin: 0;
-  }
+}
 
   
   h2 {

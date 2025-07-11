@@ -20,10 +20,12 @@
     <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300..700;1,300..700&family=Euphoria+Script&family=Noto+Sans+KR:wght@100..900&display=swap" rel="stylesheet">
   </head>
   <body>
-    <main class="container">
-      {% block content %}
-      <!-- 개별 페이지에서 이 부분을 덮어씀 -->
-      {% endblock %}
-    </main>
+    <section class="app-wrapper">
+      <main class="container">
+        {% block content %}
+        <!-- 개별 페이지에서 이 부분을 덮어씀 -->
+        {% endblock %}
+      </main>
+    </section>
   </body>
 </html>
