@@ -41,15 +41,18 @@
     </div>
 
     <div class="user">
-        {% if review.user.profile_image %}
-            <img src="{{ review.user.profile_image.url }}" alt="프로필 이미지" width="30" height="30" style="border-radius: 50%; object-fit: cover;">
+    {% if review.user.profile_image %}
+        {% if "default.png" in review.user.profile_image.url %}
+        <img src="{{ review.user.profile_image.url }}" alt="기본 프로필 이미지" width="30" height="30" style="border-radius: 50%; object-fit: cover;">
         {% else %}
-            <div style="width: 30px; height: 30px; border-radius: 50%; background-color: #ccc; display: inline-block; text-align: center; line-height: 30px; font-size: 12px;">
-                없음
-            </div>
+        <img src="{{ review.user.profile_image.url }}" alt="프로필 이미지" width="30" height="30" style="border-radius: 50%; object-fit: cover;">
         {% endif %}
-        <p>{{ review.user.nickname }}</p>
+    {% else %}
+        <img src="https://shelf-2025.s3.amazonaws.com/profile_images/default.png" alt="기본 프로필 이미지" width="30" height="30" style="border-radius: 50%; object-fit: cover;">
+    {% endif %}
+    <p>{{ review.user.nickname }}</p>
     </div>
+
     <hr class="review-line">
 
     <div class="review">
