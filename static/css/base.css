@@ -23,6 +23,6 @@ html, body {
   overflow-y: auto;
 }
 
-::-webkit-scrollbar {
+.container::-webkit-scrollbar {
   display: none;
 }
