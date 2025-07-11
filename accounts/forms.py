@@ -79,14 +79,14 @@ class PasswordResetRequestForm(forms.Form):
         label='아이디',
         max_length=150,
         widget=forms.TextInput(attrs={
-            'placeholder': '가입한 아이디를 입력하세요',
+            'placeholder': '아이디를 입력하세요',
             'class': 'input-field',
         })
     )
     email = forms.EmailField(
         label='이메일',
         widget=forms.EmailInput(attrs={
-            'placeholder': '가입한 이메일 주소를 입력하세요',
+            'placeholder': '이메일을 입력하세요',
             'class': 'input-field',
         })
     )
@@ -97,7 +97,12 @@ class DeleteAccountForm(forms.Form):
     )
 
 class FindIDForm(forms.Form):
-    email = forms.EmailField(label='이메일')
+    email = forms.EmailField(
+        label='이메일',
+        widget=forms.EmailInput(attrs={
+            'placeholder': '이메일을 입력하세요'
+        })
+    )
 
 class CustomUserChangeForm(forms.ModelForm):
     class Meta:
