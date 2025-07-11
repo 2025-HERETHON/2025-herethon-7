@@ -3,13 +3,23 @@
     "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
     color: #1e1e1e;
 }
+
+  .back-header {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 20px;
+  }
+
   /* 제목 */
   h2 {
-    font-size: 18px;
-    font-weight: bold;
-    margin-top: 3rem;
-    margin-bottom: 1.5rem;
-    margin-left: 60px;
+    color: #000;
+    font-family: "Noto Sans KR";
+    font-size: 1.125rem;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 1.375rem; /* 122.222% */
+    letter-spacing: -0.0255rem;
   }
   
   h3 {
@@ -32,50 +42,72 @@
   }
   
   .top-tag-item {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    background: linear-gradient(to right, #e8f0ff, #83b0fe);
-    padding: 10px 14px;
-    border-radius: 999px;
+    width: 20.625rem;
+    height: 2.875rem;
+    flex-shrink: 0;
+    border-radius: 0.625rem 1.5625rem 1.5625rem 0.625rem;
+    background: linear-gradient(90deg, #E9EFFA 5.18%, #9ABFFF 100%);
     margin-bottom: 10px;
     font-size: 14px;
+
+    box-sizing: border-box;
+    padding-right: 1.5rem;
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .top-tag-content{
+    display: flex;
+    align-items: center;
+  }
+
+  .top-tag-content svg{
+    margin: 0 1.5rem;
   }
 
   .top-tag-item.rank-1 {
-    width: 90%;
+    width: 100%;
     margin-left: 3px;
   }
   
   .top-tag-item.rank-2 {
-    width: 80%;
+    width: 90%;
     margin-right: 10px;
     margin-left: 3px;
   }
   
   .top-tag-item.rank-3 {
-    width: 70%;
+    width: 80%;
     margin-right: 20%;
     margin-left: 3px;
   }
   
   
-  .top-tag-item span {
+  .top-tag-content .text{
     display: flex;
     align-items: center;
-    gap: 6px;
-  }
+    gap: 0.62rem;
+
+    color: #000;
+    font-family: "Noto Sans KR";
+    font-size: 0.875rem;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 1.375rem; /* 157.143% */
+    letter-spacing: -0.0255rem;
+}
   
-  .top-tag-item .medal {
-    font-size: 18px;
-    margin-top: -5px;
-    margin-bottom: 5px;
-  }
-  
-  .top-tag-item .count {
-    font-weight: bold;
-    color: #1e254e;
-  }
+.top-tag-item .count {
+  color: #07439D;
+  font-family: "Noto Sans KR";
+  font-size: 0.875rem;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 1.375rem; /* 157.143% */
+  letter-spacing: -0.0255rem;
+}
   
   /* 테이블 박스 */
   .table-box {
@@ -106,13 +138,6 @@
   td {
     padding: 10px;
     border-bottom: 1px solid #eee;
-  }
-
-  .back-header {
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    margin-bottom: 20px;
   }
   
   .back-header .back-arrow {

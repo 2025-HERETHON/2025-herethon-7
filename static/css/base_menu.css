@@ -57,7 +57,7 @@ a {
     text-decoration: none;  /* 밑줄 제거 */
 }
 
-span{
+.bottom-nav span{
     margin-top: 0.25rem;
 }
 
