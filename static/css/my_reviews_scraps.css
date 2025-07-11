@@ -84,6 +84,14 @@ p.comment{
     padding-top: 0.5rem;
 }
 
+.scarp-btn{
+    all: unset; /* 버튼 기본 스타일 완전 제거 */
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+}
+
 p.empty{
     margin-top: 3rem;
     display: flex;

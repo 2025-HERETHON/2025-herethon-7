@@ -183,4 +183,4 @@ service_account.json
 
 venv/__pycache__/
 
-__init__.py
+contents/__init__.py
