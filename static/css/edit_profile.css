@@ -36,6 +36,10 @@ body {
   margin-bottom: 2rem;
 }
 
+.profile_box img{
+  border-radius: 5.3125rem;
+}
+
 h3.nickname{
   margin: 0;
 }
