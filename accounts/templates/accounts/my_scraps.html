@@ -26,6 +26,10 @@
         <p class="comment">"{{ scrap.review.short_comment }}"</p>
       </div>
     </a>
+    <form action="{% url 'contents:cancel_scrap' scrap.review.id %}" method="post">
+      {% csrf_token %}
+      <button type="submit">스크랩 취소</button>
+    </form>
   </div>
   {% empty %}
     <p class="empty">스크랩한 리뷰가 없습니다.</p>
