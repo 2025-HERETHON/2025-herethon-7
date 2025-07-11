@@ -42,8 +42,8 @@
 
 ---
 
-### 📁 폴더 구조
-```bash
+## 📁 폴더 구조
+```
 shelf/
 ├── __pycache__
 ├── __init__.py
@@ -131,7 +131,7 @@ manage.py
 ---
 
 ## 💻 개발 환경 실행 방법
-```bash
+```
 python -m venv venv
 source venv/Scripts/activate
 pip install -r requirements.txt
