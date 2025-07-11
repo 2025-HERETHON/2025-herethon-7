@@ -91,6 +91,8 @@ a {
   font-style: normal;
   font-weight: 250;
   line-height: normal;
+
+  gap: 0.5rem;
 }
 
 .login-btn {
