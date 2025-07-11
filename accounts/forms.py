@@ -97,7 +97,12 @@ class DeleteAccountForm(forms.Form):
     )
 
 class FindIDForm(forms.Form):
-    email = forms.EmailField(label='이메일')
+    email = forms.EmailField(
+        label='이메일',
+        widget=forms.EmailInput(attrs={
+            'placeholder': '이메일을 입력하세요'
+        })
+    )
 
 class CustomUserChangeForm(forms.ModelForm):
     class Meta:
