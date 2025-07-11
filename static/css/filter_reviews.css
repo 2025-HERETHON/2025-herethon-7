@@ -144,6 +144,8 @@ button[type="submit"] {
 
 
 .review-title{
+    width: 15rem;
+
     display: flex;
     align-items: center;
 
