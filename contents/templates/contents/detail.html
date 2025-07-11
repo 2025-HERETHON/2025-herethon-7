@@ -71,8 +71,11 @@
         </div>
         <p class="title">한줄 감상평 </p>
         <div class="review-content">{{ review.short_comment }}</div>
-        <p class="title">상세 리뷰 </p>
-        <div class="review-content">{{ review.detailed_review }}</div>
+        
+        {% if review.detailed_review %}
+            <p class="title">상세 리뷰 </p>
+            <div class="review-content">{{ review.detailed_review }}</div>
+        {% endif %}
 
         <p class="tag-container">
             {% for tag in review.tags.all %}
