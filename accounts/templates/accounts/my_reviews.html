@@ -19,12 +19,20 @@
   </div>
 
   {% for review in reviews %}
-  <a href="{% url 'contents:detail' review.id %}" class="review-link">
-    <div class="review-item">
-      <p class="book-title">{{ review.book.title }}</p>
-      <p class="comment">"{{ review.short_comment }}"</p>
-    </div>
-  </a>
+  <div class="review-box">
+    <a href="{% url 'contents:detail' review.id %}" class="review-link">
+        <div class="review-item">
+          <p class="book-title">{{ review.book.title }}</p>
+          <p class="comment">"{{ review.short_comment }}"</p>
+        </div>
+    </a>
+    <a href="{% url 'contents:update' review.id %}" class="edit">
+      <svg xmlns="http://www.w3.org/2000/svg" width="33" height="33" viewBox="0 0 33 33" fill="none">
+          <circle cx="16.5" cy="16.5" r="16" fill="white" stroke="#B1B1B1"/>
+          <path d="M14.9108 22.9393L7.69995 25.3L10.104 18.2167M14.9108 22.9393L24.3067 13.4004C24.7813 12.9331 25.1043 12.3381 25.235 11.6905C25.3657 11.043 25.2982 10.3719 25.041 9.76202C24.7838 9.15214 24.3484 8.6308 23.7899 8.26381C23.2313 7.89681 22.5746 7.70063 21.9027 7.70001C21.0012 7.70032 20.1366 8.05199 19.4987 8.67785L10.104 18.2167M14.9108 22.9393L10.104 18.2167M12.5068 20.5786L19.4863 13.4004M17.125 11.0871L21.8993 15.7666" stroke="black" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+    </a>
+  </div>
   {% empty %}
     <p class="empty">작성한 리뷰가 없습니다.</p>
   {% endfor %}
