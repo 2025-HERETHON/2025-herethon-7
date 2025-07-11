@@ -183,4 +183,4 @@ service_account.json
 
 venv/__pycache__/
 
-shelf/__init__.py
+migrations/
