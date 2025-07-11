@@ -75,9 +75,21 @@ class CustomLoginForm(AuthenticationForm):
     )
 
 class PasswordResetRequestForm(forms.Form):
-    user_id = forms.CharField(label='아이디', max_length=150)
-    email = forms.EmailField(label='이메일')
-
+    user_id = forms.CharField(
+        label='아이디',
+        max_length=150,
+        widget=forms.TextInput(attrs={
+            'placeholder': '가입한 아이디를 입력하세요',
+            'class': 'input-field',
+        })
+    )
+    email = forms.EmailField(
+        label='이메일',
+        widget=forms.EmailInput(attrs={
+            'placeholder': '가입한 이메일 주소를 입력하세요',
+            'class': 'input-field',
+        })
+    )
 class DeleteAccountForm(forms.Form):
     password = forms.CharField(
         label="비밀번호 확인",
