@@ -1,6 +1,5 @@
 .body{
-    font-family: -apple-system, BlinkMacSystemFont, "Apple SD Gothic Neo",
-    "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    font-family: 'Apple SD Gothic Neo', sans-serif;
     color: #1e1e1e;
 }
 
@@ -14,8 +13,9 @@
 
   /* 제목 */
   h2 {
+    font-family: 'Apple SD Gothic Neo', sans-serif;
     color: #000;
-    font-family: "Noto Sans KR";
+    
     font-size: 1.125rem;
     font-style: normal;
     font-weight: 700;
@@ -33,6 +33,7 @@
   
   /* Top 3 박스 */
   .top-tags-box {
+    font-family: 'Apple SD Gothic Neo', sans-serif;
     border: 1px solid #dcdcdc;
     border-radius: 16px;
     padding: 20px;
@@ -42,6 +43,7 @@
   }
   
   .top-tag-item {
+    font-family: 'Apple SD Gothic Neo', sans-serif;
     width: 20.625rem;
     height: 2.875rem;
     flex-shrink: 0;
@@ -86,12 +88,13 @@
   
   
   .top-tag-content .text{
+    font-family: 'Apple SD Gothic Neo', sans-serif;
     display: flex;
     align-items: center;
     gap: 0.62rem;
 
     color: #000;
-    font-family: "Noto Sans KR";
+    
     font-size: 0.875rem;
     font-style: normal;
     font-weight: 400;
@@ -100,8 +103,9 @@
 }
   
 .top-tag-item .count {
+    font-family: 'Apple SD Gothic Neo', sans-serif;
   color: #07439D;
-  font-family: "Noto Sans KR";
+  
   font-size: 0.875rem;
   font-style: normal;
   font-weight: 400;
@@ -111,6 +115,7 @@
   
   /* 테이블 박스 */
   .table-box {
+    font-family: 'Apple SD Gothic Neo', sans-serif;
     border: 1px solid #dcdcdc;
     border-radius: 16px;
     padding: 16px;
@@ -119,6 +124,7 @@
   }
   
   table {
+    font-family: 'Apple SD Gothic Neo', sans-serif;
     width: 100%;
     border-collapse: collapse;
     font-size: 13px;
@@ -126,6 +132,7 @@
   }
   
   th {
+    font-family: 'Apple SD Gothic Neo', sans-serif;
     background-color: #f4f6ff;
     color: #1e254e;
     font-weight: 600;
@@ -135,6 +142,7 @@
   }
   
   td {
+    font-family: 'Apple SD Gothic Neo', sans-serif;
     padding: 10px;
     border-bottom: 1px solid #eee;
   }
