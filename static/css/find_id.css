@@ -9,20 +9,29 @@ body {
     justify-content: center;
   }
 
-  /* 뒤로가기 헤더 */
-  .back-header {
-    display: flex;
-    align-items: center;
-    gap: 1rem;
+/* 뒤로가기 헤더 */
+.back-header {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
 
-    box-sizing: border-box;
-    padding-top:4rem;
-    padding-bottom: 1rem;
-    padding-left: 1.25rem;
-    margin-bottom: 3.13rem;
+  box-sizing: border-box;
+  padding-top:4rem;
+  padding-bottom: 1rem;
+  padding-left: 1.25rem;
+  margin-bottom: 3.13rem;
 
-    border-bottom: #F7F7F7 solid 0.56rem;
-  }
+  border-bottom: #F7F7F7 solid 0.56rem;
+}
+
+.back-header h2 {
+  color: #000;
+  font-size: 1.125rem;
+  font-weight: 700;
+  line-height: 1.375rem; /* 122.222% */
+
+  margin: 0;
+}
 
 .email-text{
   color: #212842;
@@ -35,23 +44,12 @@ body {
   margin: 0;
   margin-bottom: 0.31rem;
 }
-  
-.back-header h2 {
-    color: #000;
-    font-size: 1.125rem;
-    font-weight: 700;
-    line-height: 1.375rem; /* 122.222% */
-
-    margin: 0;
-}
 
 .find-id-container{
   box-sizing: border-box;
   padding: 0 1.25rem;
   padding-bottom: 2.5rem;
 }
-
-
 
 .find-btn {
   width: 100%;
@@ -71,13 +69,6 @@ body {
     line-height: 1.5rem; /* 133.333% */
 
     margin-bottom: 2.5rem;
-  }
-
-  .email {
-    font-size: 0.875rem;
-    font-weight: 600;
-    margin-left: 1.25rem;
-    margin-bottom: 0.5rem;
   }
   
   /* 입력창 */
