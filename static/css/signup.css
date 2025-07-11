@@ -1,18 +1,39 @@
 /* 전체 레이아웃 */
 body {
     font-family: "Noto Sans KR", sans-serif;
-    background-color: #ffffff;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
   }
   
+.back-header {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+
+    box-sizing: border-box;
+    padding:0 1.25rem;
+    padding-top: 4rem;
+    padding-bottom: 1rem;
+    margin-bottom: 1.25rem;
+
+    border-bottom: #F7F7F7 solid 0.69rem;
+}
+
+.back-header h2 {
+    color: #000;
+    font-family: "Noto Sans KR";
+    font-size: 1.125rem;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 1.375rem; /* 122.222% */
+    letter-spacing: -0.0255rem;
+    margin: 0;
+}
+
   /* 회원가입 폼 박스 */
   .signup-container {
     width: 100%;
     max-width: 100%;
-    padding: 2.5rem 1.5rem;
+    padding: 0 1.5rem;
+    padding-bottom: 2.5rem;
     box-sizing: border-box; 
     border-radius: 0.625rem;
     display: flex;
