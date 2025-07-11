@@ -19,12 +19,14 @@
   </div>
 
   {% for scrap in scraps %}
-  <a href="{% url 'contents:detail' scrap.review.id %}" class="review-link">
-    <div class="review-item">
-      <p class="book-title">{{ scrap.review.book.title }}</p>
-      <p class="comment">"{{ scrap.review.short_comment }}"</p>
-    </div>
-  </a>
+  <div class="review-box">
+    <a href="{% url 'contents:detail' scrap.review.id %}" class="review-link">
+      <div class="review-item">
+        <p class="book-title">{{ scrap.review.book.title }}</p>
+        <p class="comment">"{{ scrap.review.short_comment }}"</p>
+      </div>
+    </a>
+  </div>
   {% empty %}
     <p class="empty">스크랩한 리뷰가 없습니다.</p>
   {% endfor %}
