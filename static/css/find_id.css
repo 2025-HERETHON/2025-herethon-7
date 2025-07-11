@@ -63,14 +63,6 @@ body {
   font-size: 0.9375rem;
   font-weight: 700;
 }
-
-.found-id {
-  margin-top: 2rem;
-  color: #212842;
-  font-weight: bold;
-
-  text-align: center;
-}
   
   .description {
     color: #212842;
@@ -78,8 +70,7 @@ body {
     font-weight: 700;
     line-height: normal;
 
-<<<<<<< HEAD
-    margin-bottom: 16.31rem;
+    margin-bottom: 3.75rem;
   }
 
   .email {
@@ -100,9 +91,6 @@ body {
     color: #1e254e;
     display: inline-block;
     margin-bottom: 12px;
-=======
-    margin-bottom: 3.75rem;
->>>>>>> dfb3279524ffa4eb7393f35355c43c942aa98dda
   }
   
   /* 입력창 */
@@ -125,7 +113,7 @@ body {
     background-color: #f5f5f5;
     border: none;
     border-radius: 12px;
-    margin-bottom: 2rem;
+    margin-bottom: 1.87rem;
   }
   
   /* 버튼 */
@@ -142,20 +130,16 @@ body {
     cursor: pointer;
   }
   
-  /* 아이디 결과 */
-  p {
-    font-size: 15px;
-    margin-top: 20px;
-  }
   .found-id {
-    margin-top: 2rem;
-    text-align: center;
-    font-size: 1rem;
-    font-weight: 600;
-    color: #1e1e1e;
-  }
-  .found-id strong {
-    color: #1e1e1e;
+    color: #000;
+    font-family: "Noto Sans KR";
+    font-size: 0.9375rem;
+    font-style: normal;
     font-weight: 700;
+    line-height: normal;
+    text-align: center;
+
+    margin: 0;
+    margin-top: 1.87rem;
   }
   
