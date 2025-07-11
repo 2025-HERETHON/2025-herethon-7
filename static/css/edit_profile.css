@@ -1,42 +1,60 @@
 body {
-    font-family: 'Apple SD Gothic Neo', sans-serif;
-    background-color: #fff;
-    max-width: 390px;
-    margin: 0 auto;
-    padding: 20px;
-    box-sizing: border-box;
-    color: #1e1e1e;
-  }
-  
-  .container {
-    padding-top: 40px;
+    font-family: "Noto Sans KR";
+    font-style: normal;
+    letter-spacing: -0.0255rem;
   }
   
   /* 뒤로가기 헤더 */
   .back-header {
     display: flex;
     align-items: center;
-    gap: 8px;
-    margin-bottom: 32px;
-  }
-  
-  .back-arrow {
-    text-decoration: none;
-    font-size: 20px;
-    color: #000;
-    margin-right: 8px;
-    margin-left: 10px;
-    margin-bottom: 5px;
-  }
-  
-  .back-header h2 {
-    font-size: 16px;
-    font-weight: bold;
-    margin: 0;
-  }
-  
+    gap: 1rem;
 
+    box-sizing: border-box;
+    padding-top:4rem;
+    padding-bottom: 1rem;
+    padding-left: 1.25rem;
+    margin-bottom: 2.69rem;
+
+    border-bottom: #F7F7F7 solid 0.69rem;
+  }
   
+.back-header h2 {
+    color: #000;
+    font-size: 1.125rem;
+    font-weight: 700;
+    line-height: 1.375rem; /* 122.222% */
+
+    margin: 0;
+}
+  
+.profile_box{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 2rem;
+}
+
+h3.nickname{
+  margin: 0;
+}
+
+.edit-profile-container{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.edit-profile-container h4{
+  margin: 0;
+  margin-bottom: 0.5rem;
+}
+
+.nickname-edit, .profile{
+  margin-bottom: 2rem;
+}
+
   /* 기본 프사로 초기화 버튼 */
   form[action*="delete_profile_image"] button {
     display: block;
@@ -54,7 +72,6 @@ body {
     display: flex;
     flex-direction: column;
     gap: 12px;
-    margin-left: 18px;
   }
   
   input[type="text"],
@@ -62,8 +79,8 @@ body {
     width: 100%;
     padding: 12px;
     font-size: 14px;
+    border: none;
     border-radius: 10px;
-    border: 1px solid #ddd;
     background-color: #f8f8f8;
     box-sizing: border-box;
   }
@@ -79,14 +96,8 @@ body {
     font-weight: bold;
     font-size: 15px;
     cursor: pointer;
-  }
 
-  .profile-box {
-    display: flex;
-    align-items: center;
-    gap: 0.75rem;
-    margin-bottom: 1.5rem;
-    margin-left: 1.25rem;
+    margin-bottom: 2rem;
   }
   
   .profile-box img {
@@ -97,13 +108,4 @@ body {
     justify-content: center;
     margin-left: 20px;
   }
-  
-  .nickname {
-    font-size: 1.125rem;
-    font-weight: 600;
-    color: #000;
-    margin-left: 150px;
-    margin-bottom: 200px;
-  }
-  
   
