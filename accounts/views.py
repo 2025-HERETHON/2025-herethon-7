@@ -67,7 +67,16 @@ def emotion_stats(request):
             'percentage': round(percentage, 1),
         })
 
-    return render(request, 'accounts/emotion_stats.html', { 'user_top_tags': user_top_tags, 'user_tag_distribution': user_tag_distribution})
+    order_priority = {'1차 감정': 0, '2차 감정': 1}
+    
+    user_tag_distribution.sort(
+    key=lambda x: (order_priority.get(x['type'], 99), -x['percentage'])
+    )
+
+    return render(request, 'accounts/emotion_stats.html', {
+        'user_top_tags': user_top_tags,
+        'user_tag_distribution': user_tag_distribution
+    })
 
 User = get_user_model()
 
