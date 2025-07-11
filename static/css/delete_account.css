@@ -1,19 +1,49 @@
 body {
-    font-family: 'Apple SD Gothic Neo', sans-serif;
-    
+    font-family: "Noto Sans KR";
+    font-style: normal;
+    letter-spacing: -0.0255rem;
   }
-  
-  .container {
-    max-width: 390px;
-    margin: 0 auto;
-    padding: 2rem 1.25rem;
+
+    .back-header {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+
+    box-sizing: border-box;
+    padding:0 1.25rem;
+    padding-top: 4rem;
+    padding-bottom: 1rem;
+    margin-bottom: 1.25rem;
+
+    border-bottom: #F7F7F7 solid 0.69rem;
   }
+
+    .back-header h2 {
+    color: #000;
+    font-family: "Noto Sans KR";
+    font-size: 1.125rem;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 1.375rem; /* 122.222% */
+    letter-spacing: -0.0255rem;
+    margin: 0;
+  }
+
   
   h2 {
+<<<<<<< HEAD
     font-size: 1.125rem;
     font-weight: 700;
     color: #1e254e;
     margin-bottom: 0.75rem;
+=======
+    margin-bottom: 16px;
+    margin-left: 20px;
+
+    color: #212842;
+    font-size: 1.125rem;
+    font-weight: 700;
+>>>>>>> c56066cf04ba8d3acf1b14adb6395241ab6a9ec1
   }
   
   p {
@@ -45,23 +75,6 @@ body {
     border: none;
     border-radius: 10px;
     cursor: pointer;
-  }
-  
-  /* cancel link */
-  a.cancle {
-    display: block;
-    margin-top: 1.25rem;
-    text-align: center;
-    font-size: 0.9375rem;
-    color: #888;
-    text-decoration: none;
-  }
-  
-  /* messages */
-  ul {
-    margin-top: 1.5rem;
-    padding-left: 1rem;
-    color: red;
-    font-size: 0.875rem;
-  }
-  
+    margin-bottom: 12px;
+    margin-left: 20px;
+  }  
