@@ -27,16 +27,6 @@
 </div>
 
 <div class="edit-profile-container">
-    {# 기본 프로필 이미지가 아닌 경우 초기화 버튼 표시 #}
-        {% if user.profile_image and user.profile_image.name != "profile_images/default.png" and user.profile_image.name != "" %}
-    <div class="delete-profile">
-        <form method="post" action="{% url 'delete_profile_image' %}">
-            {% csrf_token %}
-            <button type="submit">기본 프사로 초기화</button>
-        </form>
-    </div>
-    {% endif %}
-
     {# 닉네임 / 프로필 이미지 수정 폼 #}
     <form method="post" enctype="multipart/form-data" class="edit">
         {% csrf_token %}
