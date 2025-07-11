@@ -138,13 +138,26 @@ img.ranking-thumbnail{
     font-size: 0.8125rem;
     font-weight: 400;
     line-height: 1.625rem; /* 200% */
-    gap: 0.3rem
+    align-items: center;
+    gap: 0.3rem;
+    flex-wrap: nowrap;
+    white-space: nowrap; 
 }
 
 .work-container ul{
     font-weight: 700;
     display: flex;
     gap: 0.3rem;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    flex-wrap: nowrap;
+    white-space: nowrap;
+}
+
+.work-container li {
+    margin: 0;
+    padding: 0;
 }
 
 .mainpage-content{
