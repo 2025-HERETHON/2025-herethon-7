@@ -1,0 +1,345 @@
+body {
+  font-family: 'Apple SD Gothic Neo', sans-serif;
+  background-color: #ffffff;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  color: #1e1e1e;
+}
+
+.title-section {
+  background-color: #212842;
+  color: white;
+  text-align: center;
+  border-bottom: 2px solid #eee;
+
+  box-sizing: border-box;
+  padding-top: 3.75rem;
+  padding-bottom: 1.75rem;
+}
+
+.title{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.44rem; 
+
+  margin-bottom: 0.5rem;
+}
+
+.title h1 {
+  margin:0;
+  font-size: 1.25rem;
+}
+
+.title-section hr{
+  width: 14.0625rem;
+  height: 0.021rem;
+  background: #FFF;
+  margin-bottom: 0.5rem;
+}
+
+.title-section p {
+  font-size: 0.875rem;
+  margin: 0;
+}
+
+.create-container{
+  padding: 0 1.25rem;
+}
+
+h2.section-title{
+  color: #000;
+  font-family: "Noto Sans KR";
+  font-size: 1.125rem;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 1.375rem; /* 122.222% */
+  letter-spacing: -0.0255rem;
+
+  margin-top: 1.5rem;
+  margin-bottom: 0.5rem;
+}
+
+.book-search-preview {
+  box-sizing: border-box;
+  padding: 0 1.25rem;
+  padding-bottom: 20px;
+}
+
+.book-selected-box {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 0.8rem 1rem;
+  border: 1px solid #e0e0e0;
+  border-radius: 12px;
+  background-color: #fff;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+}
+
+.book-selected-box img {
+  width: 60px;
+  height: auto;
+  border-radius: 6px;
+  object-fit: cover;
+  flex-shrink: 0;
+}
+
+.book-meta {
+  flex-grow: 1;
+}
+
+.book-meta .book-title {
+  font-size: 16px;
+  font-weight: bold;
+  margin-bottom: 4px;
+}
+
+.book-meta .book-author {
+  font-size: 14px;
+  color: #999;
+}
+
+.change-btn {
+  background-color: #eef2fb;
+  color: #1e254e;
+  font-size: 14px;
+  padding: 6px 14px;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+}
+
+.change-btn:hover {
+  background-color: #d0dfff;
+}
+
+
+.review-box {
+    background-color: #e6f0ff;
+    padding: 20px;
+    border-radius: 16px;
+    margin-bottom: 2rem;
+}
+
+strong {
+    display: block;
+    margin-top: 1rem;
+    margin-bottom: 0.5rem;
+    font-size: 15px;
+}
+
+.review-box label {
+    display: block;
+    font-weight: bold;
+    margin-top: 1rem;
+    margin-bottom: 8px;
+    font-size: 15px;
+    color: #1e254e;
+    background: none;
+    padding: 0;
+    border: none;
+    border-radius: 0;
+}
+
+
+h2 {
+  font-size: 18px;
+  font-weight: bold;
+  margin-bottom: 1rem;
+}
+
+label {
+  font-weight: 600;
+  display: block;
+  margin-top: 1.5rem;
+  margin-bottom: 0.5rem;
+  font-size: 14px;
+}
+
+
+input[type="text"],
+textarea,
+select {
+  width: 100%;
+  padding: 0.8rem;
+  font-size: 15px;
+  border: none;
+  border-radius: 10px;
+  background-color: #f0f4ff;
+  box-sizing: border-box;
+}
+
+textarea {
+  resize: none;
+  height: 120px;
+}
+
+
+ /* 별점 */
+.star-rating {
+    display: flex;
+    direction: rtl;
+    font-size: 1.6rem;
+    gap: 4px;
+    margin-bottom: 5px;
+    margin-top: -40px;
+  }
+  
+  .star-rating input[type="radio"] {
+    display: none;
+  }
+  
+  .star-rating label {
+    color: #ccc;
+    cursor: pointer;
+    transition: color 0.2s;
+  }
+  
+  .star-rating input[type="radio"]:checked ~ label,
+  .star-rating label:hover,
+  .star-rating label:hover ~ label {
+    color: #1e254e;
+  }
+
+
+.tag-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px 12px;
+  margin-top: 8px;
+}
+
+.tag-container label {
+  display: inline-block;
+  padding: 6px 8px 6px 8px;
+  border-radius: 999px;
+  border: 1px solid #505eab;
+  background-color: #ffffff;
+  color: #505eab;
+  font-size: 12px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+}
+
+.tag-container input[type="checkbox"]:checked + label {
+  background-color: #1e254e;
+  color: #ffffff;
+}
+
+.tag-section {
+  margin-top: 2rem;
+}
+
+.tag-section label {
+  display: inline-block;
+  margin: 6px 8px 6px 0;
+}
+
+.tag-label {
+  display: inline-block;
+  border: 1px solid #1e254e;
+  border-radius: 999px;
+  padding: 8px 14px;
+  background-color: #ffffff;
+  color: #1e254e;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+}
+
+.tag-section strong {
+  display: block;
+  margin-top: 1.5rem;
+  margin-bottom: 0.5rem;
+  font-size: 15px;
+}
+
+input[type="checkbox"] {
+  display: none;
+}
+
+/*.tag-section label {
+  display: inline-block;
+  background-color: #fff;
+  border: 1.5px solid #1e254e;
+  color: #1e254e;
+  border-radius: 999px;
+  padding: 8px 12px;
+  font-size: 14px;
+  margin: 6px 8px 6px 0;
+  cursor: pointer;
+}*/
+
+
+button[type="submit"] {
+  width: 100%;
+  padding: 1rem;
+  background-color: #1e254e;
+  color: white;
+  font-weight: bold;
+  font-size: 16px;
+  border: none;
+  border-radius: 12px;
+  cursor: pointer;
+  margin: 2.5rem 0;
+}
+
+button[type="submit"]:hover {
+  background-color: #2d3d70;
+}
+
+.rating-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+
+
+.book-selected-box {
+  display: flex;
+  align-items: center;
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  padding: 12px;
+  margin-bottom: 20px;
+  background-color: #fff;
+}
+
+.book-selected-box img {
+  width: 60px;
+  height: auto;
+  border-radius: 4px;
+  margin-right: 12px;
+}
+
+.book-info-text {
+  flex: 1;
+}
+
+.book-title {
+  font-weight: bold;
+  font-size: 16px;
+  margin-bottom: 4px;
+}
+
+.book-author {
+  font-size: 14px;
+  color: #999;
+}
+
+.change-btn {
+  background-color: #e6edff;
+  color: #4a5ab1;
+  padding: 6px 16px;
+  border-radius: 999px;
+  font-size: 13px;
+  text-decoration: none;
+  font-weight: 500;
+  margin-left: 160px;
+  margin-bottom: 20px;
+}

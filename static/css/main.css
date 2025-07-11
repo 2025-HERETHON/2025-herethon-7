@@ -1,0 +1,249 @@
+body{
+    font-family: Inter;
+    font-style: normal;
+    letter-spacing: -0.0255rem;
+}
+
+ul {
+  list-style: none;     /* 불릿 제거 */
+  padding-left: 0;      /* 기본 들여쓰기 제거 */
+  margin: 0;            /* 필요 시 margin도 제거 */
+}
+
+.container p, .container span{
+    margin: 0;
+}
+
+.ranking-container{
+    box-sizing: border-box;
+    padding-left: 1.44rem;
+    height: 20rem;
+    flex-shrink: 0;
+    background: var(--Main-1, #212842);
+
+    margin-bottom: 1.25rem;
+}
+
+.ranking-search{
+    padding-right: 1.44rem;
+    box-sizing: border-box;
+    padding-top: 4.12rem;
+    padding-bottom: 1.62rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.ranking-search h3{
+    margin:0;
+    color: #FFF;
+    font-size: 1.375rem;
+    font-weight: 700;
+    line-height: 1.625rem; /* 118.182% */
+}
+
+.top-books-scroll-wrapper, .tag-books-scroll-wrapper {
+    overflow-x: auto;
+    white-space: nowrap;
+    padding-bottom: 0.5rem;
+}
+
+.top-books-list, .tag-books-list {
+    display: flex;
+    gap: 12px;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+
+    gap: 1.5rem;
+}
+
+.top-books-list, .tag-books-list li {
+  flex: 0 0 auto; /* 줄바꿈 방지 */
+}
+
+img.ranking-thumbnail{
+    width: 6.875rem;
+    height: 10rem;
+    flex-shrink: 0;
+    border-radius: 0.125rem;
+}
+
+.book-rank-number{
+    color: #FFF;
+    font-size: 0.75rem;
+    font-weight: 700;
+    line-height: 1.625rem; /* 216.667% */
+}
+
+.title{
+    margin: 0;
+    color: #000;
+    font-size: 1.125rem;
+    font-weight: 700;
+    line-height: 1.625rem; /* 144.444% */
+}
+
+.author.title{
+    margin-left: 1.25rem;
+}
+
+.author-container{
+    margin-top: 0.62rem;
+    margin-bottom: 2rem;
+    margin-left: 1.12rem;
+    margin-right: 1.12rem;
+
+    width: 22.125rem;
+    height: 5.625rem;
+    flex-shrink: 0;
+    border-radius: 2.1875rem;
+    background: #E6E6FA;
+
+    display: flex;
+    align-items: center;
+    gap: 0.88rem;
+
+    box-sizing: border-box;
+    padding: 0.5rem 1.5rem;
+}
+
+.author-container img{
+    width: 4.625rem;
+    height: 4.625rem;
+    flex-shrink: 0;
+    border-radius: 4.625rem;
+}
+
+.author-content h4{
+    margin: 0;
+    margin-top: 0.56rem;
+    margin-bottom: 0.15rem;
+
+    color: #000;
+    font-size: 1rem;
+    font-weight: 700;
+    line-height: 1.625rem; /* 162.5% */
+}
+
+.author-content p{
+    color: #000;
+    font-size: 0.8125rem;
+    font-weight: 400;
+}
+
+.work-container{
+    display: flex;
+    color: rgba(58, 58, 58, 0.60);
+    font-size: 0.8125rem;
+    font-weight: 400;
+    line-height: 1.625rem; /* 200% */
+    align-items: center;
+    gap: 0.3rem;
+    flex-wrap: nowrap;
+    white-space: nowrap; 
+}
+
+.work-container ul{
+    font-weight: 700;
+    display: flex;
+    gap: 0.3rem;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    flex-wrap: nowrap;
+    white-space: nowrap;
+}
+
+.work-container li {
+    margin: 0;
+    padding: 0;
+}
+
+.mainpage-content{
+    box-sizing: border-box;
+    padding-left: 1.25rem;
+}
+
+.tag-title{
+    margin-bottom: 0.75rem;
+}
+
+.title .tag{
+    color: var(--Sub-1, #475482);
+    font-size: 1.125rem;
+    font-weight: 700;
+    line-height: 1.625rem; /* 144.444% */
+}
+
+.tag-books-list{
+    gap: 0.75rem;
+}
+
+.tag-books-list li, .feminism-books-list li {
+    width: 5.5625rem;
+    margin: 0;
+}
+
+img.tag-thumbnail, img.feminism-thumbnail{
+    width: 5.5625rem;
+    height: 8.10169rem;
+    flex-shrink: 0;
+    aspect-ratio: 89.00/129.63;
+    border-radius: 0.0625rem;
+}
+
+.tag-books-list p, .feminism-books-list p {
+    word-break: break-word;
+    white-space: normal;
+    color: #000;
+    font-size: 0.75rem;
+    font-weight: 400;
+}
+
+.tag-books-list .book-title,
+.feminism-books-list .book-title {
+    margin-top: 0.3rem;
+}
+
+.tag-books-list .book-author,
+.feminism-books-list .book-author {
+    color: #B1B1B1;
+    margin-top: 0.2rem;
+    margin-bottom: 0;
+}
+
+.feminism-reviews-container{
+    margin-top: 1.5rem;
+    margin-bottom: 2.13rem;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    width: 21.875rem;
+    height: 16.5rem;
+    flex-shrink: 0;
+    border-radius: 0.3125rem;
+    background: #FFFEE4;
+}
+
+.feminism-reviews-display{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.feminism-reviews-container h3{
+    margin: 0;
+    margin-bottom: 0.63rem;
+    color: #000;
+    font-size: 1.125rem;
+    font-weight: 700;
+    line-height: 1.625rem; /* 144.444% */
+}
+
+.feminism-books-list{
+    display:flex;
+    gap: 1.25rem;
+}

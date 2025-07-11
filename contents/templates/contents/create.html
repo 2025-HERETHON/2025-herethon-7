@@ -1,0 +1,107 @@
+{% extends "base_menu.html" %} 
+{% load static %}
+
+{% block title %}감상 기록 등록{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'css/create.css' %}" />
+{% endblock %} 
+
+<!-- 선택한 책 정보 박스 -->
+<section class="book-search-preview">
+  <h2 class="section-title">책 검색</h2>
+  <div class="book-selected-box">
+    <img src="{{ book.thumbnail }}" alt="{{ book.title }}">
+    <div class="book-meta">
+      <div class="book-title">{{ book.title }}</div>
+      <div class="book-author">{{ book.author }}</div>
+    </div>
+    <form method="GET" action="{% url 'books:search' %}">
+      <button type="submit">변경</button>
+    </form>
+  </div>
+</section>
+
+{% block content %}
+<!-- 상단 타이틀 섹션 -->
+<header class="title-section">
+    <div class="title">
+      <svg xmlns="http://www.w3.org/2000/svg" width="29" height="24" viewBox="0 0 29 24" fill="none">
+        <path d="M13.1801 5.25394V22.0772V5.25394ZM13.1504 21.7058C12.8507 21.7058 12.2364 21.3927 11.0106 20.7663C9.76449 20.1296 8.04318 19.4955 5.83721 19.0969C3.36123 18.6517 2.12459 18.4292 1.56162 17.7705C1 17.1105 1 16.0571 1 13.9464V5.65511C1 3.34773 1 2.1934 1.87618 1.48294C2.75101 0.772477 3.77974 0.957533 5.83586 1.32765C9.89679 2.06011 12.3161 3.59102 13.1504 4.46972C13.9847 3.59102 16.404 2.06011 20.4649 1.32894C22.5211 0.957533 23.5498 0.772477 24.4246 1.48294C25.3008 2.1934 25.3008 3.34644 25.3008 5.65511V9.41188M26.4672 13.2165L27.4055 14.112C27.5939 14.2919 27.7435 14.5057 27.8455 14.7411C27.9475 14.9765 28 15.2289 28 15.4838C28 15.7387 27.9475 15.9911 27.8455 16.2265C27.7435 16.4619 27.5939 16.6757 27.4055 16.8555L22.4887 21.6385C22.102 22.0088 21.6072 22.2579 21.0698 22.3529L18.0227 22.9844C17.9122 23.0081 17.7972 23.0048 17.6884 22.9747C17.5796 22.9446 17.4804 22.8888 17.4 22.8124C17.3196 22.736 17.2606 22.6414 17.2283 22.5373C17.196 22.4333 17.1916 22.3231 17.2154 22.217L17.8634 19.3247C17.9647 18.8109 18.2252 18.3386 18.6127 17.9698L23.5916 13.2152C23.9736 12.8509 24.4906 12.6464 25.0294 12.6464C25.5683 12.6464 26.0852 12.8522 26.4672 13.2165Z" fill="#FFFBF2"/>
+        <path d="M13.1801 5.25394V22.0772M13.1504 21.7058C12.8507 21.7058 12.2364 21.3927 11.0106 20.7663C9.76449 20.1296 8.04318 19.4955 5.83721 19.0969C3.36123 18.6517 2.12459 18.4292 1.56162 17.7705C1 17.1105 1 16.0571 1 13.9464V5.65511C1 3.34773 1 2.1934 1.87618 1.48294C2.75101 0.772477 3.77974 0.957533 5.83586 1.32765C9.89679 2.06011 12.3161 3.59102 13.1504 4.46972C13.9847 3.59102 16.404 2.06011 20.4649 1.32894C22.5211 0.957533 23.5498 0.772477 24.4246 1.48294C25.3008 2.1934 25.3008 3.34644 25.3008 5.65511V9.41188M26.4672 13.2165L27.4055 14.112C27.5939 14.2919 27.7435 14.5057 27.8455 14.7411C27.9475 14.9765 28 15.2289 28 15.4838C28 15.7387 27.9475 15.9911 27.8455 16.2265C27.7435 16.4619 27.5939 16.6757 27.4055 16.8555L22.4887 21.6385C22.102 22.0088 21.6072 22.2579 21.0698 22.3529L18.0227 22.9844C17.9122 23.0081 17.7972 23.0048 17.6884 22.9747C17.5796 22.9446 17.4804 22.8888 17.4 22.8124C17.3196 22.736 17.2606 22.6414 17.2283 22.5373C17.196 22.4333 17.1916 22.3231 17.2154 22.217L17.8634 19.3247C17.9647 18.8109 18.2252 18.3386 18.6127 17.9698L23.5916 13.2152C23.9736 12.8509 24.4906 12.6464 25.0294 12.6464C25.5683 12.6464 26.0852 12.8522 26.4672 13.2165Z" stroke="#212842" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+      <h1>감상 기록 등록하기</h1>
+    </div>
+    <hr>
+    <p>책 정보를 입력하고 감정을 기록해보세요</p>
+</header>
+
+<div class="create-container">
+  <!-- 리뷰 작성 폼 -->
+  <h2 class="section-title">책 검색</h2>
+  <div class="book-selected-box">
+  {% if book.thumbnail %}
+    <img src="{{ book.thumbnail }}" alt="책 썸네일" width="120"><br><br>
+  {% endif %}
+  <form method="POST" action="{% url 'contents:create' book.id %}">       
+      {% csrf_token %}
+  <div class="book-title">
+  <p><strong>{{ book.title }}</strong></p>
+  </div>
+  <div class="book-author">
+  <p>{{ book.author }}</p>
+  </div>
+
+
+  <a href="{% url 'contents:book_search'%}" class="change-btn">변경</a>
+  </div>
+
+    <h2 class="section-title">감상평</h2>
+    <!-- 감상 작성 박스 -->
+    <div class="review-box">
+      <label><strong>평점</strong></label>
+      <div class="star-rating">
+          {% for i in rating_range|slice:"::-1" %}
+          <input type="radio" id="star{{ i }}" name="rating" value="{{ i }}" {% if review.rating == i %}checked{% endif %}>
+          <label for="star{{ i }}">★</label>
+          {% endfor %}
+      </div>
+
+      <!-- 한 줄 감상평 -->
+      <label for="short_comment"><strong>한 줄 감상평</strong></label>
+      <input type="text" name="short_comment" id="short_comment" maxlength="100" placeholder="한 줄 감상평을 써주세요" required>
+
+      <!-- 상세 감상평 -->
+      <label for="detailed_review"><strong>상세 감상평</strong> <small>(선택)</small></label>
+      <textarea name="detailed_review" id="detailed_review" rows="6" placeholder="자세한 감상평을 써주세요"></textarea>
+    </div>
+
+    <!-- 감정 태그 -->
+    <div class="tag-section">
+      <h2 class="section-title">감정 태그</h2>
+
+      <strong>1차 감정</strong>
+      <div class="tag-container">
+        {% for tag in tags %}
+          {% if tag.tag_type == 'primary' %}
+            <input type="checkbox" id="tag{{ tag.id }}" name="tag" value="{{ tag.id }}">
+            <label for="tag{{ tag.id }}">#{{ tag.name }}</label>
+          {% endif %}
+        {% endfor %}
+      </div>
+
+      <strong>2차 감정 (여성 중심 감정)</strong>
+      <div class="tag-container">
+        {% for tag in tags %}
+          {% if tag.tag_type == 'secondary' %}
+            <input type="checkbox" id="tag{{ tag.id }}" name="tag" value="{{ tag.id }}">
+            <label for="tag{{ tag.id }}">#{{ tag.name }}</label>
+          {% endif %}
+        {% endfor %}
+      </div>
+    </div>
+
+    <button type="submit">등록하기</button>
+  </form> 
+</div>
+{% endblock %}

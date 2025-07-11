@@ -1,0 +1,79 @@
+{% extends "base_menu.html" %} 
+{% load static %}
+{% block title %}감정 탐색{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'css/filter_reviews.css' %}" />
+{% endblock %} 
+
+{% block content %}
+
+<div class="filter-top">
+    <h2>감정 태그를 선택하면 <br> 관련 리뷰를 확인할 수 있어요!</h2>
+    <form method="get" action="{% url 'contents:filter_reviews' %}">
+        {% if request.GET.book_id %}
+            <input type="hidden" name="book_id" value="{{ request.GET.book_id }}">
+        {% endif %}
+
+        <div class="tag-container">
+            {% for tag in tags %}
+                {% with tag_id_str=tag.id|stringformat:"s" %}
+                <input type="checkbox" id="tag{{ tag.id }}" name="tags" value="{{ tag.id }}"
+                {% if tag.id in selected_tag_ids %}checked{% endif %}>
+                <label for="tag{{ tag.id }}">
+                    <span>#{{ tag.name }}</span>
+                </label>
+                {% endwith %}
+            {% endfor %}
+        </div>
+        <div class="sort">
+            <select name="sort">
+                <option value="recent" {% if sort == "recent" %}selected{% endif %}>최신순</option>
+                <option value="popular" {% if sort == "popular" %}selected{% endif %}>인기순</option>
+            </select>
+            <button type="submit">필터적용</button>
+        </div>
+    </form>
+</div>
+
+
+    {% if selected_tags %}
+        <h3 class="filter-title">선택된 감정이 담긴 책과 리뷰</h3>
+    {% endif %}
+
+    {% if book_title %}
+        <h3 class="filter-title">"{{ book_title }}"에 대한 리뷰 모음</h3>
+    {% endif %}
+
+<div class="filter-content">
+    {% for review in reviews %}
+        <a href="{% url 'contents:detail' review.id %}" style="text-decoration: none; color: inherit;">
+        <div class="review-container">
+            {% if review.book.thumbnail %}
+                <img src="{{ review.book.thumbnail }}" alt="썸네일" width="80">
+            {% endif %}
+            <div class="review-content">
+                <div class="review-title">
+                    <h4>{{ review.book.title }}</h4> 
+                    <svg xmlns="http://www.w3.org/2000/svg" width="4" height="4" viewBox="0 0 4 4" fill="none">
+                        <path d="M2.5 1.83447C2.5 2.24869 2.16421 2.58447 1.75 2.58447C1.33579 2.58447 1 2.24869 1 1.83447C1 1.42026 1.33579 1.08447 1.75 1.08447C2.16421 1.08447 2.5 1.42026 2.5 1.83447Z" fill="black" stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                    <p>{{ review.book.author }}</p>
+                </div>
+                <div class="review-coment">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="240" height="68" viewBox="0 0 240 68" fill="none">
+                        <path d="M4.49064 0.999999C4.49064 0.447714 4.93836 0 5.49064 0H239C239.552 0 240 0.447715 240 1V54C240 54.5523 239.552 55 239 55H17.815C17.5875 55 17.3669 55.0775 17.1895 55.2198L2.59262 66.9216C1.81929 67.5415 0.712183 66.7797 1.01491 65.8359L4.44286 55.149C4.47452 55.0503 4.49064 54.9472 4.49064 54.8435V0.999999Z" fill="#F5F5F5"/>
+                    </svg>
+                    <div class="review-text-wrapper">
+                        <p class="review-text">{{ review.short_comment }}</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        </a>
+    {% empty %}
+        <p class="empty">해당 감정을 모두 포함하는 리뷰가 없습니다.</p>
+    {% endfor %}
+</div>
+
+{% endblock %}

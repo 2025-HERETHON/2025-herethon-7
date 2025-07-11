@@ -1,0 +1,211 @@
+body {
+  font-family: -apple-system, BlinkMacSystemFont, "Apple SD Gothic Neo",
+    "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #fff;
+    color: #1e1e1e;
+}
+
+.title-section {
+  background-color: #212842;
+  color: white;
+  text-align: center;
+  border-bottom: 2px solid #eee;
+
+  box-sizing: border-box;
+  padding-top: 3.75rem;
+  padding-bottom: 1.75rem;
+}
+
+.title{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.44rem; 
+
+  margin-bottom: 0.5rem;
+}
+
+.title h1 {
+  margin:0;
+  font-size: 1.25rem;
+}
+
+.title-section hr{
+  width: 14.0625rem;
+  height: 0.021rem;
+  background: #FFF;
+  margin-bottom: 0.5rem;
+}
+
+.title-section p {
+  font-size: 0.875rem;
+  margin: 0;
+}
+
+/* 검색 영역 */
+h2.search-title{
+  color: #000;
+  font-family: "Noto Sans KR";
+  font-size: 1.125rem;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 1.375rem; /* 122.222% */
+  letter-spacing: -0.0255rem;
+
+  margin-top: 1.5rem;
+  margin-left: 1.25rem;
+  margin-bottom: 0.5rem;
+}
+
+.search-form {
+  padding: 0 1.25rem;
+}
+
+.search-box{
+    display: flex;
+    align-items: center;
+
+    width: 21.875rem;
+    height: 3.125rem;
+    flex-shrink: 0;
+    border-radius: 0.9375rem;
+    background: #F6F6F6;
+
+    position: relative;
+
+    box-sizing: border-box;
+    padding: 0.87rem;
+    padding-right: 0;
+}
+
+.search-box input::placeholder{
+    color: #B1B1B1;
+    font-size: 0.9375rem;
+    font-weight: 400;
+    line-height: 1.375rem; /* 146.667% */
+}
+
+.search-box input[type="text"] {
+    border: none;
+    background: transparent;
+    outline: none;
+    flex: 1;
+    color: #000;
+    font-size: 0.9375rem;
+    font-weight: 700;
+    line-height: 1.375rem; /* 146.667% */
+}
+
+.clear-btn {
+    background: none;
+    border: none;
+    cursor: pointer;
+
+    margin-top: 0.2rem;
+    margin-right: 0.62rem;
+    padding: 0;
+
+    display: flex;
+    align-items: center;
+}
+
+.search-btn{
+    background: none;
+    border: none;
+    cursor: pointer;
+
+    padding: 0;
+    margin-right: 1.25rem;
+
+    display: flex;
+    align-items: center;
+}
+
+/* 검색 결과 */
+.results {
+  padding: 1rem;
+}
+
+.results ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.results li {
+  margin-bottom: 1rem;
+  padding: 0;
+  font-size: 0.9rem;
+}
+
+.book-item-form {
+  width: 100%;
+}
+
+.book-item {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  border: 1px solid #ddd;
+  border-radius: 0.75rem;
+  padding: 0.75rem;
+  max-width: 340px;
+  margin: 0 auto;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+  background-color: #fff;
+}
+
+.button-wrapper {
+  margin-left: auto;
+  justify-content: flex-end;
+}
+
+.book-item img {
+  width: 60px;
+  height: auto;
+  border-radius: 4px;
+  flex-shrink: 0;
+}
+
+.book-info {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end; /* 텍스트 오른쪽 정렬 */
+  flex-grow: 1;
+}
+
+.book-title {
+  font-weight: bold;
+  font-size: 1rem;
+  margin-bottom: 0.2rem;
+  text-align: right;
+}
+
+.book-author {
+  font-size: 0.85rem;
+  color: #999;
+  text-align: right;
+}
+
+.book-item button {
+  background-color: #1e254e;
+  color: #fff;
+  border: none;
+  border-radius: 0.75rem;
+  padding: 0.4rem 0.9rem;
+  font-size: 0.8rem;
+  margin-top: 0.5rem;
+  align-self: flex-end;
+}
+
+.book-item button:hover {
+  background-color: #d0dfff;
+}
+
+.no-result {
+  padding: 1rem;
+  color: #888;
+  text-align: center;
+}

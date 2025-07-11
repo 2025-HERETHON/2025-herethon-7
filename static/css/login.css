@@ -1,0 +1,138 @@
+p{
+  color: var(--Main-2, #FFFBF2);
+  font-family: "Cormorant Garamond";
+  font-size: 1.125rem;
+  font-style: normal;
+  font-weight: 350;
+  line-height: normal;
+
+  margin: 0;
+  padding-top: 9.38rem;
+  padding-left: 1.25rem;
+}
+
+h2{
+  margin-top: 0.5rem;
+  margin-bottom: 3.5rem;
+  color: #FFFBF2;
+  font-family: "Euphoria Script";
+  font-size: 2.875rem;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  letter-spacing: 0.02875rem;
+
+  width: 8.4375rem;
+  height: 3rem;
+  flex-shrink: 0;
+  padding-left: 1.25rem;
+}
+
+form{
+  display: flex;
+  flex-direction: column;
+  align-items: center;   /* ← 이게 핵심 */
+}
+
+.login-container{
+  width: 100%;
+  height: 100%;
+  background: #212842;
+}
+
+.input-group{
+  width: 100%;           /* 또는 원하는 고정 width: 21.875rem */
+  max-width: 350px;
+  margin-bottom: 1rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;   /* ← label, input 정렬 */
+}
+
+.input-group input {
+  box-sizing: border-box; /* ← padding이 width 안에 포함됨 */
+  width: 21.875rem;
+  height: 3.0625rem;
+  padding-left: 1.25rem;
+  flex-shrink: 0;
+  border: none;
+  border-radius: 8px;
+  background-color: #3e4a62;
+  color: #F5F5F5;
+}
+
+input::placeholder {
+  color: #F5F5F5;
+  font-family: "Noto Sans KR";
+  font-size: 0.875rem;
+  font-style: normal;
+  font-weight: 250;
+  line-height: normal;
+}
+
+a {
+  color: inherit;          /* 부모 요소의 색상 따름 */
+  text-decoration: none;   /* 밑줄 제거 */
+  font: inherit;           /* 글꼴도 부모와 일치 */
+}
+
+.options {
+  display: flex;
+  width: 21.875rem;
+  height: 0.9375rem;
+  justify-content:right;
+  text-align: right;
+  flex-shrink: 0;
+  margin-bottom: 3.13rem;
+
+  color: #F5F5F5;
+  font-family: "Noto Sans KR";
+  font-size: 0.75rem;
+  font-style: normal;
+  font-weight: 250;
+  line-height: normal;
+
+  gap: 0.5rem;
+}
+
+.login-btn {
+  align-items: center; 
+  
+  width: 21.875rem;
+  height: 3.0625rem;
+  flex-shrink: 0;
+  padding: 0.8rem;
+  border-radius: 0.625rem;
+  background: #5A6277;
+  border: none;
+  
+  color: #F5F5F5;
+  font-family: "Noto Sans KR";
+  font-size: 0.875rem;
+  font-style: normal;
+  font-weight: 550;
+  line-height: normal;
+  
+  cursor: pointer;
+}
+
+.signup-link-container{
+  margin-top: 9.31rem;
+  text-align: center;
+  display: flex;
+}
+
+.signup-link {
+  color: var(--Main-2, #FFFBF2);
+  font-family: "Noto Sans KR";
+  font-size: 0.875rem;
+  font-style: normal;
+  font-weight: 550;
+  line-height: normal;
+}
+
+hr{
+  width: 7.93775rem;
+  height: 0.02rem;
+  background: var(--Main-2, #FFFBF2);
+}
