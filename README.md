@@ -1,7 +1,11 @@
 # 2025-herethon-7
 2025 여기톤 : HER+ETHON 7팀
 
-# 📚 감정 기반 독서 기록 플랫폼 - SHELF
+# 📚 SHELF
+<img width="377" height="145" alt="image" src="https://github.com/user-attachments/assets/939a53be-5c6b-4c71-85d8-5faa7f2dc654" />
+
+## 💖 HER + EMOTION 
+> **여성의 감정을 존중하는 감정 기반 독서 기록 플랫폼**
 
 ---
 
@@ -33,7 +37,7 @@
 ## 👩‍💻 팀원 소개
 |이정음|김지원|유진서|김민솔|양현빈|
 |:------:|:------:|:------:|:------:|:------:|
-|<img width="100" alt="lje" src="https://github.com/user-attachments/assets/0d43f36a-9034-443d-b66d-0a8687c2ace9" />|<img width="100" alt="kjw" src="https://github.com/user-attachments/assets/15909954-7449-4951-b59b-5f1e6d562690" />|<img width="100" alt="yjs" src="https://github.com/user-attachments/assets/0f508f7a-8945-40e1-8290-14d9b143d9fd" />|<img width="100" alt="kms" src="https://github.com/user-attachments/assets/f062f42b-077c-4c49-88d3-377968f0e02c" />|<img width="100" alt="yhb" src="https://github.com/user-attachments/assets/bee2c402-0b4e-40b7-8cff-d0886a19b7aa" />|
+|<img width="100" alt="lje" src="https://github.com/user-attachments/assets/0d43f36a-9034-443d-b66d-0a8687c2ace9" />|<img width="100" alt="kjw" src="https://github.com/user-attachments/assets/15909954-7449-4951-b59b-5f1e6d562690" />|<img width="100" alt="yjs" src="https://github.com/user-attachments/assets/cf742a94-2573-4f6c-b980-abd1a085be62" />|<img width="100" alt="kms" src="https://github.com/user-attachments/assets/f062f42b-077c-4c49-88d3-377968f0e02c" />|<img width="100" alt="yhb" src="https://github.com/user-attachments/assets/bee2c402-0b4e-40b7-8cff-d0886a19b7aa" />|
 |기획 · 디자인|프론트엔드|프론트엔드|백엔드|백엔드|
 
 ---
@@ -129,7 +133,7 @@ manage.py
 ## 💻 개발 환경 실행 방법
 ```bash
 python -m venv venv
-source venv\Scripts\activate
+source venv/Scripts/activate
 pip install -r requirements.txt
 python manage.py runserver
 ```
