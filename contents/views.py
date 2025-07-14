@@ -22,6 +22,13 @@ def main(request):
         review_count=Count('reviews', filter=Q(reviews__created_at__range=(start_of_week, end_of_week)))
     ).filter(review_count__gt=0).order_by('-review_count')[:5]
 
+    
+    if not top_books.exists():
+        # 주간 리뷰 없을 때 전체 기준으로 대체
+        top_books = Book.objects.annotate(
+            review_count=Count('reviews')
+        ).filter(review_count__gt=0).order_by('-review_count')[:5]
+
     all_tags = Tag.objects.annotate(review_count=Count('reviews')).filter(review_count__gt=0)
     random_tag = random.choice(all_tags) if all_tags else None
 
